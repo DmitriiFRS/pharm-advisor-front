@@ -9,6 +9,7 @@ import uzflag from "@/assets/icons/common/header-uz.svg";
 import call from "@/assets/icons/common/header-call.svg";
 import cabinet from "@/assets/icons/common/header-cabinet.svg";
 import logo from "@/assets/images/common/logo.webp";
+import BlackButton from "@/shared/ui/BlackButton";
 
 const NAV_LINKS = [
 	{ href: "/education", label: "Обучение" },
@@ -24,15 +25,15 @@ export const Header = () => {
 	};
 
 	return (
-		<header className="fixed top-0 z-50 w-full bg-background/80 backdrop-blur-md border-b border-border">
-			<div className="container mx-auto px-4 h-16 flex items-center justify-between max-w-[1200px]">
+		<header className="fixed top-0 z-50 w-full">
+			<div className="mt-2.5 mx-auto flex items-center px-3.5 rounded-[11px] h-11 bg-white max-w-[760px]">
 				{/* Logo */}
-				<Link href="/" className="flex-shrink-0">
+				<Link href="/">
 					<Image src={logo} alt="Pharm Advisor Logo" width={120} height={40} className="h-10 w-auto object-contain" priority />
 				</Link>
 
 				{/* Desktop Navigation */}
-				<nav className="hidden md:flex items-center gap-8">
+				<nav className="hidden md:flex md:gap-5 ml-8">
 					{NAV_LINKS.map((link) => (
 						<Link
 							key={link.href}
@@ -45,21 +46,17 @@ export const Header = () => {
 				</nav>
 
 				{/* Desktop Right Section (Icons + Button) */}
-				<div className="hidden md:flex items-center gap-4">
-					<div className="flex items-center gap-3">
-						<button className="p-1 hover:opacity-80 transition-opacity">
-							<Image src={uzflag} alt="Language" width={24} height={24} />
-						</button>
-						<button className="p-1 hover:opacity-80 transition-opacity">
-							<Image src={call} alt="Call" width={24} height={24} />
-						</button>
-						<button className="p-1 hover:opacity-80 transition-opacity">
-							<Image src={cabinet} alt="Cabinet" width={24} height={24} />
-						</button>
-					</div>
-					<button className="bg-primary text-primary-foreground px-4 py-2 rounded-md text-sm font-medium hover:bg-primary/90 transition-colors">
-						Обсудить проект
+				<div className="hidden md:flex ml-8 md:gap-[7px] md:items-center">
+					<button className="h-7.5 min-h-7.5 w-7.5 min-w-7.5 flex items-center justify-center bg-[#F5F5F7] rounded-[8px]">
+						<Image src={call} alt="Call" width={24} height={24} className="size-[9px]" />
 					</button>
+					<button className="h-7.5 min-h-7.5 w-7.5 min-w-7.5 flex items-center justify-center bg-[#F5F5F7] rounded-[8px]">
+						<Image src={cabinet} alt="Cabinet" width={24} height={24} className="size-[9px]" />
+					</button>
+					<div className="h-7.5 min-h-7.5 w-7.5 min-w-7.5 flex items-center justify-center bg-[#F5F5F7] rounded-[8px]">
+						<Image src={uzflag} alt="Language" width={24} height={24} className="size-[9px]" />
+					</div>
+					<BlackButton className="max-h-7.5 min-w-full">Обсудить проект</BlackButton>
 				</div>
 
 				{/* Mobile Burger Button */}

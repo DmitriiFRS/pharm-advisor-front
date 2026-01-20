@@ -10,7 +10,7 @@ const HeroSection = () => {
 			<div>
 				<Image src={banner} alt="banner" className="absolute left-0 top-0 object-cover w-screen h-full max-h-screen" priority />
 			</div>
-			<Container className="h-full">
+			<Container className="h-full text-white">
 				<div className="relative z-10 h-screen flex flex-col justify-end pb-[106px]">
 					<div>
 						<h1 className="text-40 font-bold max-w-[500px] leading-100">Консалтинговая фарм компания в Узбекистане</h1>
