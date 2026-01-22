@@ -1,4 +1,5 @@
 import Container from "@/shared/ui/Container";
+import GrayLine from "@/shared/ui/GrayLine";
 import React from "react";
 
 interface AdvantageItem {
@@ -51,7 +52,7 @@ const AdvantageCard = ({ item }: { item: AdvantageItem }) => {
 	return (
 		<div className="flex flex-col">
 			<div className="text-40 font-semibold leading-106 tracking-neg-3 text-black-secondary md:text-[56px]">{item.number}</div>
-			<div className="h-px w-full bg-black-primary my-5 opacity-[0.15]" />
+			<GrayLine className="my-5" />
 			<div className="flex flex-col gap-2.5">
 				<h3 className="text-15 font-semibold leading-106 tracking-neg-1 text-black-primary">{item.title}</h3>
 				<p className="text-11 leading-118 tracking-neg-1 text-grey-primary">{item.description}</p>

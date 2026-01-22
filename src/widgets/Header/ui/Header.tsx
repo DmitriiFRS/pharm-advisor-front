@@ -26,7 +26,7 @@ export const Header = () => {
 
 	return (
 		<header className="fixed top-0 z-50 w-full">
-			<div className="mt-2.5 mx-auto flex items-center px-3.5 rounded-[11px] h-11 bg-white max-w-[760px]">
+			<div className="mt-2.5 mx-auto flex items-center justify-between px-3.5 rounded-[11px] h-11 bg-white max-w-[760px] md:justify-start">
 				{/* Logo */}
 				<Link href="/">
 					<Image src={logo} alt="Pharm Advisor Logo" width={120} height={40} className="h-10 w-auto object-contain" priority />
@@ -73,7 +73,7 @@ export const Header = () => {
 						animate={{ opacity: 1, height: "auto" }}
 						exit={{ opacity: 0, height: 0 }}
 						transition={{ duration: 0.3, ease: "easeInOut" }}
-						className="md:hidden overflow-hidden bg-background border-b border-border absolute top-16 left-0 w-full shadow-lg"
+						className="md:hidden overflow-hidden bg-background border-b border-border absolute top-16 left-0 w-full shadow-lg bg-white"
 					>
 						<nav className="flex flex-col p-4 gap-4">
 							{NAV_LINKS.map((link) => (
