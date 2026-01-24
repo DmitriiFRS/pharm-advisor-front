@@ -25,23 +25,23 @@ const Courses = () => {
 	return (
 		<section className="py-10 md:py-20">
 			<Container>
-				<div className="relative bg-primary-gradient rounded-[20px] md:rounded-[40px] overflow-visible text-white p-6 md:p-12 lg:p-[60px] flex flex-col lg:flex-row items-center justify-between min-h-[500px]">
+				<div className="relative bg-primary-gradient rounded-[20px] overflow-visible text-white pb-25 sm:pb-5 pt-7.5 px-2.5 sm:px-7.5 md:pb-35 lg:p-[60px] flex flex-col sm:flex-row items-center justify-between min-h-[500px] sm:min-h-50 md:gap-10 md:items-start">
 					{/* Background Pattern */}
-					<div className="absolute top-0 left-0 w-full h-full overflow-hidden rounded-[20px] md:rounded-[40px] z-0 pointer-events-none">
+					<div className="absolute top-0 left-0 w-full h-full overflow-hidden rounded-[20px] z-0 pointer-events-none">
 						<Image src="/assets/icons/homepage/bg-picture.svg" alt="background pattern" fill className="object-cover opacity-50" />
 					</div>
 
 					{/* Content */}
-					<div className="relative z-10 w-full lg:w-1/2 flex flex-col gap-6 md:gap-8 mb-10 lg:mb-0">
-						<h2 className="text-[28px] md:text-[40px] lg:text-[46px] font-bold leading-[106%] tracking-[-0.02em]">
+					<div className="relative z-10 w-full lg:w-1/2 md:gap-8 mb-10 lg:mb-0">
+						<h2 className="text-20 font-semibold leading-100 tracking-neg-3 md:text-40">
 							Обучающие курсы для фармацевтических команд
 						</h2>
-						<p className="text-[16px] md:text-[18px] leading-[130%] opacity-90 max-w-[500px]">
+						<p className="text-14 leading-130 tracking-neg-2 mt-5">
 							Практические образовательные программы по фарммаркетингу, аналитике и стратегическому управлению продуктами,
 							разработанные на основе реального опыта и рыночных кейсов.
 						</p>
-						<div className="w-full sm:w-fit">
-							<BlackButton className="w-full sm:w-auto px-8">
+						<div className="w-full sm:w-full sm:max-w-[330px] mt-10">
+							<BlackButton className="w-full">
 								<span className="mr-2">Узнать подробнее</span>
 								<ChevronRight size={20} />
 							</BlackButton>
@@ -50,20 +50,20 @@ const Courses = () => {
 
 					{/* Laptop Image */}
 					<div className="relative z-10 w-full lg:w-1/2 flex justify-center lg:justify-end">
-						<div className="relative w-full max-w-[600px] aspect-[600/450]">
+						<div className="relative w-full aspect-388/280 md:aspect-497/359 md:w-[359px] md:h-[497px]">
 							<Image src="/assets/images/homepage/laptop.webp" alt="Courses on laptop" fill className="object-contain" />
 						</div>
 					</div>
 				</div>
 
 				{/* Advantages Columns */}
-				<div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-5 md:-mt-16 relative z-20 px-0 md:px-10">
+				<div className="grid grid-cols-1 md:grid-cols-3 gap-5 -mt-15 sm:-mt-10 relative z-20 px-0 md:px-0 md:gap-3">
 					{COURSES_ADVANTAGES.map((item) => (
-						<div key={item.id} className="bg-white rounded-[20px] p-6 shadow-sm flex flex-col gap-4 min-h-[180px]">
+						<div key={item.id} className="bg-white rounded-[18px] p-5 shadow-sm min-h-[180px]">
 							<div className="w-12 h-12 relative">
-								<Image src={item.icon} alt="icon" width={48} height={48} />
+								<Image src={item.icon} alt="icon" width={48} height={48} className="rounded-[12px]" />
 							</div>
-							<p className="text-black-primary text-[16px] md:text-[18px] font-medium leading-[130%]">{item.title}</p>
+							<p className="text-black-primary text-16 font-semibold tracking-neg-2 leading-118 mt-6">{item.title}</p>
 						</div>
 					))}
 				</div>
