@@ -38,7 +38,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
 				<div className="wrapper">
 					<NextIntlClientProvider messages={messages}>
 						<Header />
-						{children}
+						<main>{children}</main>
 						<Footer />
 					</NextIntlClientProvider>
 				</div>

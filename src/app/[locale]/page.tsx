@@ -11,7 +11,7 @@ import Services from "./(home)/_components/Services";
 
 export default function Home() {
 	return (
-		<main>
+		<>
 			<HeroSection />
 			<Advantages />
 			<About />
@@ -22,6 +22,6 @@ export default function Home() {
 			<KnowledgeBase />
 			<Faq />
 			<ContactSection />
-		</main>
+		</>
 	);
 }

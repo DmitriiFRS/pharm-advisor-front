@@ -73,7 +73,7 @@ export const Header = () => {
 						animate={{ opacity: 1, height: "auto" }}
 						exit={{ opacity: 0, height: 0 }}
 						transition={{ duration: 0.3, ease: "easeInOut" }}
-						className="md:hidden overflow-hidden bg-background border-b border-border absolute top-16 left-0 w-full shadow-lg bg-white"
+						className="md:hidden overflow-hidden border-b border-border absolute top-16 left-0 w-full shadow-lg bg-white"
 					>
 						<nav className="flex flex-col p-4 gap-4">
 							{NAV_LINKS.map((link) => (
