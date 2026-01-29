@@ -20,6 +20,7 @@ interface Props {
 
 const RegisterForm: React.FC<Props> = ({ onLogin }) => {
 	const [showPassword, setShowPassword] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const {
 		register,
@@ -31,9 +32,12 @@ const RegisterForm: React.FC<Props> = ({ onLogin }) => {
 
 	const onSubmit = async (data: RegisterFormValues) => {
 		try {
+			setIsLoading(true);
 			await authApi.register(data);
 		} catch (error) {
 			alert("Ошибка при регистрации");
+		} finally {
+			setIsLoading(false);
 		}
 	};
 
@@ -65,7 +69,9 @@ const RegisterForm: React.FC<Props> = ({ onLogin }) => {
 						</button>
 					</div>
 
-					<PrimaryButton className="w-full h-[50px] text-base mt-2 max-w-60 mx-auto">Зарегистрироваться</PrimaryButton>
+					<PrimaryButton loading={isLoading} type="submit" className="w-full h-[50px] text-base mt-2 max-w-60 mx-auto">
+						Зарегистрироваться
+					</PrimaryButton>
 
 					<div className="flex justify-center items-center text-xs md:text-sm text-[#9E9E9E] mt-2">
 						<button type="button" onClick={onLogin} className="hover:text-black-primary transition-colors">

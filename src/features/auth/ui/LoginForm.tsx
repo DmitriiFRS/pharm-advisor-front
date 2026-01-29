@@ -21,6 +21,7 @@ interface Props {
 
 const LoginForm: React.FC<Props> = ({ children, onRegister, onRecovery }) => {
 	const [showPassword, setShowPassword] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const {
 		register,
@@ -32,10 +33,13 @@ const LoginForm: React.FC<Props> = ({ children, onRegister, onRecovery }) => {
 
 	const onSubmit = async (data: LoginFormValues) => {
 		try {
+			setIsLoading(true);
 			await authApi.login(data);
 			alert("Успешная авторизация");
 		} catch (error) {
 			alert("Ошибка при авторизации");
+		} finally {
+			setIsLoading(false);
 		}
 	};
 
@@ -65,7 +69,9 @@ const LoginForm: React.FC<Props> = ({ children, onRegister, onRecovery }) => {
 							{showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
 						</button>
 					</div>
-					<PrimaryButton className="w-full h-[50px] text-base mt-2 max-w-45 mx-auto">Войти</PrimaryButton>
+					<PrimaryButton loading={isLoading} type="submit" className="w-full h-[50px] text-base mt-2 max-w-45 mx-auto">
+						Войти
+					</PrimaryButton>
 
 					<div className="flex justify-between items-center text-xs md:text-sm text-[#9E9E9E] mt-2">
 						<button type="button" onClick={onRegister} className="hover:text-black-primary transition-colors">

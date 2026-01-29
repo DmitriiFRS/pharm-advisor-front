@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -16,6 +17,7 @@ interface Props {
 }
 
 const RecoveryForm: React.FC<Props> = ({ onLogin, onRegister }) => {
+	const [isLoading, setIsLoading] = useState(false);
 	const {
 		register,
 		handleSubmit,
@@ -24,9 +26,13 @@ const RecoveryForm: React.FC<Props> = ({ onLogin, onRegister }) => {
 		resolver: zodResolver(recoverySchema),
 	});
 
-	const onSubmit = (data: RecoveryFormValues) => {
+	const onSubmit = async (data: RecoveryFormValues) => {
+		setIsLoading(true);
 		console.log("Recovery data:", data);
 		// TODO: Implement recovery logic
+		// Simulating API call
+		await new Promise((resolve) => setTimeout(resolve, 1000));
+		setIsLoading(false);
 	};
 
 	return (
@@ -41,7 +47,9 @@ const RecoveryForm: React.FC<Props> = ({ onLogin, onRegister }) => {
 				<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
 					<CommonInput label="" placeholder="Введите e-mail" {...register("email")} error={errors.email} className="border" />
 
-					<PrimaryButton className="w-full h-[50px] text-base mt-2 max-w-60 mx-auto">Восстановить</PrimaryButton>
+					<PrimaryButton loading={isLoading} type="submit" className="w-full h-[50px] text-base mt-2 max-w-60 mx-auto">
+						Восстановить
+					</PrimaryButton>
 
 					<div className="flex justify-between items-center text-xs md:text-sm text-[#9E9E9E] mt-2">
 						<button type="button" onClick={onLogin} className="hover:text-black-primary transition-colors">
