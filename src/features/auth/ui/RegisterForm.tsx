@@ -9,6 +9,8 @@ import CommonInput from "@/shared/ui/form/CommonInput";
 import PrimaryButton from "@/shared/ui/PrimaryButton";
 import { registerSchema } from "../model/auth.schema";
 import { DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { authApi } from "../api/auth.api";
+import { LoginFormValues } from "../types/types";
 
 type RegisterFormValues = z.infer<typeof registerSchema>;
 
@@ -27,9 +29,12 @@ const RegisterForm: React.FC<Props> = ({ onLogin }) => {
 		resolver: zodResolver(registerSchema),
 	});
 
-	const onSubmit = (data: RegisterFormValues) => {
-		console.log("Register data:", data);
-		// TODO: Implement registration logic
+	const onSubmit = async (data: RegisterFormValues) => {
+		try {
+			await authApi.register(data);
+		} catch (error) {
+			alert("Ошибка при регистрации");
+		}
 	};
 
 	return (

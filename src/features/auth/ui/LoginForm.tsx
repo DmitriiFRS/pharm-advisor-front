@@ -9,6 +9,7 @@ import CommonInput from "@/shared/ui/form/CommonInput";
 import PrimaryButton from "@/shared/ui/PrimaryButton";
 import { loginSchema } from "../model/auth.schema";
 import { DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { authApi } from "../api/auth.api";
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
@@ -29,9 +30,13 @@ const LoginForm: React.FC<Props> = ({ children, onRegister, onRecovery }) => {
 		resolver: zodResolver(loginSchema),
 	});
 
-	const onSubmit = (data: LoginFormValues) => {
-		console.log("Login data:", data);
-		// TODO: Implement login logic
+	const onSubmit = async (data: LoginFormValues) => {
+		try {
+			await authApi.login(data);
+			alert("Успешная авторизация");
+		} catch (error) {
+			alert("Ошибка при авторизации");
+		}
 	};
 
 	return (
