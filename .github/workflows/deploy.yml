@@ -28,6 +28,9 @@ jobs:
          - name: Create .env file
            run: |
               echo "NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}" > .env
+              echo "NEXT_PUBLIC_CLIENT_URL=${{ secrets.NEXT_PUBLIC_CLIENT_URL }}" > .env
+              echo "NEXT_PUBLIC_TG_BOT_TOKEN=${{ secrets.NEXT_PUBLIC_TG_BOT_TOKEN }}" > .env
+              echo "NEXT_PUBLIC_TG_CHAT_ID=${{ secrets.NEXT_PUBLIC_TG_CHAT_ID }}" > .env
 
          - name: Build Next.js Application
            run: npm run build
