@@ -114,7 +114,7 @@ export const MobileMenu = ({ onClose }: MobileMenuProps) => {
 						<Image src={uzflag} alt="Language" width={10} height={10} />
 					</div>
 				</div>
-				<BlackButton onClick={onClose} className="w-full max-w-[300px] h-12 text-base">
+				<BlackButton onClick={onClose} className="text-10 w-full max-w-[300px] h-12">
 					Обсудить проект
 				</BlackButton>
 			</motion.div>

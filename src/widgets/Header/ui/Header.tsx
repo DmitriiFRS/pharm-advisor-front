@@ -62,7 +62,7 @@ export const Header = () => {
 					<button className="h-7.5 min-h-7.5 w-7.5 min-w-7.5 flex items-center justify-center bg-[#F5F5F7] rounded-[8px]">
 						<Image src={uzflag} alt="Language" width={24} height={24} className="size-[9px]" />
 					</button>
-					<BlackButton className="max-h-7.5 min-w-full">Обсудить проект</BlackButton>
+					<BlackButton className="max-h-7.5 min-w-full text-10!">Обсудить проект</BlackButton>
 				</div>
 
 				{/* Mobile Burger Button */}

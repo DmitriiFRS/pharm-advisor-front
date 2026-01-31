@@ -34,8 +34,13 @@ const LoginForm: React.FC<Props> = ({ children, onRegister, onRecovery }) => {
 	const onSubmit = async (data: LoginFormValues) => {
 		try {
 			setIsLoading(true);
-			await authApi.login(data);
-			alert("Успешная авторизация");
+			const response = await authApi.login(data);
+			if (response) {
+				await fetch("/api/auth/set_token", {
+					method: "POST",
+					body: JSON.stringify(response.data),
+				});
+			}
 		} catch (error) {
 			alert("Ошибка при авторизации");
 		} finally {

@@ -3,5 +3,6 @@ export const AUTH_ENDPOINTS = {
 	SIGN_UP: "auth/register",
 	FORGOT_PASSWORD: "auth/forgot-password",
 	SET_NEW_PASSWORD: "auth/reset-password",
-	RESRESH_TOKEN: "auth/refresh",
+	REFRESH_TOKEN: "auth/refresh",
+	GET_USER: "users/get-me",
 };
