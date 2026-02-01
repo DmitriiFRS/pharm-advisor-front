@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { notFound } from "next/navigation";
 import { getMessages } from "next-intl/server";
@@ -7,6 +8,7 @@ import NextTopLoader from "nextjs-toploader";
 import { routing } from "@/i18n/routing";
 import { Header } from "@/widgets/Header";
 import { Footer } from "@/widgets/Footer";
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -26,7 +28,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
 	const messages = await getMessages();
 	return (
 		<html lang="en">
-			<body>
+			<body className={inter.className}>
 				<NextTopLoader
 					color="#ffffff"
 					initialPosition={0.08}
