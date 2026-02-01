@@ -49,7 +49,7 @@ jobs:
            run: ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
 
          - name: Transfer with rsync
-           run: rsync -avzvv --delete -e "ssh -v" ./ ${{ secrets.USERNAME }}@${{ secrets.HOST }}:${{ secrets.TARGET_DIRECTORY }}/
+           run: rsync -avz --delete -e "ssh -v" ./ ${{ secrets.USERNAME }}@${{ secrets.HOST }}:${{ secrets.TARGET_DIRECTORY }}/
 
          - name: Start with PM2
            run: ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'cd ${{ secrets.TARGET_DIRECTORY }} && (pm2 restart --cwd ${{ secrets.TARGET_DIRECTORY }} front || pm2 start npm --name "front" --cwd ${{ secrets.TARGET_DIRECTORY }} -- start)'
