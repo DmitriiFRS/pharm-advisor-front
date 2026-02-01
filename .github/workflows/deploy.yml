@@ -48,8 +48,11 @@ jobs:
          - name: Adding Known Hosts
            run: ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
 
-         - name: Transfer with rsync
-           run: rsync -avzvv --delete -e "ssh -v" ./ ${{ secrets.USERNAME }}@${{ secrets.HOST }}:${{ secrets.TARGET_DIRECTORY }}/
+         - name: Compress Build
+           run: tar -czf deploy.tar.gz .next public package.json next.config.ts node_modules .env
 
-         - name: Start with PM2
-           run: ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'cd ${{ secrets.TARGET_DIRECTORY }} && (pm2 restart --cwd ${{ secrets.TARGET_DIRECTORY }} front || pm2 start npm --name "front" --cwd ${{ secrets.TARGET_DIRECTORY }} -- start)'
+         - name: Transfer with rsync
+           run: rsync -avzvv -e "ssh -v" deploy.tar.gz ${{ secrets.USERNAME }}@${{ secrets.HOST }}:${{ secrets.TARGET_DIRECTORY }}/
+
+         - name: Extract and Start
+           run: ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'cd ${{ secrets.TARGET_DIRECTORY }} && tar -xzf deploy.tar.gz && rm deploy.tar.gz && (pm2 restart --cwd ${{ secrets.TARGET_DIRECTORY }} front || pm2 start npm --name "front" --cwd ${{ secrets.TARGET_DIRECTORY }} -- start)'
