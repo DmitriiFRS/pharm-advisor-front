@@ -35,6 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 		: "Помогаем фармбизнесу расти: от регистрации препаратов до внедрения GxP и обучения сотрудников. Профессиональная поддержка в Ташкенте.";
 
 	return {
+		metadataBase: new URL(process.env.NEXT_PUBLIC_CLIENT_URL || "http://localhost:3000"),
 		title,
 		description,
 		openGraph: {

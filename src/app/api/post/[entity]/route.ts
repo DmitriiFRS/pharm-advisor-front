@@ -34,6 +34,7 @@ export async function POST(req: Request, { params }: { params: Promise<{ entity:
 	});
 	if (!response.ok) {
 		const error = await bffErrorParse(response);
+		console.log(error);
 		return NextResponse.json({ error }, { status: response.status });
 	}
 	return NextResponse.json(await response.json());

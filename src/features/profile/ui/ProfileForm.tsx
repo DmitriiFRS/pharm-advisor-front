@@ -8,8 +8,12 @@ import BlackButton from "@/shared/ui/BlackButton";
 import PrimaryButton from "@/shared/ui/PrimaryButton";
 import { toast } from "react-toastify";
 
+import { logout } from "../api/logout";
+import { useRouter } from "next/navigation";
+
 const ProfileForm = () => {
 	const [isLoading, setIsLoading] = useState(false);
+	const router = useRouter();
 	const {
 		register,
 		handleSubmit,
@@ -53,9 +57,19 @@ const ProfileForm = () => {
 					</BlackButton>
 				</div>
 			</div>
-			<PrimaryButton type="submit" loading={isLoading} disabled={isLoading} className="mt-10 mx-auto flex items-center justify-center">
-				<span>Сохранить</span>
-			</PrimaryButton>
+			<div className="flex gap-5 justify-between">
+				<PrimaryButton
+					type="submit"
+					loading={isLoading}
+					disabled={isLoading}
+					className="mt-10 flex items-center justify-center min-w-48"
+				>
+					<span>Сохранить</span>
+				</PrimaryButton>
+				<BlackButton className="mt-10 h-10! flex items-center justify-center min-w-48 text-10!" onClick={() => logout(router)}>
+					<span>Выйти</span>
+				</BlackButton>
+			</div>
 		</form>
 	);
 };
