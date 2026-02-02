@@ -42,7 +42,7 @@ const AdvantageItem = ({ title, description, icon, isLast }: { title: string; de
 			>
 				<Image src={icon} alt="icon" width={50} height={50} className="rounded-xl" />
 				<h3 className="leading-93 tracking-neg-1 text-center font-semibold flex-1">{title}</h3>
-				<p className="text-center text-grey-primary text-11 leading-118 tracking-neg-2 font-medium">{description}</p>
+				<p className="text-center text-grey-primary text-14 leading-118 tracking-neg-2 font-medium">{description}</p>
 			</div>
 		</div>
 	);

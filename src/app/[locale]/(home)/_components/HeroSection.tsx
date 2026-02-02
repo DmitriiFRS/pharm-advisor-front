@@ -20,7 +20,7 @@ const HeroSection = () => {
 				<div className="relative z-10 h-screen flex flex-col justify-end pb-[106px]">
 					<div>
 						<h1 className="text-40 font-bold max-w-[500px] leading-100">Консалтинговая фарм компания в Узбекистане</h1>
-						<p className="mt-[15px] max-w-[420px] text-12 leading-130">
+						<p className="mt-[15px] max-w-[420px] text-14 leading-130">
 							Стратегический консалтинг для фармкомпаний: обучение команд, стратегия go-to-market, оптимизация портфеля и
 							маркетинговые решения, основанные на аналитике и практике рынка.
 						</p>

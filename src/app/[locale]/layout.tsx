@@ -41,6 +41,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 		openGraph: {
 			title: ogTitle,
 			description: ogDescription,
+			url: "https://pharmadvisor.uz",
 			locale: isUz ? "uz_UZ" : "ru_RU",
 			type: "website",
 		},

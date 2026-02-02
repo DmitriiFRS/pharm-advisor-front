@@ -35,7 +35,7 @@ export const Footer = () => {
 const FooterNav = () => {
 	return (
 		<nav className="mt-10 lg:mt-0 flex justify-between xs:justify-start xs:gap-20 lg:gap-25 lg:border-l lg:border-grey-primary h-full lg:pl-10 lg:pt-15">
-			<div className="flex flex-col gap-2 text-11">
+			<div className="flex flex-col gap-2 text-14">
 				<span className="text-[#626263] font-semibold">Меню</span>
 				{FOOTER_MENU.map((item) => (
 					<Link key={item.name} href={item.href} className="text-black leading-200 font-semibold">
@@ -43,7 +43,7 @@ const FooterNav = () => {
 					</Link>
 				))}
 			</div>
-			<div className="flex flex-col gap-2 text-11">
+			<div className="flex flex-col gap-2 text-14">
 				<span className="text-[#626263] font-semibold">Услуги</span>
 				{FOOTER_SERVICES.map((item) => (
 					<Link key={item.name} href={item.href} className="text-black leading-200 font-semibold">

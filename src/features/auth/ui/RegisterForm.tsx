@@ -4,7 +4,6 @@ import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Eye, EyeOff } from "lucide-react";
 import CommonInput from "@/shared/ui/form/CommonInput";
 import PrimaryButton from "@/shared/ui/PrimaryButton";
 import { registerSchema } from "../model/auth.schema";
@@ -22,7 +21,6 @@ interface Props {
 }
 
 const RegisterForm: React.FC<Props> = ({ onLogin, onClose }) => {
-	const [showPassword, setShowPassword] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const router = useRouter();
 	const { setMe } = useContext(UserData);
@@ -67,19 +65,13 @@ const RegisterForm: React.FC<Props> = ({ onLogin, onClose }) => {
 					<div className="relative">
 						<CommonInput
 							label="Пароль"
-							type={showPassword ? "text" : "password"}
+							type="password"
 							placeholder="Создайте свой пароль"
 							{...register("password")}
 							error={errors.password}
 							className="border"
+							withPasswordToggle
 						/>
-						<button
-							type="button"
-							onClick={() => setShowPassword(!showPassword)}
-							className="absolute right-4 top-[42px] text-gray-400 hover:text-gray-600"
-						>
-							{showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-						</button>
 					</div>
 
 					<PrimaryButton loading={isLoading} type="submit" className="w-full h-[50px] text-base mt-2 max-w-60 mx-auto">

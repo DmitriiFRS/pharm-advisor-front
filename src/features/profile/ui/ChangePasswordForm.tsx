@@ -45,15 +45,17 @@ const ChangePasswordForm = () => {
 					className="border rounded-[4px] border-[#a6a5a6]"
 					labelClassName="text-14 opacity-60"
 					type="password"
+					withPasswordToggle
 				/>
 				<CommonInput
 					placeholder="Введите новый пароль"
 					error={errors.newPassword}
+					type="password"
+					withPasswordToggle
 					{...register("newPassword")}
 					label="Новый пароль"
 					className="border rounded-[4px] border-[#a6a5a6]"
 					labelClassName="text-14 opacity-60"
-					type="password"
 				/>
 				<CommonInput
 					placeholder="Повторите новый пароль"
@@ -63,6 +65,7 @@ const ChangePasswordForm = () => {
 					className="border rounded-[4px] border-[#a6a5a6]"
 					labelClassName="text-14 opacity-60"
 					type="password"
+					withPasswordToggle
 				/>
 			</div>
 			<div className="flex items-center gap-5 mt-10 justify-center">

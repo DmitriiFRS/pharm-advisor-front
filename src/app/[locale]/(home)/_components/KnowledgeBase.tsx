@@ -39,7 +39,7 @@ const KnowledgeBase = () => {
 					))}
 				</div>
 				<div className="mt-10 flex justify-center">
-					<PrimaryButton className="text-white flex items-center justify-center">
+					<PrimaryButton href="/knowledge-base" className="text-white flex items-center justify-center">
 						<span className="mr-2">Смотреть все</span>
 						<ChevronRight size={15} />
 					</PrimaryButton>

@@ -14,7 +14,7 @@ const About = () => {
 					<h2 className="text-black-primary text-18 leading-106 font-semibold tracking-neg-1 mt-2.5">
 						Мы — консалтинговая компания, специализирующаяся на стратегическом маркетинге и аналитике для фармацевтических компаний.
 					</h2>
-					<div className="flex flex-col gap-4 text-grey-primary text-11 leading-118 font-medium tracking-neg-2 mt-5">
+					<div className="flex flex-col gap-4 text-grey-primary text-14 leading-118 font-medium tracking-neg-2 mt-5">
 						<p>
 							Помогаем брендам выстраивать системный маркетинг, принимать решения на основе данных и эффективно выводить продукты на
 							рынок.
