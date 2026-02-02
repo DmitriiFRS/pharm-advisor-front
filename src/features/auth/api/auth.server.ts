@@ -2,8 +2,10 @@ import "server-only";
 import { AUTH_ENDPOINTS } from "./auth.endpoints";
 
 export const authServerApi = {
-	getUser: async (accessToken: string) => {
-		console.log("accessToken", accessToken);
+	getUser: async (accessToken?: string) => {
+		if (!accessToken) {
+			return null;
+		}
 		try {
 			const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${AUTH_ENDPOINTS.GET_USER}`, {
 				method: "GET",

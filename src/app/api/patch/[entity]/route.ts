@@ -1,17 +1,14 @@
-import { AUTH_ENDPOINTS } from "@/features/auth/api/auth.endpoints";
 import { PROFILE_ENDPOINTS } from "@/features/profile/api/profile.endpoints";
 import { bffErrorParse } from "@/shared/lib/errors/bffErrorParse";
 import { getServerAuthContext } from "@/shared/lib/next.server";
 import { NextResponse } from "next/server";
 
 const ENDPOINT_MAP = {
-	login: AUTH_ENDPOINTS.SIGN_IN,
-	register: AUTH_ENDPOINTS.SIGN_UP,
-	recovery: AUTH_ENDPOINTS.FORGOT_PASSWORD,
 	updateMe: PROFILE_ENDPOINTS.UPDATE_ME,
+	changePassword: PROFILE_ENDPOINTS.CHANGE_PASSWORD,
 } as const;
 
-export async function POST(req: Request, { params }: { params: Promise<{ entity: string }> }) {
+export async function PATCH(req: Request, { params }: { params: Promise<{ entity: string }> }) {
 	const { accessToken, refreshToken, BACKEND_URL } = await getServerAuthContext();
 	const { entity } = await params;
 	if (!BACKEND_URL) {
@@ -23,14 +20,15 @@ export async function POST(req: Request, { params }: { params: Promise<{ entity:
 	}
 
 	const url = `${BACKEND_URL}/${ENDPOINT_MAP[entity as keyof typeof ENDPOINT_MAP]}`;
-	console.log("url", url);
+	const body = await req.json();
+	console.log(body);
 	const response = await fetch(url, {
-		method: "POST",
+		method: "PATCH",
 		headers: {
 			"Content-Type": "application/json",
 			Authorization: `Bearer ${accessToken}`,
 		},
-		body: JSON.stringify(await req.json()),
+		body: JSON.stringify(body),
 	});
 	if (!response.ok) {
 		const error = await bffErrorParse(response);

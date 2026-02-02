@@ -15,47 +15,47 @@ export default async function middleware(request: NextRequest) {
 	const pathnameWithoutLocale = pathname.replace(/^\/(ru|uz)/, "");
 	const isProtected = PROTECTED_ROUTES.some((route) => pathnameWithoutLocale.startsWith(route));
 
-	if (isProtected) {
-		const accessToken = request.cookies.get("accessToken")?.value;
-		const refreshToken = request.cookies.get("refreshToken")?.value;
+	const accessToken = request.cookies.get("accessToken")?.value;
+	const refreshToken = request.cookies.get("refreshToken")?.value;
 
-		if (!accessToken || !refreshToken) {
+	if (!accessToken || !refreshToken) {
+		if (isProtected) {
 			return redirectToLogout(request);
 		}
-
-		try {
-			// Verify access token
-			const isAccessTokenValid = await verifyAccessToken(accessToken);
-
-			if (isAccessTokenValid) {
-				return handleI18nRouting(request);
-			}
-
-			// Try refreshing token
-			const newTokens = await refreshTokens(accessToken, refreshToken);
-
-			if (newTokens) {
-				// Update request cookies so RSCs see the new token
-				request.cookies.set("accessToken", newTokens.accessToken);
-				request.cookies.set("refreshToken", newTokens.refreshToken);
-
-				// Process response with updated request
-				const response = handleI18nRouting(request);
-
-				// Set new cookies on the response for the browser
-				response.cookies.set("accessToken", newTokens.accessToken);
-				response.cookies.set("refreshToken", newTokens.refreshToken);
-
-				return response;
-			}
-		} catch (error) {
-			console.error("Middleware auth error:", error);
-		}
-
-		return redirectToLogout(request);
+		return handleI18nRouting(request);
 	}
 
-	return handleI18nRouting(request);
+	// Verify access token
+	const isAccessTokenValid = await verifyAccessToken(accessToken);
+
+	if (isAccessTokenValid) {
+		return handleI18nRouting(request);
+	}
+
+	// Try refreshing token
+	const newTokens = await refreshTokens(accessToken, refreshToken);
+
+	if (newTokens) {
+		// Update request cookies so RSCs see the new token
+		request.cookies.set("accessToken", newTokens.accessToken);
+		request.cookies.set("refreshToken", newTokens.refreshToken);
+
+		// Process response with updated request
+		const response = handleI18nRouting(request);
+
+		// Set new cookies on the response for the browser
+		response.cookies.set("accessToken", newTokens.accessToken);
+		response.cookies.set("refreshToken", newTokens.refreshToken);
+
+		return response;
+	}
+	if (isProtected) {
+		return redirectToLogout(request);
+	}
+	const response = handleI18nRouting(request);
+	response.cookies.delete("accessToken");
+	response.cookies.delete("refreshToken");
+	return response;
 }
 
 function redirectToLogout(request: NextRequest) {

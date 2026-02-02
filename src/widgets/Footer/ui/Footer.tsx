@@ -78,7 +78,7 @@ const FooterContacts = () => {
 						))}
 					</div>
 				</div>
-				<div className="flex items-center gap-3">
+				{/* <div className="flex items-center gap-3">
 					<span className="text-[#858585] text-sm min-w-[80px]">Новости:</span>
 					<div className="flex gap-3">
 						{SOCIAL_NEWS.map((item) => (
@@ -87,11 +87,13 @@ const FooterContacts = () => {
 							</Link>
 						))}
 					</div>
-				</div>
+				</div> */}
 			</div>
 			<div className="mt-10 text-11 leading-130 font-medium flex flex-col gap-2 lg:order-2 lg:mt-[25px]">
 				<span className="opacity-60">Адрес</span>
-				<p className="max-w-45">Город Ташкент, Яккасарайский район, улица Абдуллы Каххара, 9-й проезд, дом 16а</p>
+				<p className="max-w-45 text-16 leading-140 font-medium">
+					Город Ташкент, Яккасарайский район, улица Абдуллы Каххара, 9-й проезд, дом 16а
+				</p>
 			</div>
 			<div className="mt-10 text-10 leading-160 text-[#626263] lg:order-4 lg:mt-20">Политика конфиденциальности</div>
 		</>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -10,17 +10,22 @@ import PrimaryButton from "@/shared/ui/PrimaryButton";
 import { registerSchema } from "../model/auth.schema";
 import { DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { authApi } from "../api/auth.api";
-import { LoginFormValues } from "../types/types";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import { UserData } from "@/entities/user";
 
 type RegisterFormValues = z.infer<typeof registerSchema>;
 
 interface Props {
 	onLogin: () => void;
+	onClose: (value: boolean) => void;
 }
 
-const RegisterForm: React.FC<Props> = ({ onLogin }) => {
+const RegisterForm: React.FC<Props> = ({ onLogin, onClose }) => {
 	const [showPassword, setShowPassword] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
+	const router = useRouter();
+	const { setMe } = useContext(UserData);
 
 	const {
 		register,
@@ -33,9 +38,17 @@ const RegisterForm: React.FC<Props> = ({ onLogin }) => {
 	const onSubmit = async (data: RegisterFormValues) => {
 		try {
 			setIsLoading(true);
-			await authApi.register(data);
+			const response = await authApi.register(data);
+			await fetch("/api/auth/set_token", {
+				method: "POST",
+				body: JSON.stringify(response.data),
+			});
+			setMe(response.data.user);
+			router.refresh();
+			router.push("/profile");
+			onClose(false);
 		} catch (error) {
-			alert("Ошибка при регистрации");
+			toast.error((error as Error).message || "Ошибка при регистрации");
 		} finally {
 			setIsLoading(false);
 		}

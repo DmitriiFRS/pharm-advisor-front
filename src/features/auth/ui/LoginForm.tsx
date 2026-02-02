@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -10,6 +10,9 @@ import PrimaryButton from "@/shared/ui/PrimaryButton";
 import { loginSchema } from "../model/auth.schema";
 import { DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { authApi } from "../api/auth.api";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import { UserData } from "@/entities/user";
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
@@ -17,11 +20,14 @@ interface Props {
 	children?: React.ReactNode;
 	onRegister: () => void;
 	onRecovery: () => void;
+	onClose: (open: boolean) => void;
 }
 
-const LoginForm: React.FC<Props> = ({ children, onRegister, onRecovery }) => {
+const LoginForm: React.FC<Props> = ({ children, onRegister, onRecovery, onClose }) => {
+	const { setMe } = useContext(UserData);
 	const [showPassword, setShowPassword] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
+	const router = useRouter();
 
 	const {
 		register,
@@ -35,14 +41,17 @@ const LoginForm: React.FC<Props> = ({ children, onRegister, onRecovery }) => {
 		try {
 			setIsLoading(true);
 			const response = await authApi.login(data);
-			if (response) {
+			if (response.data) {
 				await fetch("/api/auth/set_token", {
 					method: "POST",
 					body: JSON.stringify(response.data),
 				});
+				setMe(response.data.user);
+				router.push("/profile");
+				onClose(false);
 			}
-		} catch (error) {
-			alert("Ошибка при авторизации");
+		} catch (error: unknown) {
+			toast.error((error as Error).message || "Ошибка при авторизации");
 		} finally {
 			setIsLoading(false);
 		}

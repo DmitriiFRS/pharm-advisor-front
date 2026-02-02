@@ -8,7 +8,11 @@ import NextTopLoader from "nextjs-toploader";
 import { routing } from "@/i18n/routing";
 import { Header } from "@/widgets/Header";
 import { Footer } from "@/widgets/Footer";
+import UserContextProvider from "@/entities/user/model/UserContext";
+import { cookies } from "next/headers";
+import { authServerApi } from "@/features/auth/api/auth.server";
 const inter = Inter({ subsets: ["latin"] });
+import { ToastContainer } from "react-toastify";
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -21,6 +25,9 @@ interface RootLayoutProps {
 }
 
 export default async function RootLayout({ children, params }: RootLayoutProps) {
+	const cookieStore = await cookies();
+	const accessToken = cookieStore.get("accessToken");
+	const user = await authServerApi.getUser(accessToken?.value);
 	const { locale } = await params;
 	if (!routing.locales.includes(locale as "ru" | "uz")) {
 		notFound();
@@ -29,6 +36,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
 	return (
 		<html lang="en">
 			<body className={inter.className}>
+				<ToastContainer position="top-right" autoClose={3000} hideProgressBar={true} newestOnTop={true} />
 				<NextTopLoader
 					color="#ffffff"
 					initialPosition={0.08}
@@ -39,9 +47,11 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
 				/>
 				<div className="wrapper">
 					<NextIntlClientProvider messages={messages}>
-						<Header />
-						<main>{children}</main>
-						<Footer />
+						<UserContextProvider initialMe={user}>
+							<Header />
+							<main>{children}</main>
+							<Footer />
+						</UserContextProvider>
 					</NextIntlClientProvider>
 				</div>
 			</body>

@@ -43,7 +43,7 @@ const AuthModal: React.FC<Props> = ({ isOpen, onClose }) => {
 								exit={{ opacity: 0, x: 20 }}
 								transition={{ duration: 0.2 }}
 							>
-								<LoginForm onRegister={() => setStep("register")} onRecovery={() => setStep("recovery")} />
+								<LoginForm onRegister={() => setStep("register")} onRecovery={() => setStep("recovery")} onClose={onClose} />
 							</motion.div>
 						)}
 						{step === "register" && (
@@ -54,7 +54,7 @@ const AuthModal: React.FC<Props> = ({ isOpen, onClose }) => {
 								exit={{ opacity: 0, x: -20 }}
 								transition={{ duration: 0.2 }}
 							>
-								<RegisterForm onLogin={() => setStep("login")} />
+								<RegisterForm onLogin={() => setStep("login")} onClose={onClose} />
 							</motion.div>
 						)}
 						{step === "recovery" && (

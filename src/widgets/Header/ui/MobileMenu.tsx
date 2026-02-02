@@ -3,12 +3,15 @@
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 import { X } from "lucide-react";
 import uzflag from "@/assets/icons/common/header-uz.svg";
+import ruflag from "@/assets/icons/common/header-ru.svg";
 import call from "@/assets/icons/common/header-call.svg";
 import cabinet from "@/assets/icons/common/header-cabinet.svg";
 import logo from "@/assets/images/common/logo.webp";
 import BlackButton from "@/shared/ui/BlackButton";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 interface MobileMenuProps {
 	onClose: () => void;
@@ -62,6 +65,28 @@ const itemVariants: Variants = {
 };
 
 export const MobileMenu = ({ onClose }: MobileMenuProps) => {
+	const router = useRouter();
+	const pathName = usePathname();
+
+	const redirectedPathName = (locale: string) => {
+		if (!pathName) return "/";
+		const segments = pathName.split("/");
+		if (!segments[1] || /^[a-z]{2}$/.test(segments[1])) {
+			segments[1] = locale;
+		} else {
+			segments.splice(1, 0, locale);
+		}
+
+		return segments.join("/");
+	};
+
+	const currentLocale = pathName?.split("/")[1] || "ru";
+
+	const handleLanguageChange = (locale: string) => {
+		router.push(redirectedPathName(locale));
+		onClose();
+	};
+
 	return (
 		<motion.div
 			variants={menuVariants}
@@ -110,9 +135,21 @@ export const MobileMenu = ({ onClose }: MobileMenuProps) => {
 					<button className="size-7.5 flex items-center justify-center bg-[#F5F5F7] rounded-[8px] hover:bg-gray-200 transition-colors">
 						<Image src={cabinet} alt="Cabinet" width={10} height={10} />
 					</button>
-					<div className="size-7.5 flex items-center justify-center bg-[#F5F5F7] rounded-[8px]">
-						<Image src={uzflag} alt="Language" width={10} height={10} />
-					</div>
+					<DropdownMenu>
+						<DropdownMenuTrigger asChild>
+							<button className="size-7.5 flex items-center justify-center bg-[#F5F5F7] rounded-[8px] hover:bg-gray-200 transition-colors outline-none">
+								<Image src={currentLocale === "uz" ? uzflag : ruflag} alt="Language" width={10} height={10} />
+							</button>
+						</DropdownMenuTrigger>
+						<DropdownMenuContent align="end" className="min-w-16">
+							<DropdownMenuItem onClick={() => handleLanguageChange("ru")} className="flex justify-center cursor-pointer">
+								<Image src={ruflag} alt="Russian" width={24} height={24} className="size-[14px]" />
+							</DropdownMenuItem>
+							<DropdownMenuItem onClick={() => handleLanguageChange("uz")} className="flex justify-center cursor-pointer">
+								<Image src={uzflag} alt="Uzbek" width={24} height={24} className="size-[14px]" />
+							</DropdownMenuItem>
+						</DropdownMenuContent>
+					</DropdownMenu>
 				</div>
 				<BlackButton onClick={onClose} className="text-10 w-full max-w-[300px] h-12">
 					Обсудить проект

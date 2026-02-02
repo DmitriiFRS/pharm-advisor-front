@@ -21,7 +21,10 @@ export const apiClientService = () => {
 				}
 				const response = await fetch(`/api/get/${entity}?${searchParams.toString()}`);
 				if (!response.ok) {
-					throw new Error(`HTTP error! status: ${response.status}`);
+					const errorData = await response.json();
+					throw new Error(
+						Array.isArray(errorData.message) ? errorData.message[0] : errorData.message || `HTTP error! status: ${response.status}`
+					);
 				}
 				return await response.json();
 			} catch (err) {
@@ -46,7 +49,11 @@ export const apiClientService = () => {
 					body: JSON.stringify(data),
 				});
 				if (!response.ok) {
-					throw new Error(`HTTP error! status: ${response.status}`);
+					const errorData = await response.json();
+					console.log("errorData in client", errorData.error);
+					throw new Error(
+						Array.isArray(errorData.error) ? errorData.error[0] : errorData.error || `HTTP error! status: ${response.status}`
+					);
 				}
 				return await response.json();
 			} catch (err) {

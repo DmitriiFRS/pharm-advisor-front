@@ -1,17 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 import { AnimatePresence } from "framer-motion";
 import { Menu } from "lucide-react";
 import uzflag from "@/assets/icons/common/header-uz.svg";
+import ruflag from "@/assets/icons/common/header-ru.svg";
 import call from "@/assets/icons/common/header-call.svg";
 import cabinet from "@/assets/icons/common/header-cabinet.svg";
 import logo from "@/assets/images/common/logo.webp";
 import BlackButton from "@/shared/ui/BlackButton";
 import { MobileMenu } from "./MobileMenu";
 import AuthModal from "@/features/auth/ui/AuthModal";
+import { UserData } from "@/entities/user";
+import NProgress from "nprogress";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 const NAV_LINKS = [
 	{ href: "/education", label: "Обучение" },
@@ -22,10 +27,36 @@ const NAV_LINKS = [
 export const Header = () => {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+	const { me } = useContext(UserData);
+	const router = useRouter();
+	const pathName = usePathname();
 
 	const toggleMenu = () => {
 		setIsMobileMenuOpen(!isMobileMenuOpen);
 	};
+
+	const handleCabinetClick = () => {
+		if (me) {
+			NProgress.start();
+			router.push("/profile");
+		} else {
+			setIsAuthModalOpen(true);
+		}
+	};
+
+	const redirectedPathName = (locale: string) => {
+		if (!pathName) return "/";
+		const segments = pathName.split("/");
+		if (!segments[1] || /^[a-z]{2}$/.test(segments[1])) {
+			segments[1] = locale;
+		} else {
+			segments.splice(1, 0, locale);
+		}
+
+		return segments.join("/");
+	};
+
+	const currentLocale = pathName?.split("/")[1] || "ru";
 
 	return (
 		<header className="fixed top-0 z-50 w-full">
@@ -50,18 +81,42 @@ export const Header = () => {
 
 				{/* Desktop Right Section (Icons + Button) */}
 				<div className="hidden md:flex ml-8 md:gap-[7px] md:items-center">
-					<button className="h-7.5 min-h-7.5 w-7.5 min-w-7.5 flex items-center justify-center bg-[#F5F5F7] rounded-[8px]">
+					<a
+						target="_blank"
+						href="tel:+998971234567"
+						className="h-7.5 min-h-7.5 w-7.5 min-w-7.5 flex items-center justify-center bg-[#F5F5F7] rounded-[8px]"
+					>
 						<Image src={call} alt="Call" width={24} height={24} className="size-[9px]" />
-					</button>
+					</a>
 					<button
-						onClick={() => setIsAuthModalOpen(true)}
+						onClick={handleCabinetClick}
 						className="h-7.5 min-h-7.5 w-7.5 min-w-7.5 flex items-center justify-center bg-[#F5F5F7] rounded-[8px]"
 					>
 						<Image src={cabinet} alt="Cabinet" width={24} height={24} className="size-[9px]" />
 					</button>
-					<button className="h-7.5 min-h-7.5 w-7.5 min-w-7.5 flex items-center justify-center bg-[#F5F5F7] rounded-[8px]">
-						<Image src={uzflag} alt="Language" width={24} height={24} className="size-[9px]" />
-					</button>
+
+					<DropdownMenu>
+						<DropdownMenuTrigger asChild>
+							<button className="h-7.5 min-h-7.5 w-7.5 min-w-7.5 flex items-center justify-center bg-[#F5F5F7] rounded-[8px] outline-none">
+								<Image
+									src={currentLocale === "uz" ? uzflag : ruflag}
+									alt="Language"
+									width={24}
+									height={24}
+									className="size-[9px]"
+								/>
+							</button>
+						</DropdownMenuTrigger>
+						<DropdownMenuContent align="end" className="min-w-16">
+							<DropdownMenuItem onClick={() => router.push(redirectedPathName("ru"))} className="flex justify-center cursor-pointer">
+								<Image src={ruflag} alt="Russian" width={24} height={24} className="size-[14px]" />
+							</DropdownMenuItem>
+							<DropdownMenuItem onClick={() => router.push(redirectedPathName("uz"))} className="flex justify-center cursor-pointer">
+								<Image src={uzflag} alt="Uzbek" width={24} height={24} className="size-[14px]" />
+							</DropdownMenuItem>
+						</DropdownMenuContent>
+					</DropdownMenu>
+
 					<BlackButton className="max-h-7.5 min-w-full text-10!">Обсудить проект</BlackButton>
 				</div>
 
