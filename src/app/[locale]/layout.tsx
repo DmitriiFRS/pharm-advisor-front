@@ -11,6 +11,7 @@ import { Footer } from "@/widgets/Footer";
 import UserContextProvider from "@/entities/user/model/UserContext";
 import { cookies } from "next/headers";
 import { authServerApi } from "@/features/auth/api/auth.server";
+import { ScrollProvider } from "@/shared/lib/context/ScrollContext";
 const inter = Inter({ subsets: ["latin"] });
 import { ToastContainer } from "react-toastify";
 
@@ -77,9 +78,11 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
 				<div className="wrapper">
 					<NextIntlClientProvider messages={messages}>
 						<UserContextProvider initialMe={user}>
-							<Header />
-							<main>{children}</main>
-							<Footer />
+							<ScrollProvider>
+								<Header />
+								<main>{children}</main>
+								<Footer />
+							</ScrollProvider>
 						</UserContextProvider>
 					</NextIntlClientProvider>
 				</div>

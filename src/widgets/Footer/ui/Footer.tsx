@@ -5,14 +5,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { FOOTER_MENU, FOOTER_SERVICES, SOCIAL_CONTACTS, SOCIAL_NEWS } from "@/shared/config/navigation";
 import { GoogleMap } from "./GoogleMap";
+import { useScroll } from "@/shared/lib/context/ScrollContext";
 
 export const Footer = () => {
+	const { contactRef } = useScroll();
 	const scrollToTop = () => {
 		window.scrollTo({ top: 0, behavior: "smooth" });
 	};
 
 	return (
-		<footer className="bg-[#F4F4F4] lg:border-t lg:border-grey-primary">
+		<footer ref={contactRef} className="bg-[#F4F4F4] lg:border-t lg:border-grey-primary">
 			<Container className="lg:grid lg:grid-cols-2 relative">
 				<div className="border-b border-grey-primary pb-10 border-t pt-10 lg:order-2 lg:border-b-0 lg:border-t-0 lg:pt-0 lg:pb-0">
 					<div className="flex justify-center lg:absolute lg:left-0 lg:top-15">

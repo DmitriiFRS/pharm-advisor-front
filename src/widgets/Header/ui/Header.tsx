@@ -17,6 +17,7 @@ import AuthModal from "@/features/auth/ui/AuthModal";
 import { UserData } from "@/entities/user";
 import NProgress from "nprogress";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { useScroll } from "@/shared/lib/context/ScrollContext";
 
 const NAV_LINKS = [
 	{ href: "/education", label: "Обучение" },
@@ -30,6 +31,7 @@ export const Header = () => {
 	const { me } = useContext(UserData);
 	const router = useRouter();
 	const pathName = usePathname();
+	const { scrollToContacts } = useScroll();
 
 	const toggleMenu = () => {
 		setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -73,6 +75,12 @@ export const Header = () => {
 							key={link.href}
 							href={link.href}
 							className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
+							onClick={(e) => {
+								if (link.href === "/contacts") {
+									e.preventDefault();
+									scrollToContacts();
+								}
+							}}
 						>
 							{link.label}
 						</Link>

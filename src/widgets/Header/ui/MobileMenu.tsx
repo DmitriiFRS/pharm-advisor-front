@@ -12,6 +12,7 @@ import cabinet from "@/assets/icons/common/header-cabinet.svg";
 import logo from "@/assets/images/common/logo.webp";
 import BlackButton from "@/shared/ui/BlackButton";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { useScroll } from "@/shared/lib/context/ScrollContext";
 
 interface MobileMenuProps {
 	onClose: () => void;
@@ -67,6 +68,7 @@ const itemVariants: Variants = {
 export const MobileMenu = ({ onClose }: MobileMenuProps) => {
 	const router = useRouter();
 	const pathName = usePathname();
+	const { scrollToContacts } = useScroll();
 
 	const redirectedPathName = (locale: string) => {
 		if (!pathName) return "/";
@@ -117,7 +119,13 @@ export const MobileMenu = ({ onClose }: MobileMenuProps) => {
 					<motion.div key={link.href} variants={itemVariants}>
 						<Link
 							href={link.href}
-							onClick={onClose}
+							onClick={(e) => {
+								onClose();
+								if (link.href === "/contacts") {
+									e.preventDefault();
+									scrollToContacts();
+								}
+							}}
 							className="text-20 font-medium leading-130 tracking-neg-2 text-center text-[#151616] hover:text-primary transition-colors"
 						>
 							{link.label}
