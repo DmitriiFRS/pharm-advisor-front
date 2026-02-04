@@ -62,7 +62,7 @@ export const Header = () => {
 
 	return (
 		<header className="fixed top-0 z-50 w-full">
-			<div className="mx-auto flex items-center justify-between px-3.5 h-11 bg-white max-w-[760px] md:justify-start md:mt-2.5 md:rounded-[11px]">
+			<div className="mx-auto flex items-center justify-between px-3.5 h-[55px] bg-white max-w-[760px] md:justify-start md:mt-2.5 md:rounded-[11px]">
 				{/* Logo */}
 				<Link href="/">
 					<Image src={logo} alt="Pharm Advisor Logo" width={120} height={40} className="h-10 w-auto object-contain" priority />
@@ -92,26 +92,26 @@ export const Header = () => {
 					<a
 						target="_blank"
 						href="tel:+998971234567"
-						className="h-7.5 min-h-7.5 w-7.5 min-w-7.5 flex items-center justify-center bg-[#F5F5F7] rounded-[8px]"
+						className="h-10 min-h-10 w-10 min-w-10 flex items-center justify-center bg-[#F5F5F7] rounded-[8px]"
 					>
-						<Image src={call} alt="Call" width={24} height={24} className="size-[9px]" />
+						<Image src={call} alt="Call" width={30} height={30} className="size-[15px]" />
 					</a>
 					<button
 						onClick={handleCabinetClick}
-						className="h-7.5 min-h-7.5 w-7.5 min-w-7.5 flex items-center justify-center bg-[#F5F5F7] rounded-[8px]"
+						className="h-10 min-h-10 w-10 min-w-10 flex items-center justify-center bg-[#F5F5F7] rounded-[8px]"
 					>
-						<Image src={cabinet} alt="Cabinet" width={24} height={24} className="size-[9px]" />
+						<Image src={cabinet} alt="Cabinet" width={30} height={30} className="size-[15px]" />
 					</button>
 
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
-							<button className="h-7.5 min-h-7.5 w-7.5 min-w-7.5 flex items-center justify-center bg-[#F5F5F7] rounded-[8px] outline-none">
+							<button className="h-10 min-h-10 w-10 min-w-10 flex items-center justify-center bg-[#F5F5F7] rounded-[8px] outline-none">
 								<Image
 									src={currentLocale === "uz" ? uzflag : ruflag}
 									alt="Language"
-									width={24}
-									height={24}
-									className="size-[9px]"
+									width={30}
+									height={30}
+									className="size-[15px]"
 								/>
 							</button>
 						</DropdownMenuTrigger>
@@ -125,7 +125,7 @@ export const Header = () => {
 						</DropdownMenuContent>
 					</DropdownMenu>
 
-					<BlackButton className="max-h-7.5 min-w-full text-10!">Обсудить проект</BlackButton>
+					<BlackButton className="w-full min-w-45 h-10!">Обсудить проект</BlackButton>
 				</div>
 
 				{/* Mobile Burger Button */}

@@ -61,7 +61,7 @@ const LoginForm: React.FC<Props> = ({ children, onRegister, onRecovery, onClose 
 			<DialogHeader className="space-y-0">
 				<DialogTitle className="text-[28px] font-bold text-center leading-none">Авторизация</DialogTitle>
 			</DialogHeader>
-			<div className="w-full">
+			<div className="w-full mt-5">
 				<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
 					<CommonInput label="Email" placeholder="Введите ваш e-mail" {...register("email")} error={errors.email} className="border" />
 

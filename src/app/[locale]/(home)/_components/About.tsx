@@ -10,12 +10,12 @@ const About = () => {
 					<Image src={sample} alt="sample" width={528} height={276} className="w-full h-full object-cover rounded-[14px]" />
 				</div>
 				<div className="flex flex-col mt-10">
-					<span className="text-grey-primary text-11 leading-118 font-medium tracking-neg-2">[ О компании ]</span>
+					<span className="text-grey-primary text-14 leading-118 font-medium tracking-neg-2">[ О компании ]</span>
 					<h2 className="text-black-primary text-18 leading-106 font-semibold tracking-neg-1 mt-2.5">
 						Мы — консалтинговая компания, специализирующаяся на стратегическом маркетинге и аналитике для фармацевтических компаний.
 					</h2>
 					<div className="flex flex-col gap-4 text-grey-primary text-14 leading-118 font-medium tracking-neg-2 mt-5">
-						<p>
+						<p className="text-14">
 							Помогаем брендам выстраивать системный маркетинг, принимать решения на основе данных и эффективно выводить продукты на
 							рынок.
 						</p>

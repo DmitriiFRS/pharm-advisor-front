@@ -43,7 +43,7 @@ const RecoveryForm: React.FC<Props> = ({ onLogin, onRegister }) => {
 					Введите email, который вы использовали при регистрации
 				</DialogDescription>
 			</DialogHeader>
-			<div className="w-full mt-6">
+			<div className="w-full mt-5">
 				<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
 					<CommonInput label="" placeholder="Введите e-mail" {...register("email")} error={errors.email} className="border" />
 

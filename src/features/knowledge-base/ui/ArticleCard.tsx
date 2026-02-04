@@ -17,8 +17,8 @@ const ArticleCard: React.FC<Props> = ({ article }) => {
 						<Image src={article.image} alt={article.title} fill className="object-cover" />
 					</div>
 					<div className="flex flex-col gap-2">
-						<span className="text-11 leading-130 tracking-neg-2">{article.date}</span>
-						<h3 className="text-20 font-medium leading-130 tracking-neg-1 line-clamp-3 text-left">{article.title}</h3>
+						<span className="text-14 leading-130 tracking-neg-2">{article.date}</span>
+						<h3 className="text-16 font-medium leading-130 tracking-neg-1 line-clamp-3 text-left">{article.title}</h3>
 					</div>
 				</div>
 			</DialogTrigger>

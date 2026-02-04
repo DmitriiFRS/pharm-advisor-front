@@ -27,7 +27,7 @@ const HeroSection = () => {
 					</div>
 					<PrimaryButton onClick={() => setIsApplicationModalOpen(true)} className="mt-5 flex items-center justify-center gap-2">
 						<span>Оставить заявку</span>
-						<Image src={arrowRight} alt="arrow-right" width={15} height={15} />
+						<Image src={arrowRight} alt="arrow-right" width={15} height={15} className="relative top-[1px]" />
 					</PrimaryButton>
 				</div>
 			</Container>

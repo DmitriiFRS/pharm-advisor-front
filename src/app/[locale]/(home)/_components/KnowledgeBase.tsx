@@ -34,7 +34,7 @@ const KnowledgeBase = () => {
 									className="object-cover transition-transform duration-300 group-hover:scale-105"
 								/>
 							</div>
-							<p className="mt-5 text-20 font-medium text-black-primary leading-130 tracking-neg-1">{item.title}</p>
+							<p className="mt-5 text-16 font-medium text-black-primary leading-130 tracking-neg-1">{item.title}</p>
 						</div>
 					))}
 				</div>

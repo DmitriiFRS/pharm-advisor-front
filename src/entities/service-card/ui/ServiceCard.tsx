@@ -14,7 +14,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ title, price, duration
 					<h3 className="text-white text-20 font-semibold leading-118">{title}</h3>
 					<div className="flex flex-col-reverse justify-between gap-2.5 w-full xxs:flex-row xxs:items-end xxs:gap-0">
 						<span className="text-white text-16 font-bold leading-100 xs:text-20">{price}</span>
-						<div className="bg-white/90 backdrop-blur-sm px-[5px] py-1.5 rounded-[6px] max-w-[136px]">
+						<div className="bg-white/90 backdrop-blur-sm px-[5px] py-1.5 rounded-[6px] max-w-[140px]">
 							<span className="text-[#858585] text-11 font-medium">{duration}</span>
 						</div>
 					</div>

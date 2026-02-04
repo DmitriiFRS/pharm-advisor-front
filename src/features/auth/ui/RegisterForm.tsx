@@ -57,7 +57,7 @@ const RegisterForm: React.FC<Props> = ({ onLogin, onClose }) => {
 			<DialogHeader className="space-y-0">
 				<DialogTitle className="text-[28px] font-bold text-center leading-none">Регистрация</DialogTitle>
 			</DialogHeader>
-			<div className="w-full">
+			<div className="w-full mt-5">
 				<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
 					<CommonInput label="Имя" placeholder="Введите имя" {...register("name")} error={errors.name} className="border" />
 					<CommonInput label="Email" placeholder="Введите e-mail" {...register("email")} error={errors.email} className="border" />

@@ -9,7 +9,7 @@ interface BreadcrumbsProps {
 
 export const Breadcrumbs = ({ items, className }: BreadcrumbsProps) => {
 	return (
-		<nav className={`flex items-center text-grey-primary text-11 ${className}`}>
+		<nav className={`flex items-center text-grey-primary text-14 ${className}`}>
 			{items.map((item, index) => {
 				const isLast = index === items.length - 1;
 

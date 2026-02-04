@@ -23,7 +23,7 @@ const COURSES_ADVANTAGES = [
 
 const Courses = () => {
 	return (
-		<section className="py-10 md:py-20">
+		<section className="pt-10 md:pt-30">
 			<Container>
 				<div className="relative bg-primary-gradient rounded-[20px] overflow-visible text-white pb-25 sm:pb-5 pt-7.5 px-2.5 sm:px-7.5 md:pb-35 lg:p-[60px] flex flex-col sm:flex-row items-center justify-between min-h-[500px] sm:min-h-50 md:gap-10 md:items-start">
 					{/* Background Pattern */}

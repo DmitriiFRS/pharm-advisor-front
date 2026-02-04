@@ -21,7 +21,7 @@ const CommonInput: React.FC<Props> = ({ label, error, className, labelClassName,
 				<input
 					{...props}
 					type={inputType}
-					className={`w-full h-11 border-b border-[#E6E6E6] px-4 py-3 text-sm md:text-base text-black-primary placeholder:text-[#9E9E9E] outline-none focus:border-black-primary transition-colors ${
+					className={`w-full h-11 border-b border-[#E6E6E6] rounded-[5px] px-4 py-3 text-sm md:text-base text-black-primary placeholder:text-[#9E9E9E] outline-none focus:border-black-primary transition-colors ${
 						error ? "border-red-500" : ""
 					} ${className} ${withPasswordToggle ? "pr-10" : ""}`}
 				/>
