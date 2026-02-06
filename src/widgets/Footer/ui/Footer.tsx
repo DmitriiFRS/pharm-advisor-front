@@ -3,7 +3,7 @@
 import Container from "@/shared/ui/Container";
 import Image from "next/image";
 import Link from "next/link";
-import { FOOTER_MENU, FOOTER_SERVICES, SOCIAL_CONTACTS, SOCIAL_NEWS } from "@/shared/config/navigation";
+import { FOOTER_MENU, FOOTER_SERVICES, SOCIAL_CONTACTS } from "@/shared/config/navigation";
 import { GoogleMap } from "./GoogleMap";
 import { useScroll } from "@/shared/lib/context/ScrollContext";
 
@@ -71,7 +71,7 @@ const FooterContacts = () => {
 			</div>
 			<div className="flex flex-col gap-6 mt-12.5 lg:mt-10 lg:order-3">
 				<div className="flex items-center gap-3">
-					<span className="text-[#858585] text-sm min-w-[80px]">Связаться:</span>
+					<span className="opacity-60 text-14 min-w-[80px]">Связаться:</span>
 					<div className="flex gap-3">
 						{SOCIAL_CONTACTS.map((item) => (
 							<Link key={item.name} href={item.href} className="hover:opacity-80 transition-opacity">
@@ -91,7 +91,7 @@ const FooterContacts = () => {
 					</div>
 				</div> */}
 			</div>
-			<div className="mt-10 leading-130 font-medium flex flex-col gap-2 lg:order-2 lg:mt-[25px]">
+			<div className="mt-10 leading-130 flex flex-col gap-2 lg:order-2 lg:mt-[25px]">
 				<span className="opacity-60 text-14">Адрес</span>
 				<p className="max-w-45 text-16 leading-140 font-medium">
 					Город Ташкент, Яккасарайский район, улица Абдуллы Каххара, 9-й проезд, дом 16а

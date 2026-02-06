@@ -1,0 +1,4 @@
+User-Agent: *
+Disallow: /profile
+Allow: /
+Sitemap: https://pharmadvisor.uz/sitemap.xml

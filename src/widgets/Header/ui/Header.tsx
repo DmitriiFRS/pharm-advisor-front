@@ -18,6 +18,7 @@ import { UserData } from "@/entities/user";
 import NProgress from "nprogress";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useScroll } from "@/shared/lib/context/ScrollContext";
+import { ApplicationModal } from "@/features/feedback-form";
 
 const NAV_LINKS = [
 	{ href: "/education", label: "Обучение" },
@@ -28,6 +29,7 @@ const NAV_LINKS = [
 export const Header = () => {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+	const [isApplicationModalOpen, setIsApplicationModalOpen] = useState(false);
 	const { me } = useContext(UserData);
 	const router = useRouter();
 	const pathName = usePathname();
@@ -61,7 +63,7 @@ export const Header = () => {
 	const currentLocale = pathName?.split("/")[1] || "ru";
 
 	return (
-		<header className="fixed top-0 z-50 w-full">
+		<header className="fixed top-0 z-50 w-full pr-(--removed-body-scroll-bar-size)">
 			<div className="mx-auto flex items-center justify-between px-3.5 h-[55px] bg-white max-w-[760px] md:justify-start md:mt-2.5 md:rounded-[11px]">
 				{/* Logo */}
 				<Link href="/">
@@ -125,7 +127,9 @@ export const Header = () => {
 						</DropdownMenuContent>
 					</DropdownMenu>
 
-					<BlackButton className="w-full min-w-45 h-10!">Обсудить проект</BlackButton>
+					<BlackButton onClick={() => setIsApplicationModalOpen(true)} className="w-full min-w-45 h-10!">
+						Обсудить проект
+					</BlackButton>
 				</div>
 
 				{/* Mobile Burger Button */}
@@ -136,6 +140,7 @@ export const Header = () => {
 
 			{/* Mobile Menu Overlay */}
 			<AnimatePresence>{isMobileMenuOpen && <MobileMenu onClose={() => setIsMobileMenuOpen(false)} />}</AnimatePresence>
+			<ApplicationModal isOpen={isApplicationModalOpen} onClose={setIsApplicationModalOpen} />
 
 			<AuthModal isOpen={isAuthModalOpen} onClose={setIsAuthModalOpen} />
 		</header>

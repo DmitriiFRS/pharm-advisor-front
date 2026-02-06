@@ -54,7 +54,7 @@ const Faq = () => {
 									{item.question}
 								</span>
 							</AccordionTrigger>
-							<AccordionContent className="text-10! md:text-16! text-grey-primary pb-3 md:pb-4">{item.answer}</AccordionContent>
+							<AccordionContent className="text-10! md:text-14! text-grey-primary pb-3 md:pb-4">{item.answer}</AccordionContent>
 						</AccordionItem>
 					))}
 				</Accordion>
