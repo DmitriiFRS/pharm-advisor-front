@@ -37,5 +37,7 @@ export async function POST(req: Request, { params }: { params: Promise<{ entity:
 		console.log(error);
 		return NextResponse.json({ error }, { status: response.status });
 	}
-	return NextResponse.json(await response.json());
+	const data = await response.json();
+	console.log(data);
+	return NextResponse.json(data);
 }

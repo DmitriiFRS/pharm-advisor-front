@@ -1,7 +1,8 @@
 "use client";
 
 import CommonInput from "@/shared/ui/form/CommonInput";
-import { useState } from "react";
+import { UserData } from "@/entities/user";
+import { useContext, useState } from "react";
 import { ProfileFormValues, useProfileForm } from "../model/useProfileForm";
 import { updateProfile } from "../api/updateProfile";
 import BlackButton from "@/shared/ui/BlackButton";
@@ -14,6 +15,7 @@ import { useRouter } from "next/navigation";
 const ProfileForm = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const router = useRouter();
+	const { setMe } = useContext(UserData);
 	const {
 		register,
 		handleSubmit,
@@ -66,7 +68,7 @@ const ProfileForm = () => {
 				>
 					<span>Сохранить</span>
 				</PrimaryButton>
-				<BlackButton className="mt-10 h-10! flex items-center justify-center min-w-48 text-10!" onClick={() => logout(router)}>
+				<BlackButton className="mt-10 h-10! flex items-center justify-center min-w-48 text-10!" onClick={() => logout(router, setMe)}>
 					<span>Выйти</span>
 				</BlackButton>
 			</div>
