@@ -1,6 +1,22 @@
+import { IMedia } from "@/shared/types/media";
+import { IMetaPagination } from "@/shared/types/pagination";
+
 export interface Article {
 	id: number;
-	date: string;
 	title: string;
-	image: string;
+	content: string;
+	imageId: number;
+	isPublished: boolean;
+	pdfId: number | null;
+	slug: string;
+	createdAt: string;
+	updatedAt: string;
+	publishedAt: string | null;
+	media: IMedia;
+	pdf: IMedia;
+}
+
+export interface IArticleData {
+	data: Article[];
+	meta: IMetaPagination;
 }

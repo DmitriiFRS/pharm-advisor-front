@@ -1,12 +1,30 @@
+"use client";
+
 import advantage_1 from "@/assets/icons/homepage/advantage-1.svg";
 import advantage_2 from "@/assets/icons/homepage/advantage-2.svg";
 import advantage_3 from "@/assets/icons/homepage/advantage-3.svg";
 import Container from "@/shared/ui/Container";
 import Image from "next/image";
 
+import { useScroll } from "@/shared/lib/context/ScrollContext";
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
+
 const Advantages = () => {
+	const { advantagesRef, scrollToAdvantages } = useScroll();
+	const searchParams = useSearchParams();
+
+	useEffect(() => {
+		const section = searchParams.get("section");
+		if (section === "advantages") {
+			setTimeout(() => {
+				scrollToAdvantages();
+			}, 100);
+		}
+	}, [searchParams, scrollToAdvantages]);
+
 	return (
-		<section className="pt-15 md:pt-10">
+		<section className="pt-15 md:pt-10" ref={advantagesRef}>
 			<Container>
 				<div className="flex flex-col md:flex-row md:gap-2.5 lg:border-y lg:border-[#e5e5e5]">
 					<AdvantageItem

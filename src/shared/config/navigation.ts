@@ -1,13 +1,13 @@
 export const FOOTER_MENU = [
 	{ name: "Главная", href: "/" },
-	{ name: "Преимущества", href: "/advantages" },
-	{ name: "Услуги", href: "/services" },
-	{ name: "Новости", href: "/news" },
+	// { name: "Преимущества", href: "/advantages" },
+	{ name: "Услуги", href: "/#advantages" },
+	// { name: "Новости", href: "/news" },
 	{ name: "Контакты", href: "/contacts" },
 ];
 
 export const FOOTER_SERVICES = [
-	{ name: "Обучение", href: "/training" },
+	{ name: "Обучение", href: "/education" },
 	{ name: "База Знаний", href: "/knowledge-base" },
 ];
 

@@ -7,14 +7,16 @@ import ArticleList from "@/features/knowledge-base/ui/ArticleList";
 // interface Props {}
 
 export const KnowledgeBaseGrid: React.FC = () => {
-	const { articles, loadMore, hasMore } = useArticles();
+	const { articles, loadMore, hasMore, loading } = useArticles({ itemsPerPage: 6 });
+
 	return (
 		<div className="flex flex-col gap-10 md:gap-15 mt-10">
-			<ArticleList articles={articles} />
-			{hasMore && (
+			{articles && <ArticleList articles={articles} />}
+
+			{(hasMore || loading) && (
 				<div className="flex justify-center">
-					<PrimaryButton onClick={loadMore} className="text-white">
-						Смотреть еще
+					<PrimaryButton onClick={loadMore} className="text-white" disabled={loading}>
+						{loading ? "Загрузка..." : "Смотреть еще"}
 					</PrimaryButton>
 				</div>
 			)}

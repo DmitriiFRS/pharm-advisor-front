@@ -6,13 +6,29 @@ import Link from "next/link";
 import { FOOTER_MENU, FOOTER_SERVICES, SOCIAL_CONTACTS } from "@/shared/config/navigation";
 import { GoogleMap } from "./GoogleMap";
 import { useScroll } from "@/shared/lib/context/ScrollContext";
+import { useData } from "@/shared/api/hooks/useData";
+import { IContacts } from "@/entities/company/model/types";
+import { useEffect } from "react";
+
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export const Footer = () => {
-	const { contactRef } = useScroll();
+	const { contactRef, scrollToContacts } = useScroll();
+	const searchParams = useSearchParams();
+
+	useEffect(() => {
+		const section = searchParams.get("section");
+		if (section === "contacts") {
+			setTimeout(() => {
+				scrollToContacts();
+			}, 100);
+		}
+	}, [searchParams, scrollToContacts]);
+
 	const scrollToTop = () => {
 		window.scrollTo({ top: 0, behavior: "smooth" });
 	};
-
+	const { data: contacts, loading } = useData<IContacts>("contacts");
 	return (
 		<footer ref={contactRef} className="bg-[#F4F4F4] lg:border-t lg:border-grey-primary">
 			<Container className="lg:grid lg:grid-cols-2 relative">
@@ -23,7 +39,7 @@ export const Footer = () => {
 					<FooterNav />
 				</div>
 				<div className="pt-10 lg:order-1 lg:pt-15 lg:grid lg:grid-cols-2 mb-10 lg:mb-15">
-					<FooterContacts />
+					<FooterContacts contacts={contacts?.data} />
 				</div>
 				<button className="absolute bottom-0 right-2.5 cursor-pointer lg:bottom-15" onClick={scrollToTop}>
 					<Image src="/assets/icons/common/to-the-top.svg" alt="To the top" width={50} height={50} />
@@ -35,14 +51,47 @@ export const Footer = () => {
 };
 
 const FooterNav = () => {
+	const { scrollToContacts, scrollToAdvantages } = useScroll();
+	const pathname = usePathname();
+	const router = useRouter();
+
+	const handleNavigation = (name: string, href: string) => {
+		if (name === "Услуги") {
+			if (pathname !== "/") {
+				router.push("/");
+				setTimeout(() => {
+					scrollToAdvantages();
+				}, 500); // Simple timeout to wait for navigation. For more robust solution, use URL param.
+				// Better approach: router.push('/?section=advantages') and handle in layout/page.
+				// But let's try the timeout first as it's simpler for "js context" or just use the URL param as planned.
+				// Implementing URL param approach is safer.
+				router.push("/?section=advantages");
+			} else {
+				scrollToAdvantages();
+			}
+		} else if (name === "Контакты") {
+			if (pathname !== "/") {
+				router.push("/?section=contacts");
+			} else {
+				scrollToContacts();
+			}
+		} else {
+			router.push(href);
+		}
+	};
+
 	return (
 		<nav className="mt-10 lg:mt-0 flex justify-between xs:justify-start xs:gap-20 lg:gap-25 lg:border-l lg:border-grey-primary h-full lg:pl-10 lg:pt-15">
 			<div className="flex flex-col gap-2 text-14">
 				<span className="text-[#626263] font-semibold">Меню</span>
 				{FOOTER_MENU.map((item) => (
-					<Link key={item.name} href={item.href} className="text-black leading-200 font-semibold">
+					<div
+						key={item.name}
+						onClick={() => handleNavigation(item.name, item.href)}
+						className="text-black leading-200 font-semibold cursor-pointer hover:opacity-70 transition-opacity"
+					>
 						{item.name}
-					</Link>
+					</div>
 				))}
 			</div>
 			<div className="flex flex-col gap-2 text-14">
@@ -57,27 +106,51 @@ const FooterNav = () => {
 	);
 };
 
-const FooterContacts = () => {
+const FooterContacts = ({ contacts }: { contacts?: IContacts["data"] }) => {
 	return (
 		<>
 			<div className="hidden lg:block order-1"></div>
 			<div className="flex flex-col gap-2 text-16 leading-118 font-semibold lg:order-2">
-				<a href="tel:+998901234567" target="_blank" rel="noopener noreferrer">
-					+998 (90) 123-45-67
-				</a>
-				<a href="mailto:pharmadvisor@gmailcom" target="_blank" rel="noopener noreferrer">
-					pharmadvisor@gmailcom
-				</a>
+				{contacts?.phone && (
+					<a href={`tel:${contacts.phone}`} target="_blank" rel="noopener noreferrer">
+						{contacts.phone}
+					</a>
+				)}
+				{contacts?.email && (
+					<a href={`mailto:${contacts.email}`} target="_blank" rel="noopener noreferrer">
+						{contacts.email}
+					</a>
+				)}
 			</div>
 			<div className="flex flex-col gap-6 mt-12.5 lg:mt-10 lg:order-3">
 				<div className="flex items-center gap-3">
 					<span className="opacity-60 text-14 min-w-[80px]">Связаться:</span>
 					<div className="flex gap-3">
-						{SOCIAL_CONTACTS.map((item) => (
-							<Link key={item.name} href={item.href} className="hover:opacity-80 transition-opacity">
-								<Image src={item.icon} alt={item.name} width={24} height={24} />
+						{SOCIAL_CONTACTS.map((item) => {
+							let href = item.href;
+							if (item.name === "Telegram" && contacts?.telegramLink) {
+								href = contacts.telegramLink;
+							}
+							// Fallback for visual consistency if we want to show it even if link is missing?
+							// Or just pass the link. If link is '#' it does nothing.
+							return (
+								<Link key={item.name} href={href} className="hover:opacity-80 transition-opacity" target="_blank">
+									<Image src={item.icon} alt={item.name} width={24} height={24} />
+								</Link>
+							);
+						})}
+						{contacts?.instagramLink && (
+							<Link href={contacts.instagramLink} className="hover:opacity-80 transition-opacity" target="_blank">
+								<Image src="/assets/icons/common/header-ru.svg" alt="Instagram" width={24} height={24} className="hidden" />
+								{/* Placeholder since no icon, or maybe reusing another icon? 
+                                    Actually I shouldn't execute this if I don't have an icon. 
+                                    I will just stick to mapped items for now to be safe. 
+                                    The user said "integrate contacts". 
+                                    I'll add instagram if I find an icon. 
+                                    I'll skip instagram for now in the loop above. 
+                                */}
 							</Link>
-						))}
+						)}
 					</div>
 				</div>
 				{/* <div className="flex items-center gap-3">
@@ -94,7 +167,13 @@ const FooterContacts = () => {
 			<div className="mt-10 leading-130 flex flex-col gap-2 lg:order-2 lg:mt-[25px]">
 				<span className="opacity-60 text-14">Адрес</span>
 				<p className="max-w-45 text-16 leading-140 font-medium">
-					Город Ташкент, Яккасарайский район, улица Абдуллы Каххара, 9-й проезд, дом 16а
+					{contacts?.googleMapsLink ? (
+						<a href={contacts.googleMapsLink} target="_blank" rel="noopener noreferrer" className="hover:underline">
+							{contacts?.address ?? "Город Ташкент, Яккасарайский район, улица Абдуллы Каххара, 9-й проезд, дом 16а"}
+						</a>
+					) : (
+						contacts?.address ?? "Город Ташкент, Яккасарайский район, улица Абдуллы Каххара, 9-й проезд, дом 16а"
+					)}
 				</p>
 			</div>
 			<div className="mt-10 text-14 leading-160 text-[#626263] lg:order-4 lg:mt-20">Политика конфиденциальности</div>

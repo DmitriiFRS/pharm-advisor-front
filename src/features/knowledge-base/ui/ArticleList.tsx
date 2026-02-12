@@ -8,7 +8,7 @@ interface Props {
 const ArticleList: React.FC<Props> = ({ articles }) => {
 	return (
 		<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-x-3 md:gap-y-10">
-			{articles.map((article) => (
+			{articles?.map((article) => (
 				<ArticleCard key={article.id} article={article} />
 			))}
 		</div>

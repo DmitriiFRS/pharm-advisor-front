@@ -42,7 +42,7 @@ const Courses = () => {
 							сразу.
 						</p>
 						<div className="w-full sm:w-full sm:max-w-[330px] mt-10">
-							<BlackButton className="w-full">
+							<BlackButton className="w-full" href="/education">
 								<span className="mr-2">Узнать подробнее</span>
 								<ChevronRight size={20} />
 							</BlackButton>

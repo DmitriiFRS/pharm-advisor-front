@@ -10,9 +10,26 @@ interface Props {
 }
 
 const ArticleModal: React.FC<Props> = ({ article }) => {
-	const handleDownload = () => {
-		if (article.file) {
-			window.open(article.file, "_blank");
+	const imageUrl = article.media?.url ? process.env.NEXT_PUBLIC_MEDIA_URL + article.media?.url : "/assets/images/placeholder.webp";
+	const fileUrl = article.pdf?.url ? process.env.NEXT_PUBLIC_MEDIA_URL + article.pdf?.url : null;
+
+	const handleDownload = async () => {
+		if (fileUrl) {
+			try {
+				const response = await fetch(fileUrl);
+				const blob = await response.blob();
+				const url = window.URL.createObjectURL(blob);
+				const link = document.createElement("a");
+				link.href = url;
+				link.setAttribute("download", article.title + ".pdf");
+				document.body.appendChild(link);
+				link.click();
+				link.remove();
+				window.URL.revokeObjectURL(url);
+			} catch (error) {
+				console.error("Download failed:", error);
+				window.open(fileUrl, "_blank");
+			}
 		}
 	};
 
@@ -26,7 +43,7 @@ const ArticleModal: React.FC<Props> = ({ article }) => {
 				{/* Image Column */}
 				<div className="shrink-0 w-full md:w-[280px] lg:w-[340px]">
 					<div className="relative w-full aspect-340/360 rounded-[16px] overflow-hidden">
-						<Image src={article.image} alt={article.title} fill className="object-cover" />
+						<Image src={imageUrl} alt={article.title} fill className="object-cover" unoptimized />
 					</div>
 				</div>
 
@@ -34,11 +51,14 @@ const ArticleModal: React.FC<Props> = ({ article }) => {
 				<div className="flex flex-col grow gap-6">
 					<div className="flex flex-col gap-4">
 						<h3 className="text-[20px] font-medium leading-[138%] tracking-neg-1 text-black">{article.title}</h3>
-						<div className="text-[14px] font-normal leading-[120%] text-[#808080] whitespace-pre-wrap">{article.description}</div>
+						<div
+							className="text-[14px] font-normal leading-[120%] text-[#808080] whitespace-pre-wrap prose prose-sm max-w-none"
+							dangerouslySetInnerHTML={{ __html: article.content }}
+						/>
 					</div>
 
 					<div className="mt-auto pt-4 flex justify-end">
-						<PrimaryButton onClick={handleDownload} className="w-auto! px-6 h-[44px]" disabled={!article.file}>
+						<PrimaryButton onClick={handleDownload} className="w-auto! px-6 h-[44px]" disabled={!fileUrl}>
 							Скачать полностью
 						</PrimaryButton>
 					</div>
