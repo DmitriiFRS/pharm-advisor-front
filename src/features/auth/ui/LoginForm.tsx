@@ -20,10 +20,11 @@ interface Props {
 	children?: React.ReactNode;
 	onRegister: () => void;
 	onRecovery: () => void;
+	onSuccessRegistration: (message?: string) => void;
 	onClose: (open: boolean) => void;
 }
 
-const LoginForm: React.FC<Props> = ({ children, onRegister, onRecovery, onClose }) => {
+const LoginForm: React.FC<Props> = ({ children, onRegister, onRecovery, onSuccessRegistration, onClose }) => {
 	const { setMe } = useContext(UserData);
 	const [isLoading, setIsLoading] = useState(false);
 	const router = useRouter();
@@ -45,12 +46,18 @@ const LoginForm: React.FC<Props> = ({ children, onRegister, onRecovery, onClose 
 					method: "POST",
 					body: JSON.stringify(response.data),
 				});
+				console.log(response.data);
 				setMe(response.data.user);
 				router.push("/profile");
 				onClose(false);
 			}
 		} catch (error: unknown) {
-			toast.error((error as Error).message || "Ошибка при авторизации");
+			const err = error as { status?: number; response?: { status?: number; data?: { message?: string } }; message?: string };
+			if (err?.status === 403 || err?.response?.status === 403 || err?.message?.includes("не подтвержден")) {
+				onSuccessRegistration(err?.response?.data?.message || err?.message || "Email не подтвержден");
+			} else {
+				toast.error((error as Error).message || "Ошибка при авторизации");
+			}
 		} finally {
 			setIsLoading(false);
 		}

@@ -40,6 +40,7 @@ export const Header = () => {
 	};
 
 	const handleCabinetClick = () => {
+		console.log(me);
 		if (me) {
 			NProgress.start();
 			router.push("/profile");

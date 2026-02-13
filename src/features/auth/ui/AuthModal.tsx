@@ -14,17 +14,26 @@ interface Props {
 	onClose: (open: boolean) => void;
 }
 
-type AuthStep = "login" | "register" | "recovery";
+type AuthStep = "login" | "register" | "recovery" | "success-registration";
 
 const AuthModal: React.FC<Props> = ({ isOpen, onClose }) => {
 	const [step, setStep] = useState<AuthStep>("login");
+	const [successMessage, setSuccessMessage] = useState<string>("");
 
 	// Reset step when modal closes
 	const handleOpenChange = (open: boolean) => {
 		if (!open) {
-			setTimeout(() => setStep("login"), 300); // Reset after animation
+			setTimeout(() => {
+				setStep("login");
+				setSuccessMessage("");
+			}, 300); // Reset after animation
 		}
 		onClose(open);
+	};
+
+	const handleSuccess = (message?: string) => {
+		if (message) setSuccessMessage(message);
+		setStep("success-registration");
 	};
 
 	return (
@@ -43,7 +52,12 @@ const AuthModal: React.FC<Props> = ({ isOpen, onClose }) => {
 								exit={{ opacity: 0, x: 20 }}
 								transition={{ duration: 0.2 }}
 							>
-								<LoginForm onRegister={() => setStep("register")} onRecovery={() => setStep("recovery")} onClose={onClose} />
+								<LoginForm
+									onRegister={() => setStep("register")}
+									onRecovery={() => setStep("recovery")}
+									onSuccessRegistration={handleSuccess}
+									onClose={onClose}
+								/>
 							</motion.div>
 						)}
 						{step === "register" && (
@@ -54,7 +68,7 @@ const AuthModal: React.FC<Props> = ({ isOpen, onClose }) => {
 								exit={{ opacity: 0, x: -20 }}
 								transition={{ duration: 0.2 }}
 							>
-								<RegisterForm onLogin={() => setStep("login")} onClose={onClose} />
+								<RegisterForm onLogin={() => setStep("login")} onClose={onClose} onSuccessRegistration={handleSuccess} />
 							</motion.div>
 						)}
 						{step === "recovery" && (
@@ -66,6 +80,25 @@ const AuthModal: React.FC<Props> = ({ isOpen, onClose }) => {
 								transition={{ duration: 0.2 }}
 							>
 								<RecoveryForm onLogin={() => setStep("login")} onRegister={() => setStep("register")} />
+							</motion.div>
+						)}
+						{step === "success-registration" && (
+							<motion.div
+								key="success-registration"
+								initial={{ opacity: 0, x: 20 }}
+								animate={{ opacity: 1, x: 0 }}
+								exit={{ opacity: 0, x: -20 }}
+								transition={{ duration: 0.2 }}
+								className="text-center"
+							>
+								<div className="text-xl font-bold mb-4">{successMessage || "Регистрация прошла успешно"}</div>
+								<p className="text-[#9E9E9E] mb-6">Пожалуйста, проверьте вашу почту для подтверждения аккаунта</p>
+								<button
+									onClick={() => setStep("login")}
+									className="text-primary hover:text-primary/80 font-medium transition-colors"
+								>
+									Вернуться к входу
+								</button>
 							</motion.div>
 						)}
 					</AnimatePresence>

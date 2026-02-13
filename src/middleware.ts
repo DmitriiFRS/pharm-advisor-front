@@ -26,9 +26,12 @@ export default async function middleware(request: NextRequest) {
 	}
 
 	// Verify access token
-	const isAccessTokenValid = await verifyAccessToken(accessToken);
+	const { isValid: isAccessTokenValid, isVerified } = await verifyAccessToken(accessToken);
 
 	if (isAccessTokenValid) {
+		if (isProtected && !isVerified) {
+			return redirectToLogout(request);
+		}
 		return handleI18nRouting(request);
 	}
 
@@ -64,7 +67,7 @@ function redirectToLogout(request: NextRequest) {
 	return NextResponse.redirect(logoutUrl);
 }
 
-async function verifyAccessToken(accessToken: string) {
+async function verifyAccessToken(accessToken: string): Promise<{ isValid: boolean; isVerified?: boolean }> {
 	try {
 		const response = await fetch(`${AUTH_API_URL}/users/get-me`, {
 			method: "GET",
@@ -74,9 +77,15 @@ async function verifyAccessToken(accessToken: string) {
 			},
 			cache: "no-store",
 		});
-		return response.ok;
-	} catch {
-		return false;
+
+		if (response.ok) {
+			const data = await response.json();
+			return { isValid: true, isVerified: data?.data?.isVerified };
+		}
+		return { isValid: false };
+	} catch (e) {
+		console.error("Middleware: verifyAccessToken error", e);
+		return { isValid: false };
 	}
 }
 
