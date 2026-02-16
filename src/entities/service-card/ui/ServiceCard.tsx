@@ -3,7 +3,16 @@ import Image from "next/image";
 import GrayLine from "@/shared/ui/GrayLine";
 import BlackButton from "@/shared/ui/BlackButton";
 
-export const ServiceCard: React.FC<ServiceCardProps> = ({ title, price, duration, description, features, backgroundImage, className }) => {
+export const ServiceCard: React.FC<ServiceCardProps> = ({
+	title,
+	price,
+	duration,
+	description,
+	features,
+	backgroundImage,
+	className,
+	setIsApplicationModalOpen,
+}) => {
 	return (
 		<div className={`flex flex-col bg-white rounded-[20px] overflow-hidden shadow-sm h-full border border-[#EBEBEB] ${className}`}>
 			{/* Header with Background */}
@@ -48,7 +57,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ title, price, duration
 				</div>
 
 				<div className="mt-auto">
-					<BlackButton />
+					<BlackButton onClick={setIsApplicationModalOpen ? () => setIsApplicationModalOpen(true) : undefined} />
 				</div>
 			</div>
 		</div>
