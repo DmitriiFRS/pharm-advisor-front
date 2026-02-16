@@ -8,13 +8,14 @@ import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import RecoveryForm from "./RecoveryForm";
 import { AnimatePresence, motion } from "framer-motion";
+import SuccessAuth from "./SuccessAuth";
 
 interface Props {
 	isOpen: boolean;
 	onClose: (open: boolean) => void;
 }
 
-type AuthStep = "login" | "register" | "recovery" | "success-registration";
+type AuthStep = "login" | "register" | "recovery" | "success-registration" | "success-send-recovery";
 
 const AuthModal: React.FC<Props> = ({ isOpen, onClose }) => {
 	const [step, setStep] = useState<AuthStep>("login");
@@ -79,27 +80,28 @@ const AuthModal: React.FC<Props> = ({ isOpen, onClose }) => {
 								exit={{ opacity: 0, x: -20 }}
 								transition={{ duration: 0.2 }}
 							>
-								<RecoveryForm onLogin={() => setStep("login")} onRegister={() => setStep("register")} />
+								<RecoveryForm
+									onLogin={() => setStep("login")}
+									onRegister={() => setStep("register")}
+									onSuccessRecovery={handleSuccess}
+								/>
 							</motion.div>
 						)}
 						{step === "success-registration" && (
-							<motion.div
+							<SuccessAuth
 								key="success-registration"
-								initial={{ opacity: 0, x: 20 }}
-								animate={{ opacity: 1, x: 0 }}
-								exit={{ opacity: 0, x: -20 }}
-								transition={{ duration: 0.2 }}
-								className="text-center"
-							>
-								<div className="text-xl font-bold mb-4">{successMessage || "Регистрация прошла успешно"}</div>
-								<p className="text-[#9E9E9E] mb-6">Пожалуйста, проверьте вашу почту для подтверждения аккаунта</p>
-								<button
-									onClick={() => setStep("login")}
-									className="text-primary hover:text-primary/80 font-medium transition-colors"
-								>
-									Вернуться к входу
-								</button>
-							</motion.div>
+								successMessage={successMessage || "Регистрация прошла успешно"}
+								setStep={setStep}
+								successMessageDescription="Пожалуйста, проверьте вашу почту для подтверждения аккаунта"
+							/>
+						)}
+						{step === "success-send-recovery" && (
+							<SuccessAuth
+								key="success-send-recovery"
+								successMessage={successMessage || "Ссылка отправлена"}
+								setStep={setStep}
+								successMessageDescription="Пожалуйста, проверьте вашу почту для восстановления пароля"
+							/>
 						)}
 					</AnimatePresence>
 				</div>

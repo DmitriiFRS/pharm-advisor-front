@@ -22,4 +22,10 @@ export const authApi = {
 			data,
 		});
 	},
+	resetPassword: (data: { password: string; token: string }) => {
+		return api.post<{ password: string; token: string }>({
+			entity: "resetPassword",
+			data,
+		});
+	},
 };

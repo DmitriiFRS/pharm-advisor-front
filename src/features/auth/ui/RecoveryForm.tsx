@@ -8,15 +8,18 @@ import CommonInput from "@/shared/ui/form/CommonInput";
 import PrimaryButton from "@/shared/ui/PrimaryButton";
 import { recoverySchema } from "../model/auth.schema";
 import { DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { authApi } from "../api/auth.api";
+import { toast } from "react-toastify";
 
 type RecoveryFormValues = z.infer<typeof recoverySchema>;
 
 interface Props {
 	onLogin: () => void;
 	onRegister: () => void;
+	onSuccessRecovery: (message?: string) => void;
 }
 
-const RecoveryForm: React.FC<Props> = ({ onLogin, onRegister }) => {
+const RecoveryForm: React.FC<Props> = ({ onLogin, onRegister, onSuccessRecovery }) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const {
 		register,
@@ -27,12 +30,18 @@ const RecoveryForm: React.FC<Props> = ({ onLogin, onRegister }) => {
 	});
 
 	const onSubmit = async (data: RecoveryFormValues) => {
-		setIsLoading(true);
-		console.log("Recovery data:", data);
-		// TODO: Implement recovery logic
-		// Simulating API call
-		await new Promise((resolve) => setTimeout(resolve, 1000));
-		setIsLoading(false);
+		try {
+			setIsLoading(true);
+			const response = await authApi.recovery(data);
+			if (response.data) {
+				console.log(response.data);
+				onSuccessRecovery();
+			}
+		} catch (error) {
+			toast.error((error as Error).message || "Ошибка при регистрации");
+		} finally {
+			setIsLoading(false);
+		}
 	};
 
 	return (

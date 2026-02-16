@@ -9,6 +9,7 @@ const ENDPOINT_MAP = {
 	register: AUTH_ENDPOINTS.SIGN_UP,
 	recovery: AUTH_ENDPOINTS.FORGOT_PASSWORD,
 	updateMe: PROFILE_ENDPOINTS.UPDATE_ME,
+	resetPassword: AUTH_ENDPOINTS.SET_NEW_PASSWORD,
 } as const;
 
 export async function POST(req: Request, { params }: { params: Promise<{ entity: string }> }) {
