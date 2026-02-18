@@ -1,46 +1,22 @@
 "use client";
 
 import CommonInput from "@/shared/ui/form/CommonInput";
-import { useState } from "react";
-import { ChangePasswordFormValues, useChangePasswordForm } from "../model/useChangePasswordForm";
-import { changePassword } from "../api/changePassword";
+import { useChangePasswordForm } from "../model/useChangePasswordForm";
 import BlackButton from "@/shared/ui/BlackButton";
 import PrimaryButton from "@/shared/ui/PrimaryButton";
-import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
 const ChangePasswordForm = () => {
-	const [isLoading, setIsLoading] = useState(false);
 	const router = useRouter();
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useChangePasswordForm();
+	const { form, onSubmit, isLoading } = useChangePasswordForm();
 
-	const onSubmit = async (data: ChangePasswordFormValues) => {
-		try {
-			setIsLoading(true);
-			await changePassword(data);
-			toast.success("Пароль успешно изменен");
-			router.push("/profile");
-		} catch (error) {
-			if (error instanceof Error) {
-				toast.error(error.message || "Ошибка при смене пароля");
-			} else {
-				toast.error("Ошибка при смене пароля");
-			}
-		} finally {
-			setIsLoading(false);
-		}
-	};
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className="bg-white rounded-[20px] p-10 mx-auto max-w-[485px] w-full mt-10 mb-30">
+		<form onSubmit={form.handleSubmit(onSubmit)} className="bg-white rounded-[20px] p-10 mx-auto max-w-[485px] w-full mt-10 mb-30">
 			<div className="flex flex-col gap-5">
 				<CommonInput
 					placeholder="Введите текущий пароль"
-					error={errors.password}
-					{...register("password")}
+					error={form.formState.errors.password}
+					{...form.register("password")}
 					label="Текущий пароль"
 					className="border rounded-[4px] border-[#a6a5a6]"
 					labelClassName="text-14 opacity-60"
@@ -49,18 +25,18 @@ const ChangePasswordForm = () => {
 				/>
 				<CommonInput
 					placeholder="Введите новый пароль"
-					error={errors.newPassword}
+					error={form.formState.errors.newPassword}
 					type="password"
 					withPasswordToggle
-					{...register("newPassword")}
+					{...form.register("newPassword")}
 					label="Новый пароль"
 					className="border rounded-[4px] border-[#a6a5a6]"
 					labelClassName="text-14 opacity-60"
 				/>
 				<CommonInput
 					placeholder="Повторите новый пароль"
-					error={errors.confirmPassword}
-					{...register("confirmPassword")}
+					error={form.formState.errors.confirmPassword}
+					{...form.register("confirmPassword")}
 					label="Повторите новый пароль"
 					className="border rounded-[4px] border-[#a6a5a6]"
 					labelClassName="text-14 opacity-60"

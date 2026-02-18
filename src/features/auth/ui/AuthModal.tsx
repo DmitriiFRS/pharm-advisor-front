@@ -21,13 +21,12 @@ const AuthModal: React.FC<Props> = ({ isOpen, onClose }) => {
 	const [step, setStep] = useState<AuthStep>("login");
 	const [successMessage, setSuccessMessage] = useState<string>("");
 
-	// Reset step when modal closes
 	const handleOpenChange = (open: boolean) => {
 		if (!open) {
 			setTimeout(() => {
 				setStep("login");
 				setSuccessMessage("");
-			}, 300); // Reset after animation
+			}, 300);
 		}
 		onClose(open);
 	};

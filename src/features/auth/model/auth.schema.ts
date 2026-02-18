@@ -8,6 +8,7 @@ export const loginSchema = z.object({
 export const registerSchema = z.object({
 	name: z.string().min(1, "Введите имя"),
 	email: z.string().email("Некорректный email"),
+	phoneNumber: z.string().min(12, "Введите корректный номер телефона"),
 	password: z.string().min(6, "Пароль должен быть не менее 6 символов"),
 });
 

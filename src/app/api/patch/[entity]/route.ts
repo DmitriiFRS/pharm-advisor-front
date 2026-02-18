@@ -9,7 +9,7 @@ const ENDPOINT_MAP = {
 } as const;
 
 export async function PATCH(req: Request, { params }: { params: Promise<{ entity: string }> }) {
-	const { accessToken, refreshToken, BACKEND_URL } = await getServerAuthContext();
+	const { accessToken, BACKEND_URL } = await getServerAuthContext();
 	const { entity } = await params;
 	if (!BACKEND_URL) {
 		return NextResponse.json({ error: "Missing BACKEND_URL" }, { status: 500 });

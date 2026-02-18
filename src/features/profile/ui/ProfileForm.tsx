@@ -2,37 +2,29 @@
 
 import CommonInput from "@/shared/ui/form/CommonInput";
 import { UserData } from "@/entities/user";
-import { useContext, useState } from "react";
-import { ProfileFormValues, useProfileForm } from "../model/useProfileForm";
-import { updateProfile } from "../api/updateProfile";
+import { useContext } from "react";
+import { useProfileForm } from "../model/useProfileForm";
 import BlackButton from "@/shared/ui/BlackButton";
 import PrimaryButton from "@/shared/ui/PrimaryButton";
-import { toast } from "react-toastify";
 
 import { logout } from "../api/logout";
 import { useRouter } from "next/navigation";
+import CommonPhoneInput from "@/shared/ui/form/CommonPhoneInput";
 
 const ProfileForm = () => {
-	const [isLoading, setIsLoading] = useState(false);
 	const router = useRouter();
 	const { setMe } = useContext(UserData);
 	const {
-		register,
-		handleSubmit,
-		formState: { errors },
+		form: {
+			register,
+			handleSubmit,
+			control,
+			formState: { errors },
+		},
+		onSubmit,
+		isLoading,
 	} = useProfileForm();
 
-	const onSubmit = async (data: ProfileFormValues) => {
-		try {
-			setIsLoading(true);
-			await updateProfile(data);
-			toast.success("Профиль успешно обновлен");
-		} catch {
-			toast.error("Ошибка при обновлении профиля");
-		} finally {
-			setIsLoading(false);
-		}
-	};
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="bg-white rounded-[20px] p-10 mx-auto max-w-[485px] w-full mt-10 mb-30">
 			<div className="flex flex-col gap-5">
@@ -50,6 +42,14 @@ const ProfileForm = () => {
 					{...register("email")}
 					label="Email"
 					className="border rounded-[4px] border-[#a6a5a6]"
+					labelClassName="text-14 opacity-60"
+				/>
+				<CommonPhoneInput
+					control={control}
+					name="phoneNumber"
+					error={errors.phoneNumber}
+					label="Номер телефона"
+					inputClassName="border-t-1! border-x-1! text-14! border-[#a6a5a6_!important] rounded-[4px_!important]"
 					labelClassName="text-14 opacity-60"
 				/>
 				<div className="flex flex-col gap-1">

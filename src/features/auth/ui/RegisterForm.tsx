@@ -10,6 +10,7 @@ import { registerSchema } from "../model/auth.schema";
 import { DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { authApi } from "../api/auth.api";
 import { toast } from "react-toastify";
+import CommonPhoneInput from "@/shared/ui/form/CommonPhoneInput";
 
 type RegisterFormValues = z.infer<typeof registerSchema>;
 
@@ -25,6 +26,7 @@ const RegisterForm: React.FC<Props> = ({ onLogin, onSuccessRegistration }) => {
 	const {
 		register,
 		handleSubmit,
+		control,
 		formState: { errors },
 	} = useForm<RegisterFormValues>({
 		resolver: zodResolver(registerSchema),
@@ -53,6 +55,15 @@ const RegisterForm: React.FC<Props> = ({ onLogin, onSuccessRegistration }) => {
 				<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
 					<CommonInput label="Имя" placeholder="Введите имя" {...register("name")} error={errors.name} className="border" />
 					<CommonInput label="Email" placeholder="Введите e-mail" {...register("email")} error={errors.email} className="border" />
+					<CommonPhoneInput
+						control={control}
+						name="phoneNumber"
+						label="Телефон"
+						placeholder="Введите номер телефона"
+						error={errors.phoneNumber}
+						className=""
+						inputClassName="border-t-1! border-x-1! rounded-[5px_!important]"
+					/>
 
 					<div className="relative">
 						<CommonInput
