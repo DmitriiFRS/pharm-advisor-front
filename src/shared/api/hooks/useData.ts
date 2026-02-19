@@ -33,6 +33,7 @@ export function useData<T>(entityPath: string, queryParams?: Record<string, stri
 				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
+					"accept-language": "uz",
 				},
 			});
 			if (!response.ok) {

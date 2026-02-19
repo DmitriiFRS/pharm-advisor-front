@@ -142,13 +142,6 @@ const FooterContacts = ({ contacts }: { contacts?: IContacts["data"] }) => {
 						{contacts?.instagramLink && (
 							<Link href={contacts.instagramLink} className="hover:opacity-80 transition-opacity" target="_blank">
 								<Image src="/assets/icons/common/header-ru.svg" alt="Instagram" width={24} height={24} className="hidden" />
-								{/* Placeholder since no icon, or maybe reusing another icon? 
-                                    Actually I shouldn't execute this if I don't have an icon. 
-                                    I will just stick to mapped items for now to be safe. 
-                                    The user said "integrate contacts". 
-                                    I'll add instagram if I find an icon. 
-                                    I'll skip instagram for now in the loop above. 
-                                */}
 							</Link>
 						)}
 					</div>

@@ -39,12 +39,15 @@ export async function GET(req: NextRequest, { params }: { params: Promise<any> }
 	if (searchParams) {
 		url += `?${searchParams}`;
 	}
+	const acceptLanguage = req.headers.get("accept-language");
+
 	try {
 		const response = await fetch(url, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
 				...(accessToken && { Authorization: `Bearer ${accessToken}` }),
+				...(acceptLanguage && { "accept-language": acceptLanguage }),
 			},
 		});
 		const data = await response.json();
