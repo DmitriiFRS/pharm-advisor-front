@@ -54,7 +54,7 @@ const ProfileForm = () => {
 				/>
 				<div className="flex flex-col gap-1">
 					<p className="text-14 opacity-60">Пароль</p>
-					<BlackButton href="/profile/change-password" className="max-w-[153px] w-full h-7.5! text-10!">
+					<BlackButton href="/profile/change-password" className="max-w-[153px] w-full max-h-10">
 						Изменить пароль
 					</BlackButton>
 				</div>
@@ -68,7 +68,7 @@ const ProfileForm = () => {
 				>
 					<span>Сохранить</span>
 				</PrimaryButton>
-				<BlackButton className="mt-10 h-10! flex items-center justify-center min-w-48 text-10!" onClick={() => logout(router, setMe)}>
+				<BlackButton className="mt-10 h-10! flex items-center justify-center min-w-48" onClick={() => logout(router, setMe)}>
 					<span>Выйти</span>
 				</BlackButton>
 			</div>

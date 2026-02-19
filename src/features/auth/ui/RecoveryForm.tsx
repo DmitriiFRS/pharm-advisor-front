@@ -56,7 +56,7 @@ const RecoveryForm: React.FC<Props> = ({ onLogin, onRegister, onSuccessRecovery 
 				<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
 					<CommonInput label="" placeholder="Введите e-mail" {...register("email")} error={errors.email} className="border" />
 
-					<PrimaryButton loading={isLoading} type="submit" className="w-full h-[50px] text-base mt-2 max-w-60 mx-auto">
+					<PrimaryButton loading={isLoading} type="submit" className="w-full text-base mt-2 max-w-60 mx-auto">
 						Восстановить
 					</PrimaryButton>
 

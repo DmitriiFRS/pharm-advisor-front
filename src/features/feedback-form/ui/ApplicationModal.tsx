@@ -31,7 +31,7 @@ const ApplicationModal: React.FC<Props> = ({ isOpen, onClose }) => {
 				<div className="w-full relative">
 					{!isSuccess ? (
 						<>
-							<DialogTitle className="text-xl font-bold text-center mb-4">Оставить заявку</DialogTitle>
+							<DialogTitle className="text-xl font-bold text-center mb-4 text-[28px]">Оставить заявку</DialogTitle>
 							<FeedbackFormModal onSuccess={() => setIsSuccess(true)} />
 						</>
 					) : (

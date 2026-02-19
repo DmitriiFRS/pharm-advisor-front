@@ -77,7 +77,7 @@ const RegisterForm: React.FC<Props> = ({ onLogin, onSuccessRegistration }) => {
 						/>
 					</div>
 
-					<PrimaryButton loading={isLoading} type="submit" className="w-full h-[50px] text-base mt-2 max-w-60 mx-auto">
+					<PrimaryButton loading={isLoading} type="submit" className="w-full text-base mt-2 max-w-60 mx-auto">
 						Зарегистрироваться
 					</PrimaryButton>
 

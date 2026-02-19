@@ -82,7 +82,7 @@ const LoginForm: React.FC<Props> = ({ children, onRegister, onRecovery, onSucces
 						className="border"
 					/>
 
-					<PrimaryButton loading={isLoading} type="submit" className="w-full h-[50px] text-base mt-2 max-w-45 mx-auto">
+					<PrimaryButton loading={isLoading} type="submit" className="w-full text-base mt-2 max-w-45 mx-auto">
 						Войти
 					</PrimaryButton>
 

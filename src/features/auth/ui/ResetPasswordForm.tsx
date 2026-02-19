@@ -83,7 +83,7 @@ const ResetPasswordForm = () => {
 					className="border"
 				/>
 
-				<PrimaryButton loading={isLoading} type="submit" className="w-full h-[50px] text-base mt-4">
+				<PrimaryButton loading={isLoading} type="submit" className="w-full text-base mt-4">
 					Сохранить пароль
 				</PrimaryButton>
 			</form>
