@@ -1,65 +1,34 @@
+"use client";
+
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import Container from "@/shared/ui/Container";
-
-const items = [
-	{
-		question: "Чем вы можете быть полезны фармкомпании в Узбекистане?",
-		answer:
-			"Мы усиливаем коммерческую эффективность через обучение и управленческие инструменты: обучаем медпредставителей и руководителей, выстраиваем стандарты визита, систему KPI и полевого коучинга, помогаем маркетингу с позиционированием и промо-планированием. Результат фиксируем в метриках: качество визитов, исполнение, конверсия, эффективность промо-активностей.",
-	},
-	{
-		question: "В чём отличие вашего консалтинга от маркетингового агентства?",
-		answer:
-			"Агентства чаще делают производство и размещение рекламы. Мы работаем как партнёр по развитию: диагностика, стратегия, обучение команд, внедрение процессов (визит, коучинг, KPI), контроль реализации и измерение эффекта. Мы не «отдаём презентацию» — мы помогаем довести изменения до результата.",
-	},
-	{
-		question: "Какие программы обучения вы проводите для медпредставителей?",
-		answer:
-			"Обучение включает структуру визита, выявление потребностей, аргументацию ценности, работу с возражениями, переговоры, управление территорией и планирование. Дополнительно — стандарты качества визита, чек-листы, сценарии, разбор полевых кейсов и закрепление навыков через практику.",
-	},
-	{
-		question: "Обучаете ли вы региональных менеджеров и руководителей полевых команд?",
-		answer:
-			"Да. Фокус — управление результатом: постановка целей, KPI и performance management, коучинг в поле, контроль качества визитов, развитие команды, мотивация и дисциплина исполнения. Даём инструменты, которые руководитель может применять сразу.",
-	},
-	{
-		question: "Проводите ли вы обучение для маркетинг-отдела?",
-		answer:
-			"Да. Обучаем стратегическому маркетингу и продуктовым навыкам: позиционирование, сегментация, ключевые сообщения, промо-микс, планирование кампаний, взаимодействие с sales/field force, оценка эффективности (ROI/ROMI) и улучшение материалов.",
-	},
-	{
-		question: "Вы помогаете со стратегией и адаптацией продуктового портфеля?",
-		answer:
-			"Да. Проводим анализ рынка и конкурентной среды, определяем приоритеты портфеля, роль брендов, целевые сегменты и сценарии роста. Итог — понятный roadmap: что усиливать, что менять и где концентрировать бюджеты/усилия команды.",
-	},
-	{
-		question: "С какими компаниями вы работаете?",
-		answer:
-			"С локальными и международными фармкомпаниями, которые хотят повысить эффективность sales/field force и маркетинга, вывести продукт на рынок или перестроить портфель. Подходим как для небольших команд (быстрый рост), так и для крупных организаций (систематизация и стандарты).",
-	},
-];
+import { useFaqs } from "@/features/faq/model/useFaqs";
 
 const Faq = () => {
+	const { faqs } = useFaqs();
+
 	return (
-		<section className="py-15 md:py-30">
-			<Container>
-				<h2 className="mb-8 md:mb-15 font-semibold text-20 md:text-40 leading-100 tracking-neg-3 md:tracking-neg-2 text-center text-black">
-					Вопросы и ответы
-				</h2>
-				<Accordion type="single" collapsible className="flex flex-col gap-2 md:gap-4">
-					{items.map((item, index) => (
-						<AccordionItem key={index} value={`item-${index}`} className="bg-white rounded-[20px] px-5 md:px-8 border-none">
-							<AccordionTrigger className="hover:no-underline py-3 md:py-4 h-full flex items-center">
-								<span className="font-medium text-12 md:text-20 leading-106 tracking-neg-2 md:tracking-neg-1 text-black mr-4">
-									{item.question}
-								</span>
-							</AccordionTrigger>
-							<AccordionContent className="text-10! md:text-14! text-grey-primary pb-3 md:pb-4">{item.answer}</AccordionContent>
-						</AccordionItem>
-					))}
-				</Accordion>
-			</Container>
-		</section>
+		faqs.length > 0 && (
+			<section className="py-15 md:py-30">
+				<Container>
+					<h2 className="mb-8 md:mb-15 font-semibold text-20 md:text-40 leading-100 tracking-neg-3 md:tracking-neg-2 text-center text-black">
+						Вопросы и ответы
+					</h2>
+					<Accordion type="single" collapsible className="flex flex-col gap-2 md:gap-4">
+						{faqs.map((item, index) => (
+							<AccordionItem key={index} value={`item-${index}`} className="bg-white rounded-[20px] px-5 md:px-8 border-none">
+								<AccordionTrigger className="hover:no-underline py-3 md:py-4 h-full flex items-center">
+									<span className="font-medium text-12 md:text-20 leading-106 tracking-neg-2 md:tracking-neg-1 text-black mr-4 text-left">
+										{item.question}
+									</span>
+								</AccordionTrigger>
+								<AccordionContent className="text-10! md:text-14! text-grey-primary pb-3 md:pb-4">{item.answer}</AccordionContent>
+							</AccordionItem>
+						))}
+					</Accordion>
+				</Container>
+			</section>
+		)
 	);
 };
 
