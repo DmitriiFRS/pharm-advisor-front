@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
+import { useTranslations } from "next-intl";
+
 import CommonInput from "@/shared/ui/form/CommonInput";
 import PrimaryButton from "@/shared/ui/PrimaryButton";
 import { loginSchema } from "../model/auth.schema";
@@ -25,6 +27,7 @@ interface Props {
 }
 
 const LoginForm: React.FC<Props> = ({ children, onRegister, onRecovery, onSuccessRegistration, onClose }) => {
+	const t = useTranslations("auth");
 	const { setMe } = useContext(UserData);
 	const [isLoading, setIsLoading] = useState(false);
 	const router = useRouter();
@@ -54,9 +57,9 @@ const LoginForm: React.FC<Props> = ({ children, onRegister, onRecovery, onSucces
 		} catch (error: unknown) {
 			const err = error as { status?: number; response?: { status?: number; data?: { message?: string } }; message?: string };
 			if (err?.status === 403 || err?.response?.status === 403 || err?.message?.includes("не подтвержден")) {
-				onSuccessRegistration(err?.response?.data?.message || err?.message || "Email не подтвержден");
+				onSuccessRegistration(err?.response?.data?.message || err?.message || t("emailNotConfirmed"));
 			} else {
-				toast.error((error as Error).message || "Ошибка при авторизации");
+				toast.error((error as Error).message || t("errorAuth"));
 			}
 		} finally {
 			setIsLoading(false);
@@ -66,32 +69,38 @@ const LoginForm: React.FC<Props> = ({ children, onRegister, onRecovery, onSucces
 	return (
 		<>
 			<DialogHeader className="space-y-0">
-				<DialogTitle className="text-[28px] font-bold text-center leading-none">Авторизация</DialogTitle>
+				<DialogTitle className="text-[28px] font-bold text-center leading-none">{t("loginTitle")}</DialogTitle>
 			</DialogHeader>
 			<div className="w-full mt-5">
 				<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
-					<CommonInput label="Email" placeholder="Введите ваш e-mail" {...register("email")} error={errors.email} className="border" />
+					<CommonInput
+						label={t("email")}
+						placeholder={t("emailPlaceholder")}
+						{...register("email")}
+						error={errors.email}
+						className="border"
+					/>
 
 					<CommonInput
-						label="Пароль"
+						label={t("password")}
 						type="password"
 						withPasswordToggle
-						placeholder="Введите пароль"
+						placeholder={t("passwordPlaceholder")}
 						{...register("password")}
 						error={errors.password}
 						className="border"
 					/>
 
 					<PrimaryButton loading={isLoading} type="submit" className="w-full text-base mt-2 max-w-45 mx-auto">
-						Войти
+						{t("loginButton")}
 					</PrimaryButton>
 
 					<div className="flex justify-between items-center text-xs md:text-sm text-[#9E9E9E] mt-2">
 						<button type="button" onClick={onRegister} className="hover:text-black-primary transition-colors">
-							Зарегистрироваться
+							{t("toRegister")}
 						</button>
 						<button type="button" onClick={onRecovery} className="hover:text-black-primary transition-colors">
-							Восстановить пароль
+							{t("toRecovery")}
 						</button>
 					</div>
 					{children}

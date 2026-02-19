@@ -9,6 +9,7 @@ import RegisterForm from "./RegisterForm";
 import RecoveryForm from "./RecoveryForm";
 import { AnimatePresence, motion } from "framer-motion";
 import SuccessAuth from "./SuccessAuth";
+import { useTranslations } from "next-intl";
 
 interface Props {
 	isOpen: boolean;
@@ -20,6 +21,8 @@ type AuthStep = "login" | "register" | "recovery" | "success-registration" | "su
 const AuthModal: React.FC<Props> = ({ isOpen, onClose }) => {
 	const [step, setStep] = useState<AuthStep>("login");
 	const [successMessage, setSuccessMessage] = useState<string>("");
+
+	const t = useTranslations("auth");
 
 	const handleOpenChange = (open: boolean) => {
 		if (!open) {
@@ -89,17 +92,17 @@ const AuthModal: React.FC<Props> = ({ isOpen, onClose }) => {
 						{step === "success-registration" && (
 							<SuccessAuth
 								key="success-registration"
-								successMessage={successMessage || "Регистрация прошла успешно"}
+								successMessage={successMessage || t("successRegistration")}
 								setStep={setStep}
-								successMessageDescription="Пожалуйста, проверьте вашу почту для подтверждения аккаунта"
+								successMessageDescription={t("successRegistrationDesc")}
 							/>
 						)}
 						{step === "success-send-recovery" && (
 							<SuccessAuth
 								key="success-send-recovery"
-								successMessage={successMessage || "Ссылка отправлена"}
+								successMessage={successMessage || t("successRecovery")}
 								setStep={setStep}
-								successMessageDescription="Пожалуйста, проверьте вашу почту для восстановления пароля"
+								successMessageDescription={t("successRecoveryDesc")}
 							/>
 						)}
 					</AnimatePresence>

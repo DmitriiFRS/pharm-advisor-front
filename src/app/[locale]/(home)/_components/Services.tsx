@@ -4,57 +4,52 @@ import { ServiceCard } from "@/entities/service-card";
 import { ApplicationModal } from "@/features/feedback-form";
 import Container from "@/shared/ui/Container";
 import { useState } from "react";
-
-const servicesData = [
-	{
-		title: "Стратегический маркетинг",
-		price: "15 000 000 сум",
-		duration: "1 мес. работы команды",
-		description:
-			"Разрабатываем комплексные маркетинговые стратегии для фармацевтических брендов на основе аналитики, рыночных данных и бизнес-целей компании.",
-		features: [
-			"Анализ рынка, конкурентов и целевых аудиторий",
-			"Формирование позиционирования и ценностного предложения",
-			"Разработка маркетинговой и коммуникационной стратегии",
-			"Определение KPI и метрик эффективности",
-		],
-		backgroundImage: "/assets/images/homepage/service-bg-1.webp",
-	},
-	{
-		title: "Аналитика и исследования",
-		price: "10 000 000 сум",
-		duration: "1 мес. работы команды",
-		description:
-			"Проводим глубокую аналитику фармацевтического рынка, которая помогает принимать обоснованные стратегические и коммерческие решения.",
-		features: [
-			"Анализ рыночной конъюнктуры и конкурентной среды",
-			"Исследования врачебных и потребительских инсайтов",
-			"Оценка потенциала продуктов и терапевтических направлений",
-			"Анализ эффективности текущих маркетинговых активностей",
-		],
-		backgroundImage: "/assets/images/homepage/service-bg-2.webp",
-	},
-	{
-		title: "Вывод продуктов и обучение",
-		price: "8 000 000 сум",
-		duration: "2 мес. работы команды",
-		description: "Помогаем успешно выводить фармацевтические продукты на рынок и повышаем экспертизу внутренних команд.",
-		features: [
-			"Разработка стратегии вывода нового продукта (launch strategy)",
-			"Формирование ключевых сообщений и коммуникационной платформы",
-			"Подготовка маркетинговых и коммерческих команд к запуску",
-			"Проведение обучающих тренингов и стратегических сессий",
-		],
-		backgroundImage: "/assets/images/homepage/service-bg-3.webp",
-	},
-];
+import { useTranslations } from "next-intl";
 
 const Services = () => {
+	const t = useTranslations("homepage.services");
 	const [isApplicationModalOpen, setIsApplicationModalOpen] = useState(false);
+
+	const servicesData = [
+		{
+			title: t("items.strategy.title"),
+			price: t("items.strategy.price"),
+			duration: t("items.strategy.duration"),
+			description: t("items.strategy.description"),
+			features: [
+				t("items.strategy.features.0"),
+				t("items.strategy.features.1"),
+				t("items.strategy.features.2"),
+				t("items.strategy.features.3"),
+			],
+			backgroundImage: "/assets/images/homepage/service-bg-1.webp",
+		},
+		{
+			title: t("items.analytics.title"),
+			price: t("items.analytics.price"),
+			duration: t("items.analytics.duration"),
+			description: t("items.analytics.description"),
+			features: [
+				t("items.analytics.features.0"),
+				t("items.analytics.features.1"),
+				t("items.analytics.features.2"),
+				t("items.analytics.features.3"),
+			],
+			backgroundImage: "/assets/images/homepage/service-bg-2.webp",
+		},
+		{
+			title: t("items.launch.title"),
+			price: t("items.launch.price"),
+			duration: t("items.launch.duration"),
+			description: t("items.launch.description"),
+			features: [t("items.launch.features.0"), t("items.launch.features.1"), t("items.launch.features.2"), t("items.launch.features.3")],
+			backgroundImage: "/assets/images/homepage/service-bg-3.webp",
+		},
+	];
 	return (
 		<section className="pt-15 md:pt-30">
 			<Container>
-				<h2 className="text-black-primary text-[32px] md:text-[40px] font-bold text-center mb-8 md:mb-12">Услуги</h2>
+				<h2 className="text-black-primary text-[32px] md:text-[40px] font-bold text-center mb-8 md:mb-12">{t("title")}</h2>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
 					{servicesData.map((service, index) => (
 						<ServiceCard key={index} {...service} setIsApplicationModalOpen={setIsApplicationModalOpen} />

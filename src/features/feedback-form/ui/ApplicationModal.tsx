@@ -7,12 +7,15 @@ import logo from "@/assets/images/common/logo.webp";
 import FeedbackFormModal from "./FeedbackFormModal";
 import FeedbackSuccess from "./FeedbackSuccess";
 
+import { useTranslations } from "next-intl";
+
 interface Props {
 	isOpen: boolean;
 	onClose: (open: boolean) => void;
 }
 
 const ApplicationModal: React.FC<Props> = ({ isOpen, onClose }) => {
+	const t = useTranslations("feedback");
 	const [isSuccess, setIsSuccess] = useState(false);
 
 	const handleClose = (open: boolean) => {
@@ -31,7 +34,7 @@ const ApplicationModal: React.FC<Props> = ({ isOpen, onClose }) => {
 				<div className="w-full relative">
 					{!isSuccess ? (
 						<>
-							<DialogTitle className="text-xl font-bold text-center mb-4 text-[28px]">Оставить заявку</DialogTitle>
+							<DialogTitle className="text-xl font-bold text-center mb-4 text-[28px]">{t("title")}</DialogTitle>
 							<FeedbackFormModal onSuccess={() => setIsSuccess(true)} />
 						</>
 					) : (

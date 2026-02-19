@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import Image from "next/image";
 import Container from "@/shared/ui/Container";
 import PrimaryButton from "@/shared/ui/PrimaryButton";
@@ -11,12 +13,13 @@ import ArticleModal from "@/features/knowledge-base/ui/ArticleModal";
 import NotFoundContent from "@/shared/ui/NotFoundContent";
 
 const KnowledgeBase = () => {
+	const t = useTranslations("homepage.knowledgeBase");
 	const { articles } = useArticles({ itemsPerPage: 3 });
 
 	return (
 		<section className="pt-15 md:pt-30">
 			<Container>
-				<h2 className="text-26 md:text-39 font-bold text-center text-black-primary leading-100">База знаний</h2>
+				<h2 className="text-26 md:text-39 font-bold text-center text-black-primary leading-100">{t("title")}</h2>
 				{articles.length > 0 ? (
 					<>
 						<div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-5 md:mt-10 md:gap-3">
@@ -49,13 +52,13 @@ const KnowledgeBase = () => {
 						</div>
 						<div className="mt-10 flex justify-center">
 							<PrimaryButton href="/knowledge-base" className="text-white flex items-center justify-center">
-								<span className="mr-2">Смотреть все</span>
+								<span className="mr-2">{t("viewAll")}</span>
 								<ChevronRight size={15} />
 							</PrimaryButton>
 						</div>
 					</>
 				) : (
-					<NotFoundContent>Статьи не найдены</NotFoundContent>
+					<NotFoundContent>{t("notFound")}</NotFoundContent>
 				)}
 			</Container>
 		</section>

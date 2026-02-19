@@ -3,6 +3,7 @@ import call from "@/assets/icons/common/header-call.svg";
 import BlackButton from "@/shared/ui/BlackButton";
 import { LangSwitcher } from "./LangSwitcher";
 import { ProfileButton } from "./ProfileButton";
+import { useTranslations } from "next-intl";
 
 interface Props {
 	openAuthModal: () => void;
@@ -10,6 +11,8 @@ interface Props {
 }
 
 export const HeaderActions = ({ openAuthModal, openAppModal }: Props) => {
+	const t = useTranslations("common.header");
+
 	return (
 		<div className="hidden md:flex ml-8 md:gap-[7px] md:items-center">
 			<a
@@ -24,7 +27,7 @@ export const HeaderActions = ({ openAuthModal, openAppModal }: Props) => {
 			<LangSwitcher />
 
 			<BlackButton onClick={openAppModal} className="w-full min-w-45 h-10!">
-				Обсудить проект
+				{t("discussProject")}
 			</BlackButton>
 		</div>
 	);

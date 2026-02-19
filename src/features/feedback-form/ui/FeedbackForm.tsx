@@ -10,7 +10,10 @@ import { sendFeedback } from "../api/sendFeedback";
 import { ChevronRight } from "lucide-react";
 import FeedbackSuccess from "./FeedbackSuccess";
 
+import { useTranslations } from "next-intl";
+
 const FeedbackForm = () => {
+	const t = useTranslations("feedback");
 	const [isLoading, setIsLoading] = useState(false);
 	const [isSuccess, setIsSuccess] = useState(false);
 	const {
@@ -40,12 +43,12 @@ const FeedbackForm = () => {
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 w-full">
-			<CommonInput placeholder="Ваше имя" error={errors.name} {...register("name")} />
-			<CommonInput placeholder="Email" error={errors.email} {...register("email")} />
-			<CommonPhoneInput control={control} name="phone" placeholder="Телефон" error={errors.phone} />
-			<CommonTextArea placeholder="Ваш запрос" error={errors.message} {...register("message")} />
+			<CommonInput placeholder={t("name")} error={errors.name} {...register("name")} />
+			<CommonInput placeholder={t("email")} error={errors.email} {...register("email")} />
+			<CommonPhoneInput control={control} name="phone" placeholder={t("phonePlaceholder")} error={errors.phone} />
+			<CommonTextArea placeholder={t("messagePlaceholder")} error={errors.message} {...register("message")} />
 			<PrimaryButton type="submit" loading={isLoading} disabled={isLoading} className="mt-2 text-white flex items-center justify-center">
-				<span className="mr-2">Оставить заявку</span>
+				<span className="mr-2">{t("submitButton")}</span>
 				<ChevronRight size={15} />
 			</PrimaryButton>
 		</form>

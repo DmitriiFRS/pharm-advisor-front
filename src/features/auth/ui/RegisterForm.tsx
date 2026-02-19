@@ -12,6 +12,8 @@ import { authApi } from "../api/auth.api";
 import { toast } from "react-toastify";
 import CommonPhoneInput from "@/shared/ui/form/CommonPhoneInput";
 
+import { useTranslations } from "next-intl";
+
 type RegisterFormValues = z.infer<typeof registerSchema>;
 
 interface Props {
@@ -21,6 +23,7 @@ interface Props {
 }
 
 const RegisterForm: React.FC<Props> = ({ onLogin, onSuccessRegistration }) => {
+	const t = useTranslations("auth");
 	const [isLoading, setIsLoading] = useState(false);
 
 	const {
@@ -40,7 +43,7 @@ const RegisterForm: React.FC<Props> = ({ onLogin, onSuccessRegistration }) => {
 				onSuccessRegistration();
 			}
 		} catch (error) {
-			toast.error((error as Error).message || "Ошибка при регистрации");
+			toast.error((error as Error).message || t("errorRegister"));
 		} finally {
 			setIsLoading(false);
 		}
@@ -49,17 +52,29 @@ const RegisterForm: React.FC<Props> = ({ onLogin, onSuccessRegistration }) => {
 	return (
 		<>
 			<DialogHeader className="space-y-0">
-				<DialogTitle className="text-[28px] font-bold text-center leading-none">Регистрация</DialogTitle>
+				<DialogTitle className="text-[28px] font-bold text-center leading-none">{t("registerTitle")}</DialogTitle>
 			</DialogHeader>
 			<div className="w-full mt-5">
 				<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
-					<CommonInput label="Имя" placeholder="Введите имя" {...register("name")} error={errors.name} className="border" />
-					<CommonInput label="Email" placeholder="Введите e-mail" {...register("email")} error={errors.email} className="border" />
+					<CommonInput
+						label={t("name")}
+						placeholder={t("namePlaceholder")}
+						{...register("name")}
+						error={errors.name}
+						className="border"
+					/>
+					<CommonInput
+						label={t("email")}
+						placeholder={t("emailPlaceholder")}
+						{...register("email")}
+						error={errors.email}
+						className="border"
+					/>
 					<CommonPhoneInput
 						control={control}
 						name="phoneNumber"
-						label="Телефон"
-						placeholder="Введите номер телефона"
+						label={t("phone")}
+						placeholder={t("phonePlaceholder")}
 						error={errors.phoneNumber}
 						className=""
 						inputClassName="border-t-1! border-x-1! rounded-[5px_!important]"
@@ -67,9 +82,9 @@ const RegisterForm: React.FC<Props> = ({ onLogin, onSuccessRegistration }) => {
 
 					<div className="relative">
 						<CommonInput
-							label="Пароль"
+							label={t("password")}
 							type="password"
-							placeholder="Создайте свой пароль"
+							placeholder={t("createPasswordPlaceholder")}
 							{...register("password")}
 							error={errors.password}
 							className="border"
@@ -78,12 +93,12 @@ const RegisterForm: React.FC<Props> = ({ onLogin, onSuccessRegistration }) => {
 					</div>
 
 					<PrimaryButton loading={isLoading} type="submit" className="w-full text-base mt-2 max-w-60 mx-auto">
-						Зарегистрироваться
+						{t("registerButton")}
 					</PrimaryButton>
 
 					<div className="flex justify-center items-center text-xs md:text-sm text-[#9E9E9E] mt-2">
 						<button type="button" onClick={onLogin} className="hover:text-black-primary transition-colors">
-							Уже зарегистрированы? Войти
+							{t("toLogin")}
 						</button>
 					</div>
 				</form>

@@ -8,7 +8,10 @@ import CommonPhoneInput from "@/shared/ui/form/CommonPhoneInput";
 import PrimaryButton from "@/shared/ui/PrimaryButton";
 import { sendFeedback } from "../api/sendFeedback";
 
+import { useTranslations } from "next-intl";
+
 const FeedbackFormModal = ({ onSuccess }: { onSuccess: () => void }) => {
+	const t = useTranslations("feedback");
 	const [isLoading, setIsLoading] = useState(false);
 	const {
 		register,
@@ -34,18 +37,18 @@ const FeedbackFormModal = ({ onSuccess }: { onSuccess: () => void }) => {
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full">
 			<CommonInput
-				placeholder="Введите ваше имя"
+				placeholder={t("namePlaceholder")}
 				error={errors.name}
 				{...register("name")}
-				label="Ваше имя"
+				label={t("name")}
 				className="border rounded-[5px]"
 			/>
 			<CommonPhoneInput
 				control={control}
 				name="phone"
-				placeholder="Телефон"
+				placeholder={t("phonePlaceholder")}
 				error={errors.phone}
-				label="Ваш номер телефона"
+				label={t("phone")}
 				className="mt-5"
 				inputClassName="border-x-1! border-t-1! rounded-[5px]! text-14!"
 			/>
@@ -55,7 +58,7 @@ const FeedbackFormModal = ({ onSuccess }: { onSuccess: () => void }) => {
 				disabled={isLoading}
 				className="mt-10 text-white flex items-center justify-center mx-auto"
 			>
-				<span className="">Оставить заявку</span>
+				<span className="">{t("submitButton")}</span>
 			</PrimaryButton>
 		</form>
 	);

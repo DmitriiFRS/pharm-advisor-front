@@ -11,6 +11,8 @@ import { DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/di
 import { authApi } from "../api/auth.api";
 import { toast } from "react-toastify";
 
+import { useTranslations } from "next-intl";
+
 type RecoveryFormValues = z.infer<typeof recoverySchema>;
 
 interface Props {
@@ -20,6 +22,7 @@ interface Props {
 }
 
 const RecoveryForm: React.FC<Props> = ({ onLogin, onRegister, onSuccessRecovery }) => {
+	const t = useTranslations("auth");
 	const [isLoading, setIsLoading] = useState(false);
 	const {
 		register,
@@ -38,7 +41,7 @@ const RecoveryForm: React.FC<Props> = ({ onLogin, onRegister, onSuccessRecovery 
 				onSuccessRecovery();
 			}
 		} catch (error) {
-			toast.error((error as Error).message || "Ошибка при регистрации");
+			toast.error((error as Error).message || t("errorRegister")); // Using same error message key or create new one
 		} finally {
 			setIsLoading(false);
 		}
@@ -47,25 +50,25 @@ const RecoveryForm: React.FC<Props> = ({ onLogin, onRegister, onSuccessRecovery 
 	return (
 		<>
 			<DialogHeader className="space-y-4">
-				<DialogTitle className="text-[28px] font-bold text-center leading-none">Восстановление пароля</DialogTitle>
+				<DialogTitle className="text-[28px] font-bold text-center leading-none">{t("recoveryTitle")}</DialogTitle>
 				<DialogDescription className="text-center text-sm md:text-base text-black-primary">
-					Введите email, который вы использовали при регистрации
+					{t("recoveryDescription")}
 				</DialogDescription>
 			</DialogHeader>
 			<div className="w-full mt-5">
 				<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
-					<CommonInput label="" placeholder="Введите e-mail" {...register("email")} error={errors.email} className="border" />
+					<CommonInput label="" placeholder={t("emailPlaceholder")} {...register("email")} error={errors.email} className="border" />
 
 					<PrimaryButton loading={isLoading} type="submit" className="w-full text-base mt-2 max-w-60 mx-auto">
-						Восстановить
+						{t("recoveryButton")}
 					</PrimaryButton>
 
 					<div className="flex justify-between items-center text-xs md:text-sm text-[#9E9E9E] mt-2">
 						<button type="button" onClick={onLogin} className="hover:text-black-primary transition-colors">
-							Войти
+							{t("loginButton")}
 						</button>
 						<button type="button" onClick={onRegister} className="hover:text-black-primary transition-colors">
-							Зарегистрироваться
+							{t("registerButton")}
 						</button>
 					</div>
 				</form>

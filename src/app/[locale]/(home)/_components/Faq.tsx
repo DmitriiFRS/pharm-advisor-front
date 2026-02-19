@@ -3,8 +3,10 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import Container from "@/shared/ui/Container";
 import { useFaqs } from "@/features/faq/model/useFaqs";
+import { useTranslations } from "next-intl";
 
 const Faq = () => {
+	const t = useTranslations("homepage.faq");
 	const { faqs } = useFaqs();
 
 	return (
@@ -12,7 +14,7 @@ const Faq = () => {
 			<section className="py-15 md:py-30">
 				<Container>
 					<h2 className="mb-8 md:mb-15 font-semibold text-20 md:text-40 leading-100 tracking-neg-3 md:tracking-neg-2 text-center text-black">
-						Вопросы и ответы
+						{t("title")}
 					</h2>
 					<Accordion type="single" collapsible className="flex flex-col gap-2 md:gap-4">
 						{faqs.map((item, index) => (

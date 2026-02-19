@@ -1,4 +1,163 @@
 {
-	"common": {},
-	"homepage": {}
+	"homepage": {
+		"hero": {
+			"title": "O'zbekistonda farmatsevtika konsalting kompaniyasi",
+			"description": "Farmatsevtika kompaniyalari uchun strategik konsalting: jamoalarni o'qitish, bozorga chiqish strategiyasi, portfelni optimallashtirish va bozor tahlili hamda amaliyotiga asoslangan marketing yechimlari.",
+			"button": "Ariza qoldirish"
+		},
+		"advantages": {
+			"item1": {
+				"title": "Farmatsevtika marketingida chuqur ekspertiza",
+				"description": "Biz farmatsevtika bozorining o'ziga xos xususiyatlarini tushunamiz va mijozlar bilan bir xil professional tilda gaplashamiz."
+			},
+			"item2": {
+				"title": "Tahlilga asoslangan strategiya",
+				"description": "Tavsiyalar taxminlarga emas, balki ma'lumotlar, tadqiqotlar va real bozor ko'rsatkichlariga asoslanadi."
+			},
+			"item3": {
+				"title": "Operatsion yuklamasiz sof konsalting",
+				"description": "Natija uchun javobgarlikni o'z zimmamizga olamiz: tahlil va ustuvorliklarni tanlashdan tortib, amalga oshirishda jamoani qo'llab-quvvatlashgacha."
+			}
+		},
+		"about": {
+			"label": "[ Kompaniya haqida ]",
+			"title": "Biz farmatsevtika kompaniyalari uchun strategik marketing va tahlilga ixtisoslashgan konsalting kompaniyasimiz.",
+			"paragraph1": "Biz brendlarga tizimli marketing yaratishda, ma'lumotlarga asoslangan qarorlar qabul qilishda va mahsulotlarni bozorga samarali olib chiqishda yordam beramiz.",
+			"paragraph2": "Bizning ishimiz taqdimot bilan tugamaydi: biz aniq harakatlar rejasini shakllantiramiz, joriy etish bosqichida jamoalarni qo'llab-quvvatlaymiz va KPI — savdo, bozor ulushi va investitsiya samaradorligi orqali natijani o'lchaymiz.",
+			"paragraph3": "E'tibor markazida — amaliy natija beradigan va barqaror o'sish asosi bo'ladigan strategiya, tahlil, mahsulot portfeli va bozorga chiqish (go-to-market) yechimlari."
+		},
+		"services": {
+			"title": "Xizmatlar",
+			"items": {
+				"strategy": {
+					"title": "Strategik marketing",
+					"price": "15 000 000 so'm",
+					"duration": "1 oy jamoaviy ish",
+					"description": "Kompaniyaning tahliliy ma'lumotlari, bozor ma'lumotlari va biznes maqsadlariga asoslangan holda farmatsevtika brendlari uchun keng qamrovli marketing strategiyalarini ishlab chiqamiz.",
+					"features": {
+						"0": "Bozor, raqobatchilar va maqsadli auditoriyani tahlil qilish",
+						"1": "Pozitsiyalash va qiymat taklifini shakllantirish",
+						"2": "Marketing va kommunikatsiya strategiyasini ishlab chiqish",
+						"3": "KPI va samaradorlik ko'rsatkichlarini aniqlash"
+					}
+				},
+				"analytics": {
+					"title": "Tahlil va tadqiqotlar",
+					"price": "10 000 000 so'm",
+					"duration": "1 oy jamoaviy ish",
+					"description": "Biz farmatsevtika bozorini chuqur tahlil qilamiz, bu asoslangan strategik va tijorat qarorlarini qabul qilishga yordam beradi.",
+					"features": {
+						"0": "Bozor kon'yunkturasi va raqobat muhitini tahlil qilish",
+						"1": "Shifokor va iste'molchi fikrlarini o'rganish",
+						"2": "Mahsulotlar va terapevtik yo'nalishlarning salohiyatini baholash",
+						"3": "Joriy marketing faoliyatining samaradorligini tahlil qilish"
+					}
+				},
+				"launch": {
+					"title": "Mahsulotlarni chiqarish va o'qitish",
+					"price": "8 000 000 so'm",
+					"duration": "2 oy jamoaviy ish",
+					"description": "Farmatsevtika mahsulotlarini bozorga muvaffaqiyatli olib chiqishga yordam beramiz va ichki jamoalarning tajribasini oshiramiz.",
+					"features": {
+						"0": "Yangi mahsulotni chiqarish strategiyasini ishlab chiqish (launch strategy)",
+						"1": "Asosiy xabarlar va kommunikatsiya platformasini shakllantirish",
+						"2": "Marketing va tijorat jamoalarini ishga tushirishga tayyorlash",
+						"3": "O'quv treninglari va strategik sessiyalarni o'tkazish"
+					}
+				}
+			}
+		},
+		"courses": {
+			"title": "Farmatsevtika jamoalari uchun o'quv kurslari",
+			"description": "Tibbiy vakillar, mintaqaviy menejerlar va marketing uchun amaliy kurslar: tashrif tuzilmasi, dala jamoasini boshqarish, asosiy xabarlar va promo-rejalashtirish. Darhol joriy etilishi mumkin bo'lgan real keyslar, vositalar va natijalar.",
+			"advantages": {
+				"item1": "Amaliyot va keyslar — farmatsevtika biznesidan real misollar.",
+				"item2": "Soha ekspertlari — farmatsevtika marketingi va konsalting amaliyotchilaridan ta'lim.",
+				"item3": "Tizimli yondashuv — tahlildan strategiyagacha tuzilgan bilimlar."
+			},
+			"button": "Batafsil ma'lumot"
+		},
+		"knowledgeBase": {
+			"title": "Bilimlar bazasi",
+			"viewAll": "Barchasini ko'rish",
+			"notFound": "Maqolalar topilmadi"
+		},
+		"faq": {
+			"title": "Savollar va javoblar"
+		},
+		"contact": {
+			"title": "Savollaringiz qoldimi?",
+			"description": "Aloqa ma'lumotlaringizni qoldiring va biz sizni qiziqtirgan har qanday savollar bo'yicha siz bilan bog'lanamiz."
+		}
+	},
+	"common": {
+		"header": {
+			"education": "Ta'lim",
+			"knowledgeBase": "Bilimlar bazasi",
+			"contacts": "Kontaktlar",
+			"discussProject": "Loyihani muhokama qilish"
+		},
+		"footer": {
+			"menuTitle": "Menyu",
+			"servicesTitle": "Xizmatlar",
+			"connectTitle": "Bog'lanish:",
+			"addressTitle": "Manzil",
+			"policy": "Maxfiylik siyosati",
+			"address": "Toshkent shahri, Yakkasaroy tumani, Abdulla Qahhor ko'chasi, 9-tor ko'cha, 16a uy",
+			"menu": {
+				"home": "Bosh sahifa",
+				"services": "Xizmatlar",
+				"contacts": "Kontaktlar"
+			},
+			"services": {
+				"education": "Ta'lim",
+				"knowledgeBase": "Bilimlar bazasi"
+			}
+		},
+		"buttons": {
+			"learnMore": "Batafsil ma'lumot"
+		}
+	},
+	"auth": {
+		"loginTitle": "Kirish",
+		"registerTitle": "Ro'yxatdan o'tish",
+		"recoveryTitle": "Parolni tiklash",
+		"email": "Email",
+		"emailPlaceholder": "Emailingizni kiriting",
+		"password": "Parol",
+		"passwordPlaceholder": "Parolni kiriting",
+		"createPasswordPlaceholder": "O'z parolingizni yarating",
+		"name": "Ism",
+		"namePlaceholder": "Ismingizni kiriting",
+		"phone": "Telefon",
+		"phonePlaceholder": "Telefon raqamingizni kiriting",
+		"loginButton": "Kirish",
+		"registerButton": "Ro'yxatdan o'tish",
+		"recoveryButton": "Tiklash",
+		"toRegister": "Ro'yxatdan o'tish",
+		"toRecovery": "Parolni tiklash",
+		"toLogin": "Ro'yxatdan o'tganmisiz? Kirish",
+		"backToLogin": "Kirishga qaytish",
+		"recoveryDescription": "Ro'yxatdan o'tishda foydalangan emailni kiriting",
+		"successRegistration": "Ro'yxatdan o'tish muvaffaqiyatli yakunlandi",
+		"successRegistrationDesc": "Iltimos, hisobingizni tasdiqlash uchun pochtangizni tekshiring",
+		"successRecovery": "Havola yuborildi",
+		"successRecoveryDesc": "Iltimos, parolni tiklash uchun pochtangizni tekshiring",
+		"emailNotConfirmed": "Email tasdiqlanmagan",
+		"errorAuth": "Kirishda xatolik",
+		"errorRegister": "Ro'yxatdan o'tishda xatolik"
+	},
+	"feedback": {
+		"title": "Ariza qoldirish",
+		"name": "Ismingiz",
+		"namePlaceholder": "Ismingizni kiriting",
+		"email": "Email",
+		"phone": "Telefon raqamingiz",
+		"phonePlaceholder": "Telefon",
+		"messagePlaceholder": "Savolingiz",
+		"submitButton": "Ariza qoldirish",
+		"successTitle": "Ariza muvaffaqiyatli yuborildi!",
+		"successDesc": "Tez orada tafsilotlarni muhokama qilish uchun siz bilan bog'lanamiz.",
+		"successButton": "Ajoyib"
+	}
 }

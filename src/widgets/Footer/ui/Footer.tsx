@@ -3,13 +3,14 @@
 import Container from "@/shared/ui/Container";
 import Image from "next/image";
 import Link from "next/link";
-import { FOOTER_MENU, FOOTER_SERVICES, SOCIAL_CONTACTS } from "@/shared/config/navigation";
+import { SOCIAL_CONTACTS } from "@/shared/config/navigation";
 import { GoogleMap } from "./GoogleMap";
 import { useScroll } from "@/shared/lib/context/ScrollContext";
 import { useData } from "@/shared/api/hooks/useData";
 import { IContacts } from "@/entities/company/model/types";
 import { useEffect } from "react";
 
+import { useTranslations } from "next-intl";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export const Footer = () => {
@@ -45,7 +46,7 @@ export const Footer = () => {
 					<Image src="/assets/icons/common/to-the-top.svg" alt="To the top" width={50} height={50} />
 				</button>
 			</Container>
-			<GoogleMap />
+			{contacts?.data?.googleMapsLink && <GoogleMap link={contacts.data.googleMapsLink} />}
 		</footer>
 	);
 };
@@ -55,21 +56,40 @@ const FooterNav = () => {
 	const pathname = usePathname();
 	const router = useRouter();
 
+	const t = useTranslations("common.footer");
+
+	const FOOTER_MENU = [
+		{ name: t("menu.home"), realName: "Главная", href: "/" },
+		// { name: "Преимущества", href: "/advantages" },
+		{ name: t("menu.services"), realName: "Услуги", href: "/#advantages" },
+		// { name: "Новости", href: "/news" },
+		{ name: t("menu.contacts"), realName: "Контакты", href: "/contacts" },
+	];
+
+	const FOOTER_SERVICES = [
+		{ name: t("services.education"), href: "/education" },
+		{ name: t("services.knowledgeBase"), href: "/knowledge-base" },
+	];
+
 	const handleNavigation = (name: string, href: string) => {
-		if (name === "Услуги") {
+		// Use manual mapping or check against translated values if needed,
+		// but here we used realName for logic to correspond with original code logic
+		// simpler: just check href or indices.
+		// Original logic checked name === "Услуги" etc.
+		// Let's rely on the realName property I added or just check href/index?
+		// The original code checked specific names for special behavior.
+
+		if (name === t("menu.services")) {
 			if (pathname !== "/") {
 				router.push("/");
 				setTimeout(() => {
 					scrollToAdvantages();
-				}, 500); // Simple timeout to wait for navigation. For more robust solution, use URL param.
-				// Better approach: router.push('/?section=advantages') and handle in layout/page.
-				// But let's try the timeout first as it's simpler for "js context" or just use the URL param as planned.
-				// Implementing URL param approach is safer.
+				}, 500);
 				router.push("/?section=advantages");
 			} else {
 				scrollToAdvantages();
 			}
-		} else if (name === "Контакты") {
+		} else if (name === t("menu.contacts")) {
 			if (pathname !== "/") {
 				router.push("/?section=contacts");
 			} else {
@@ -83,7 +103,7 @@ const FooterNav = () => {
 	return (
 		<nav className="mt-10 lg:mt-0 flex justify-between xs:justify-start xs:gap-20 lg:gap-25 lg:border-l lg:border-grey-primary h-full lg:pl-10 lg:pt-15">
 			<div className="flex flex-col gap-2 text-14">
-				<span className="text-[#626263] font-semibold">Меню</span>
+				<span className="text-[#626263] font-semibold">{t("menuTitle")}</span>
 				{FOOTER_MENU.map((item) => (
 					<div
 						key={item.name}
@@ -95,7 +115,7 @@ const FooterNav = () => {
 				))}
 			</div>
 			<div className="flex flex-col gap-2 text-14">
-				<span className="text-[#626263] font-semibold">Услуги</span>
+				<span className="text-[#626263] font-semibold">{t("servicesTitle")}</span>
 				{FOOTER_SERVICES.map((item) => (
 					<Link key={item.name} href={item.href} className="text-black leading-200 font-semibold">
 						{item.name}
@@ -107,6 +127,7 @@ const FooterNav = () => {
 };
 
 const FooterContacts = ({ contacts }: { contacts?: IContacts["data"] }) => {
+	const t = useTranslations("common.footer");
 	return (
 		<>
 			<div className="hidden lg:block order-1"></div>
@@ -124,7 +145,7 @@ const FooterContacts = ({ contacts }: { contacts?: IContacts["data"] }) => {
 			</div>
 			<div className="flex flex-col gap-6 mt-12.5 lg:mt-10 lg:order-3">
 				<div className="flex items-center gap-3">
-					<span className="opacity-60 text-14 min-w-[80px]">Связаться:</span>
+					<span className="opacity-60 text-14 min-w-[80px]">{t("connectTitle")}</span>
 					<div className="flex gap-3">
 						{SOCIAL_CONTACTS.map((item) => {
 							let href = item.href;
@@ -158,18 +179,18 @@ const FooterContacts = ({ contacts }: { contacts?: IContacts["data"] }) => {
 				</div> */}
 			</div>
 			<div className="mt-10 leading-130 flex flex-col gap-2 lg:order-2 lg:mt-[25px]">
-				<span className="opacity-60 text-14">Адрес</span>
+				<span className="opacity-60 text-14">{t("addressTitle")}</span>
 				<p className="max-w-45 text-16 leading-140 font-medium">
 					{contacts?.googleMapsLink ? (
 						<a href={contacts.googleMapsLink} target="_blank" rel="noopener noreferrer" className="hover:underline">
-							{contacts?.address ?? "Город Ташкент, Яккасарайский район, улица Абдуллы Каххара, 9-й проезд, дом 16а"}
+							{contacts?.address ?? t("address")}
 						</a>
 					) : (
-						contacts?.address ?? "Город Ташкент, Яккасарайский район, улица Абдуллы Каххара, 9-й проезд, дом 16а"
+						contacts?.address ?? t("address")
 					)}
 				</p>
 			</div>
-			<div className="mt-10 text-14 leading-160 text-[#626263] lg:order-4 lg:mt-20">Политика конфиденциальности</div>
+			<div className="mt-10 text-14 leading-160 text-[#626263] lg:order-4 lg:mt-20">{t("policy")}</div>
 		</>
 	);
 };

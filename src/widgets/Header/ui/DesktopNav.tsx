@@ -1,13 +1,15 @@
 import Link from "next/link";
 import { useScroll } from "@/shared/lib/context/ScrollContext";
+import { useTranslations } from "next-intl";
 
 const NAV_LINKS = [
-	{ href: "/education", label: "Обучение" },
-	{ href: "/knowledge-base", label: "База знаний" },
-	{ href: "/contacts", label: "Контакты" },
+	{ href: "/education", label: "education" },
+	{ href: "/knowledge-base", label: "knowledgeBase" },
+	{ href: "/contacts", label: "contacts" },
 ];
 
 export const DesktopNav = () => {
+	const t = useTranslations("common.header");
 	const { scrollToContacts } = useScroll();
 
 	return (
@@ -24,7 +26,7 @@ export const DesktopNav = () => {
 						}
 					}}
 				>
-					{link.label}
+					{t(link.label)}
 				</Link>
 			))}
 		</nav>

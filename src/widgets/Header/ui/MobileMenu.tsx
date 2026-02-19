@@ -13,15 +13,16 @@ import logo from "@/assets/images/common/logo.webp";
 import BlackButton from "@/shared/ui/BlackButton";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useScroll } from "@/shared/lib/context/ScrollContext";
+import { useTranslations } from "next-intl";
 
 interface MobileMenuProps {
 	onClose: () => void;
 }
 
 const NAV_LINKS = [
-	{ href: "/education", label: "Обучение" },
-	{ href: "/knowledge-base", label: "База знаний" },
-	{ href: "/contacts", label: "Контакты" },
+	{ href: "/education", label: "education" },
+	{ href: "/knowledge-base", label: "knowledgeBase" },
+	{ href: "/contacts", label: "contacts" },
 ];
 
 const menuVariants: Variants = {
@@ -89,6 +90,8 @@ export const MobileMenu = ({ onClose }: MobileMenuProps) => {
 		onClose();
 	};
 
+	const t = useTranslations("common.header");
+
 	return (
 		<motion.div
 			variants={menuVariants}
@@ -128,7 +131,7 @@ export const MobileMenu = ({ onClose }: MobileMenuProps) => {
 							}}
 							className="text-20 font-medium leading-130 tracking-neg-2 text-center text-[#151616] hover:text-primary transition-colors"
 						>
-							{link.label}
+							{t(link.label)}
 						</Link>
 					</motion.div>
 				))}
@@ -160,7 +163,7 @@ export const MobileMenu = ({ onClose }: MobileMenuProps) => {
 					</DropdownMenu>
 				</div>
 				<BlackButton onClick={onClose} className="text-10 w-full max-w-[300px] h-12">
-					Обсудить проект
+					{t("discussProject")}
 				</BlackButton>
 			</motion.div>
 		</motion.div>

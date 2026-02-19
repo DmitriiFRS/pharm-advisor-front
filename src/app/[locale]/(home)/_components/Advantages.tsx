@@ -10,7 +10,10 @@ import { useScroll } from "@/shared/lib/context/ScrollContext";
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
+import { useTranslations } from "next-intl";
+
 const Advantages = () => {
+	const t = useTranslations("homepage.advantages");
 	const { advantagesRef, scrollToAdvantages } = useScroll();
 	const searchParams = useSearchParams();
 
@@ -27,23 +30,9 @@ const Advantages = () => {
 		<section className="pt-15 md:pt-10" ref={advantagesRef}>
 			<Container>
 				<div className="flex flex-col md:flex-row md:gap-2.5 lg:border-y lg:border-[#e5e5e5]">
-					<AdvantageItem
-						title="Глубокая экспертиза в фарммаркетинге"
-						description="мы понимаем специфику фармацевтического рынка 
-и говорим с клиентами на одном профессиональном языке."
-						icon={advantage_1}
-					/>
-					<AdvantageItem
-						title="Стратегия на основе аналитики"
-						description="рекомендации строятся на данных, исследованиях и реальных рыночных показателях, а не на предположениях."
-						icon={advantage_2}
-					/>
-					<AdvantageItem
-						title="Чистый консалтинг без операционной нагрузки"
-						description="Берём ответственность за результат: от аналитики и выбора приоритетов до поддержки команды в реализации."
-						icon={advantage_3}
-						isLast
-					/>
+					<AdvantageItem title={t("item1.title")} description={t("item1.description")} icon={advantage_1} />
+					<AdvantageItem title={t("item2.title")} description={t("item2.description")} icon={advantage_2} />
+					<AdvantageItem title={t("item3.title")} description={t("item3.description")} icon={advantage_3} isLast />
 				</div>
 			</Container>
 		</section>

@@ -2,7 +2,10 @@ import sample from "@/assets/images/homepage/about-homepage.webp";
 import Container from "@/shared/ui/Container";
 import Image from "next/image";
 
-const About = () => {
+import { getTranslations } from "next-intl/server";
+
+const About = async () => {
+	const t = await getTranslations("homepage.about");
 	return (
 		<section className="pt-15 md:pt-25">
 			<Container className="md:flex md:gap-10 lg:gap-20">
@@ -10,23 +13,12 @@ const About = () => {
 					<Image src={sample} alt="sample" width={528} height={276} className="w-full h-full object-cover rounded-[14px]" />
 				</div>
 				<div className="flex flex-col mt-10">
-					<span className="text-grey-primary text-14 leading-118 font-medium tracking-neg-2">[ О компании ]</span>
-					<h2 className="text-black-primary text-18 leading-106 font-semibold tracking-neg-1 mt-2.5">
-						Мы — консалтинговая компания, специализирующаяся на стратегическом маркетинге и аналитике для фармацевтических компаний.
-					</h2>
+					<span className="text-grey-primary text-14 leading-118 font-medium tracking-neg-2">{t("label")}</span>
+					<h2 className="text-black-primary text-18 leading-106 font-semibold tracking-neg-1 mt-2.5">{t("title")}</h2>
 					<div className="flex flex-col gap-4 text-grey-primary text-14 leading-118 font-medium tracking-neg-2 mt-5">
-						<p className="text-14">
-							Помогаем брендам выстраивать системный маркетинг, принимать решения на основе данных и эффективно выводить продукты на
-							рынок.
-						</p>
-						<p>
-							Наша работа не заканчивается презентацией: мы формируем понятный план действий, сопровождаем команды на этапе внедрения
-							и измеряем эффект через KPI — продажи, долю рынка и эффективность инвестиций.
-						</p>
-						<p>
-							Фокус — стратегия, аналитика, продуктовый портфель и go-to-market решения, которые дают практический результат и
-							становятся основой устойчивого роста.
-						</p>
+						<p className="text-14">{t("paragraph1")}</p>
+						<p>{t("paragraph2")}</p>
+						<p>{t("paragraph3")}</p>
 					</div>
 				</div>
 			</Container>

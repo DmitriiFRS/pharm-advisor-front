@@ -3,25 +3,29 @@ import BlackButton from "@/shared/ui/BlackButton";
 import Image from "next/image";
 import { ChevronRight } from "lucide-react";
 
-const COURSES_ADVANTAGES = [
-	{
-		id: 1,
-		icon: "/assets/icons/homepage/advantage-1.svg",
-		title: "Практика и кейсы — реальные примеры из фармацевтического бизнеса.",
-	},
-	{
-		id: 2,
-		icon: "/assets/icons/homepage/advantage-2.svg",
-		title: "Эксперты отрасли — обучение от практиков фарммаркетинга и консалтинга.",
-	},
-	{
-		id: 3,
-		icon: "/assets/icons/homepage/advantage-3.svg",
-		title: "Системный подход — структурированные знания от аналитики до стратегии.",
-	},
-];
+import { getTranslations } from "next-intl/server";
 
-const Courses = () => {
+const Courses = async () => {
+	const t = await getTranslations("homepage.courses");
+
+	const COURSES_ADVANTAGES = [
+		{
+			id: 1,
+			icon: "/assets/icons/homepage/advantage-1.svg",
+			title: t("advantages.item1"),
+		},
+		{
+			id: 2,
+			icon: "/assets/icons/homepage/advantage-2.svg",
+			title: t("advantages.item2"),
+		},
+		{
+			id: 3,
+			icon: "/assets/icons/homepage/advantage-3.svg",
+			title: t("advantages.item3"),
+		},
+	];
+
 	return (
 		<section className="pt-10 md:pt-30">
 			<Container>
@@ -33,17 +37,11 @@ const Courses = () => {
 
 					{/* Content */}
 					<div className="relative z-10 w-full lg:w-1/2 md:gap-8 mb-10 lg:mb-0">
-						<h2 className="text-20 font-semibold leading-100 tracking-neg-3 md:text-40">
-							Обучающие курсы для фармацевтических команд
-						</h2>
-						<p className="text-14 leading-130 tracking-neg-2 mt-5">
-							Практические курсы для медпредставителей, региональных менеджеров и маркетинга: структура визита, управление полевой
-							командой, ключевые сообщения и промо-планирование. Реальные кейсы, инструменты и результаты, которые можно внедрить
-							сразу.
-						</p>
+						<h2 className="text-20 font-semibold leading-100 tracking-neg-3 md:text-40">{t("title")}</h2>
+						<p className="text-14 leading-130 tracking-neg-2 mt-5">{t("description")}</p>
 						<div className="w-full sm:w-full sm:max-w-[330px] mt-10">
 							<BlackButton className="w-full" href="/education">
-								<span className="mr-2">Узнать подробнее</span>
+								<span className="mr-2">{t("button")}</span>
 								<ChevronRight size={20} />
 							</BlackButton>
 						</div>

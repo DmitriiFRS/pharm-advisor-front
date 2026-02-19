@@ -8,7 +8,10 @@ import PrimaryButton from "@/shared/ui/PrimaryButton";
 import arrowRight from "@/assets/icons/common/arrow-right.svg";
 import { ApplicationModal } from "@/features/feedback-form";
 
+import { useTranslations } from "next-intl";
+
 const HeroSection = () => {
+	const t = useTranslations("homepage.hero");
 	const [isApplicationModalOpen, setIsApplicationModalOpen] = useState(false);
 
 	return (
@@ -20,14 +23,11 @@ const HeroSection = () => {
 				<div className="relative z-10 h-screen max-h-full flex flex-col justify-end pb-[106px]">
 					<div>
 						<div>
-							<h1 className="text-40 font-bold max-w-[500px] leading-100">Консалтинговая фарм компания в Узбекистане</h1>
-							<p className="mt-[15px] max-w-[420px] text-14 leading-130">
-								Стратегический консалтинг для фармкомпаний: обучение команд, стратегия go-to-market, оптимизация портфеля и
-								маркетинговые решения, основанные на аналитике и практике рынка.
-							</p>
+							<h1 className="text-40 font-bold max-w-[500px] leading-100">{t("title")}</h1>
+							<p className="mt-[15px] max-w-[420px] text-14 leading-130">{t("description")}</p>
 						</div>
 						<PrimaryButton onClick={() => setIsApplicationModalOpen(true)} className="mt-5 flex items-center justify-center gap-2">
-							<span>Оставить заявку</span>
+							<span>{t("button")}</span>
 							<Image src={arrowRight} alt="arrow-right" width={15} height={15} className="relative top-[1px]" />
 						</PrimaryButton>
 					</div>
