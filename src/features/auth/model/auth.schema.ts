@@ -10,6 +10,9 @@ export const registerSchema = z.object({
 	email: z.string().email("Некорректный email"),
 	phoneNumber: z.string().min(12, "Введите корректный номер телефона"),
 	password: z.string().min(6, "Пароль должен быть не менее 6 символов"),
+	termsAccepted: z.boolean().refine((val) => val === true, {
+		message: "Вы должны согласиться с условиями",
+	}),
 });
 
 export const recoverySchema = z.object({

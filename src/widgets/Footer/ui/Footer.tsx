@@ -190,7 +190,9 @@ const FooterContacts = ({ contacts }: { contacts?: IContacts["data"] }) => {
 					)}
 				</p>
 			</div>
-			<div className="mt-10 text-14 leading-160 text-[#626263] lg:order-4 lg:mt-20">{t("policy")}</div>
+			<Link href="/privacy" className="mt-10 text-14 leading-160 text-[#626263] lg:order-4 lg:mt-20 hover:underline">
+				{t("policy")}
+			</Link>
 		</>
 	);
 };

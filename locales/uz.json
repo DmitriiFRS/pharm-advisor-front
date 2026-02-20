@@ -136,7 +136,8 @@
 		"recoveryButton": "Tiklash",
 		"toRegister": "Ro'yxatdan o'tish",
 		"toRecovery": "Parolni tiklash",
-		"toLogin": "Ro'yxatdan o'tganmisiz? Kirish",
+		"alreadyRegistered": "Ro'yxatdan o'tganmisiz?",
+		"login": "Kirish",
 		"backToLogin": "Kirishga qaytish",
 		"recoveryDescription": "Ro'yxatdan o'tishda foydalangan emailni kiriting",
 		"successRegistration": "Ro'yxatdan o'tish muvaffaqiyatli yakunlandi",
@@ -145,7 +146,9 @@
 		"successRecoveryDesc": "Iltimos, parolni tiklash uchun pochtangizni tekshiring",
 		"emailNotConfirmed": "Email tasdiqlanmagan",
 		"errorAuth": "Kirishda xatolik",
-		"errorRegister": "Ro'yxatdan o'tishda xatolik"
+		"errorRegister": "Ro'yxatdan o'tishda xatolik",
+		"termsAccepted": "Men shaxsiy ma'lumotlarimga ishlov berishlariga roziman, unga muvofiq",
+		"termsPolicy": "Maxfiylik siyosati"
 	},
 	"feedback": {
 		"title": "Ariza qoldirish",

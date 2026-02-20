@@ -11,6 +11,8 @@ import { DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { authApi } from "../api/auth.api";
 import { toast } from "react-toastify";
 import CommonPhoneInput from "@/shared/ui/form/CommonPhoneInput";
+import CommonCheckbox from "@/shared/ui/form/CommonCheckbox";
+import Link from "next/link";
 
 import { useTranslations } from "next-intl";
 
@@ -33,6 +35,9 @@ const RegisterForm: React.FC<Props> = ({ onLogin, onSuccessRegistration }) => {
 		formState: { errors },
 	} = useForm<RegisterFormValues>({
 		resolver: zodResolver(registerSchema),
+		defaultValues: {
+			termsAccepted: false,
+		},
 	});
 
 	const onSubmit = async (data: RegisterFormValues) => {
@@ -92,13 +97,20 @@ const RegisterForm: React.FC<Props> = ({ onLogin, onSuccessRegistration }) => {
 						/>
 					</div>
 
+					<CommonCheckbox name="termsAccepted" control={control} error={errors.termsAccepted}>
+						{t("termsAccepted")}{" "}
+						<Link href="/privacy" className="text-[#7da9ce] hover:underline" target="_blank">
+							{t("termsPolicy")}
+						</Link>
+					</CommonCheckbox>
+
 					<PrimaryButton loading={isLoading} type="submit" className="w-full text-base mt-2 max-w-60 mx-auto">
 						{t("registerButton")}
 					</PrimaryButton>
 
 					<div className="flex justify-center items-center text-xs md:text-sm text-[#9E9E9E] mt-2">
 						<button type="button" onClick={onLogin} className="hover:text-black-primary transition-colors">
-							{t("toLogin")}
+							<span>{t("alreadyRegistered")}</span> <span className="font-semibold text-black-primary">{t("login")}</span>
 						</button>
 					</div>
 				</form>
