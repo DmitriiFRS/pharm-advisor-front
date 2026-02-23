@@ -8,20 +8,23 @@ import { useTranslations } from "next-intl";
 interface Props {
 	openAuthModal: () => void;
 	openAppModal: () => void;
+	phone: string | undefined;
 }
 
-export const HeaderActions = ({ openAuthModal, openAppModal }: Props) => {
+export const HeaderActions = ({ phone, openAuthModal, openAppModal }: Props) => {
 	const t = useTranslations("common.header");
 
 	return (
 		<div className="hidden md:flex ml-8 md:gap-[7px] md:items-center">
-			<a
-				target="_blank"
-				href="tel:+998971234567"
-				className="h-10 min-h-10 w-10 min-w-10 flex items-center justify-center bg-[#F5F5F7] rounded-[8px]"
-			>
-				<Image src={call} alt="Call" width={30} height={30} className="size-[15px]" />
-			</a>
+			{phone && (
+				<a
+					target="_blank"
+					href={`tel:${phone}`}
+					className="h-10 min-h-10 w-10 min-w-10 flex items-center justify-center bg-[#F5F5F7] rounded-[8px]"
+				>
+					<Image src={call} alt="Call" width={30} height={30} className="size-[15px]" />
+				</a>
+			)}
 
 			<ProfileButton onAuthRequired={openAuthModal} />
 			<LangSwitcher />

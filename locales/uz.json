@@ -80,7 +80,8 @@
 		"knowledgeBase": {
 			"title": "Bilimlar bazasi",
 			"viewAll": "Barchasini ko'rish",
-			"notFound": "Maqolalar topilmadi"
+			"notFound": "Maqolalar topilmadi",
+			"download": "Barchasini yuklab olish"
 		},
 		"faq": {
 			"title": "Savollar va javoblar"

@@ -14,6 +14,8 @@ import { authServerApi } from "@/features/auth/api/auth.server";
 import { ScrollProvider } from "@/shared/lib/context/ScrollContext";
 const inter = Inter({ subsets: ["latin"] });
 import { ToastContainer } from "react-toastify";
+import { apiServerService } from "@/shared/api/base.server";
+import { IContacts, IContactsResponse } from "@/entities/company/model/types";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
 	const { locale } = await params;
@@ -63,6 +65,9 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
 		notFound();
 	}
 	const messages = await getMessages();
+
+	const contacts = await apiServerService().get<IContactsResponse>({ endpoint: "contacts", locale });
+
 	return (
 		<html lang={locale}>
 			<body className={inter.className}>
@@ -79,9 +84,9 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
 					<NextIntlClientProvider messages={messages}>
 						<UserContextProvider initialMe={user}>
 							<ScrollProvider>
-								<Header />
+								<Header contacts={contacts?.data} />
 								<main>{children}</main>
-								<Footer />
+								<Footer contacts={contacts?.data} />
 							</ScrollProvider>
 						</UserContextProvider>
 					</NextIntlClientProvider>

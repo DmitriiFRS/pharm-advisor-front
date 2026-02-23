@@ -6,14 +6,13 @@ import Link from "next/link";
 import { SOCIAL_CONTACTS } from "@/shared/config/navigation";
 import { GoogleMap } from "./GoogleMap";
 import { useScroll } from "@/shared/lib/context/ScrollContext";
-import { useData } from "@/shared/api/hooks/useData";
 import { IContacts } from "@/entities/company/model/types";
 import { useEffect } from "react";
 
 import { useTranslations } from "next-intl";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-export const Footer = () => {
+export const Footer = ({ contacts }: { contacts: IContacts | undefined }) => {
 	const { contactRef, scrollToContacts } = useScroll();
 	const searchParams = useSearchParams();
 
@@ -29,7 +28,6 @@ export const Footer = () => {
 	const scrollToTop = () => {
 		window.scrollTo({ top: 0, behavior: "smooth" });
 	};
-	const { data: contacts, loading } = useData<IContacts>("contacts");
 	return (
 		<footer ref={contactRef} className="bg-[#F4F4F4] lg:border-t lg:border-grey-primary">
 			<Container className="lg:grid lg:grid-cols-2 relative">
@@ -40,13 +38,13 @@ export const Footer = () => {
 					<FooterNav />
 				</div>
 				<div className="pt-10 lg:order-1 lg:pt-15 lg:grid lg:grid-cols-2 mb-10 lg:mb-15">
-					<FooterContacts contacts={contacts?.data} />
+					<FooterContacts contacts={contacts} />
 				</div>
 				<button className="absolute bottom-0 right-2.5 cursor-pointer lg:bottom-15" onClick={scrollToTop}>
 					<Image src="/assets/icons/common/to-the-top.svg" alt="To the top" width={50} height={50} />
 				</button>
 			</Container>
-			{contacts?.data?.googleMapsLink && <GoogleMap link={contacts.data.googleMapsLink} />}
+			{contacts?.googleMapsLink && <GoogleMap link={contacts.googleMapsLink} />}
 		</footer>
 	);
 };
@@ -119,7 +117,7 @@ const FooterNav = () => {
 	);
 };
 
-const FooterContacts = ({ contacts }: { contacts?: IContacts["data"] }) => {
+const FooterContacts = ({ contacts }: { contacts?: IContacts | undefined }) => {
 	const t = useTranslations("common.footer");
 	return (
 		<>

@@ -1,10 +1,13 @@
 export interface IContacts {
-	data: {
-		address: string;
-		email: string;
-		phone: string;
-		instagramLink: string;
-		telegramLink: string;
-		googleMapsLink: string;
-	};
+	address: string;
+	email: string;
+	phone: string;
+	instagramLink: string;
+	telegramLink: string;
+	googleMapsLink: string;
+}
+
+export interface IContactsResponse {
+	data: IContacts;
+	meta: null;
 }

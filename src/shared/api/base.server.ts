@@ -1,18 +1,18 @@
 import "server-only";
 
-export const apiServerService = (accessToken: string) => {
+export const apiServerService = (accessToken?: string) => {
 	return {
 		get: async <T>({
 			endpoint,
 			queryParams,
-			path,
+			locale = "ru",
 		}: {
 			endpoint: string;
-			queryParams: Record<string, string | number | undefined>;
-			path: string;
+			queryParams?: Record<string, string | number | undefined>;
+			locale?: string;
 		}): Promise<T> => {
 			const params = new URLSearchParams();
-			Object.entries(queryParams).forEach(([key, value]) => {
+			Object.entries(queryParams || {}).forEach(([key, value]) => {
 				if (value !== undefined && value !== null && value !== "") {
 					params.append(key, String(value));
 				}
@@ -24,7 +24,8 @@ export const apiServerService = (accessToken: string) => {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
-						Authorization: `Bearer ${accessToken}`,
+						...(accessToken && { Authorization: `Bearer ${accessToken}` }),
+						"accept-language": locale,
 					},
 					cache: "no-store",
 				});

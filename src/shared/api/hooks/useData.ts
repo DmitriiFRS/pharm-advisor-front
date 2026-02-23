@@ -32,7 +32,6 @@ export function useData<T>(
 				fullEndpoint += `?${queryString}`;
 			}
 		}
-		console.log("locale", locale);
 		try {
 			const response = await fetch(fullEndpoint, {
 				method: "GET",
