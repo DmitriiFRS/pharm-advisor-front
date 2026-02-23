@@ -49,7 +49,6 @@ const LoginForm: React.FC<Props> = ({ children, onRegister, onRecovery, onSucces
 					method: "POST",
 					body: JSON.stringify(response.data),
 				});
-				console.log(response.data);
 				setMe(response.data.user);
 				router.push("/profile");
 				onClose(false);

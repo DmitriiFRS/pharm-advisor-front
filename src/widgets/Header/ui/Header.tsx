@@ -42,7 +42,7 @@ export const Header = ({ contacts }: { contacts: IContacts | undefined }) => {
 			</div>
 
 			<AnimatePresence>{isMobileMenuOpen && <MobileMenu onClose={closeMobileMenu} />}</AnimatePresence>
-			<ApplicationModal isOpen={isApplicationModalOpen} onClose={closeApplicationModal} />
+			<ApplicationModal isOpen={isApplicationModalOpen} onClose={closeApplicationModal} siteSection="Шапка сайта" />
 			<AuthModal isOpen={isAuthModalOpen} onClose={closeAuthModal} />
 		</header>
 	);

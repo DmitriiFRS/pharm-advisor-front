@@ -24,7 +24,6 @@ export async function POST(req: NextRequest) {
 			sameSite: "lax",
 			maxAge: 60 * 60 * 24 * 15, // 15 дней
 		});
-		console.log("refreshToken", refreshToken);
 		return response;
 	} catch (error) {
 		console.error("error:", error);

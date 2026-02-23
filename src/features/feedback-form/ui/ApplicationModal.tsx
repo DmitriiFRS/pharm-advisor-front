@@ -12,9 +12,10 @@ import { useTranslations } from "next-intl";
 interface Props {
 	isOpen: boolean;
 	onClose: (open: boolean) => void;
+	siteSection: string;
 }
 
-const ApplicationModal: React.FC<Props> = ({ isOpen, onClose }) => {
+const ApplicationModal: React.FC<Props> = ({ isOpen, onClose, siteSection }) => {
 	const t = useTranslations("feedback");
 	const [isSuccess, setIsSuccess] = useState(false);
 
@@ -35,7 +36,7 @@ const ApplicationModal: React.FC<Props> = ({ isOpen, onClose }) => {
 					{!isSuccess ? (
 						<>
 							<DialogTitle className="text-xl font-bold text-center mb-4 text-[28px]">{t("title")}</DialogTitle>
-							<FeedbackFormModal onSuccess={() => setIsSuccess(true)} />
+							<FeedbackFormModal onSuccess={() => setIsSuccess(true)} siteSection={siteSection} />
 						</>
 					) : (
 						<FeedbackSuccess onClose={() => handleClose(false)} />

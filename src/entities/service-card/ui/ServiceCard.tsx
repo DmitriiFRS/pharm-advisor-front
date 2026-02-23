@@ -11,7 +11,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
 	features,
 	backgroundImage,
 	className,
-	setIsApplicationModalOpen,
+	onOpenClick,
 }) => {
 	return (
 		<div className={`flex flex-col bg-white rounded-[20px] overflow-hidden shadow-sm h-full border border-[#EBEBEB] ${className}`}>
@@ -57,7 +57,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
 				</div>
 
 				<div className="mt-auto">
-					<BlackButton onClick={setIsApplicationModalOpen ? () => setIsApplicationModalOpen(true) : undefined} />
+					<BlackButton onClick={onOpenClick ? () => onOpenClick(title) : undefined} />
 				</div>
 			</div>
 		</div>

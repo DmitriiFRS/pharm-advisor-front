@@ -34,7 +34,11 @@ const HeroSection = () => {
 				</div>
 			</Container>
 
-			<ApplicationModal isOpen={isApplicationModalOpen} onClose={setIsApplicationModalOpen} />
+			<ApplicationModal
+				isOpen={isApplicationModalOpen}
+				onClose={setIsApplicationModalOpen}
+				siteSection="Первый блок на главной странице"
+			/>
 		</section>
 	);
 };

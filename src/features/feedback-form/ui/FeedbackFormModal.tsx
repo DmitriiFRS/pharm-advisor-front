@@ -9,8 +9,10 @@ import PrimaryButton from "@/shared/ui/PrimaryButton";
 import { sendFeedback } from "../api/sendFeedback";
 
 import { useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
 
-const FeedbackFormModal = ({ onSuccess }: { onSuccess: () => void }) => {
+const FeedbackFormModal = ({ onSuccess, siteSection }: { onSuccess: () => void; siteSection: string }) => {
+	const pathname = usePathname();
 	const t = useTranslations("feedback");
 	const [isLoading, setIsLoading] = useState(false);
 	const {
@@ -22,9 +24,11 @@ const FeedbackFormModal = ({ onSuccess }: { onSuccess: () => void }) => {
 	} = useFeedbackForm();
 
 	const onSubmit = async (data: FeedbackFormValues) => {
+		const referrer = sessionStorage.getItem("referrer") || "нет";
+		const sanitizedPathname = pathname === "/" ? "Главная страница" : pathname;
 		try {
 			setIsLoading(true);
-			await sendFeedback(data);
+			await sendFeedback(data, sanitizedPathname, referrer, siteSection);
 			reset();
 			onSuccess();
 		} catch (error) {

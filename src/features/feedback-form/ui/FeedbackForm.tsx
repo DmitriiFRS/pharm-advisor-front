@@ -11,8 +11,10 @@ import { ChevronRight } from "lucide-react";
 import FeedbackSuccess from "./FeedbackSuccess";
 
 import { useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
 
-const FeedbackForm = () => {
+const FeedbackForm = ({ siteSection }: { siteSection: string }) => {
+	const pathname = usePathname();
 	const t = useTranslations("feedback");
 	const [isLoading, setIsLoading] = useState(false);
 	const [isSuccess, setIsSuccess] = useState(false);
@@ -25,9 +27,10 @@ const FeedbackForm = () => {
 	} = useFeedbackForm();
 
 	const onSubmit = async (data: FeedbackFormValues) => {
+		const referrer = sessionStorage.getItem("referrer") || "нет";
 		try {
 			setIsLoading(true);
-			await sendFeedback(data);
+			await sendFeedback(data, pathname, referrer, siteSection);
 			reset();
 			setIsSuccess(true);
 		} catch (error) {

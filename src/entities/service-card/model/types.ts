@@ -1,7 +1,7 @@
 export interface ServiceCardProps {
 	title: string;
 	price: string;
-	setIsApplicationModalOpen?: (value: boolean) => void;
+	onOpenClick?: (title: string) => void;
 	duration: string;
 	description: string;
 	features: string[];

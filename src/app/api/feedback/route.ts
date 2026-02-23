@@ -1,8 +1,8 @@
-import { TELEGRAM_URL_API } from "@/shared/config/telegram";
+import { TELEGRAM_URL_API, telegramMessage } from "@/shared/config/telegram";
 
 export async function POST(request: Request) {
 	const data = await request.json();
-	const message = `Имя: ${data.name}\nТелефон: ${data.phone}\nEmail: ${data.email}\nСообщение: ${data.message}`;
+	const message = telegramMessage(data);
 	const res = await fetch(TELEGRAM_URL_API, {
 		method: "POST",
 		headers: {
@@ -16,6 +16,5 @@ export async function POST(request: Request) {
 	if (!res.ok) {
 		throw new Error("Failed to send feedback");
 	}
-	//
 	return Response.json({ data });
 }

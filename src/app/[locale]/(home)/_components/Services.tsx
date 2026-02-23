@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl";
 
 const Services = () => {
 	const t = useTranslations("homepage.services");
-	const [isApplicationModalOpen, setIsApplicationModalOpen] = useState(false);
+	const [activeServiceTitle, setActiveServiceTitle] = useState("");
 
 	const servicesData = [
 		{
@@ -52,11 +52,15 @@ const Services = () => {
 				<h2 className="text-black-primary text-[32px] md:text-[40px] font-bold text-center mb-8 md:mb-12">{t("title")}</h2>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
 					{servicesData.map((service, index) => (
-						<ServiceCard key={index} {...service} setIsApplicationModalOpen={setIsApplicationModalOpen} />
+						<ServiceCard key={index} {...service} onOpenClick={(title) => setActiveServiceTitle(title)} />
 					))}
 				</div>
 			</Container>
-			<ApplicationModal isOpen={isApplicationModalOpen} onClose={setIsApplicationModalOpen} />
+			<ApplicationModal
+				isOpen={!!activeServiceTitle}
+				onClose={() => setActiveServiceTitle("")}
+				siteSection={activeServiceTitle ? `Услуга на главной - ${activeServiceTitle}` : ""}
+			/>
 		</section>
 	);
 };

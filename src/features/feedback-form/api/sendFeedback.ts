@@ -1,9 +1,9 @@
 import { FeedbackFormValues } from "../model/useFeedbackForm";
 
-export const sendFeedback = async (data: FeedbackFormValues) => {
+export const sendFeedback = async (data: FeedbackFormValues, pathname: string, referrer: string, siteSection: string) => {
 	const res = await fetch("/api/feedback", {
 		method: "POST",
-		body: JSON.stringify(data),
+		body: JSON.stringify({ ...data, pathname, referrer, siteSection }),
 	});
 
 	if (!res.ok) {
