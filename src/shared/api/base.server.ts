@@ -10,7 +10,7 @@ export const apiServerService = (accessToken?: string) => {
 			endpoint: string;
 			queryParams?: Record<string, string | number | undefined>;
 			locale?: string;
-		}): Promise<T> => {
+		}): Promise<T | null> => {
 			const params = new URLSearchParams();
 			Object.entries(queryParams || {}).forEach(([key, value]) => {
 				if (value !== undefined && value !== null && value !== "") {
@@ -35,7 +35,7 @@ export const apiServerService = (accessToken?: string) => {
 				return await response.json();
 			} catch (err) {
 				console.error(err);
-				throw err;
+				return null;
 			}
 		},
 

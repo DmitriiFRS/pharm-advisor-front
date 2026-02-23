@@ -12,6 +12,7 @@ export interface Article {
 	createdAt: string;
 	updatedAt: string;
 	publishedAt: string | null;
+	youtubeLink?: string | null;
 	media: IMedia;
 	pdf: IMedia;
 }
