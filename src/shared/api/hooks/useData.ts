@@ -7,7 +7,11 @@ interface UseDataResponse<T> {
 	refetch: () => void;
 }
 
-export function useData<T>(entityPath: string, queryParams?: Record<string, string | number | undefined>): UseDataResponse<T> {
+export function useData<T>(
+	entityPath: string,
+	queryParams?: Record<string, string | number | undefined>,
+	locale?: string
+): UseDataResponse<T> {
 	const [data, setData] = useState<T | null>(null);
 	const [loading, setLoading] = useState<boolean>(true);
 	const [error, setError] = useState<Error | null>(null);
@@ -28,12 +32,14 @@ export function useData<T>(entityPath: string, queryParams?: Record<string, stri
 				fullEndpoint += `?${queryString}`;
 			}
 		}
+		console.log("locale", locale);
 		try {
 			const response = await fetch(fullEndpoint, {
 				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
-					"accept-language": "uz",
+					...(locale && { "accept-language": locale }),
+					// "accept-language": "ru",
 				},
 			});
 			if (!response.ok) {

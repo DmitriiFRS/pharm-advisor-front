@@ -95,7 +95,7 @@
 			"education": "Ta'lim",
 			"knowledgeBase": "Bilimlar bazasi",
 			"contacts": "Kontaktlar",
-			"discussProject": "Loyihani muhokama qilish"
+			"discussProject": "Muhokama"
 		},
 		"footer": {
 			"menuTitle": "Menyu",
@@ -162,5 +162,21 @@
 		"successTitle": "Ariza muvaffaqiyatli yuborildi!",
 		"successDesc": "Tez orada tafsilotlarni muhokama qilish uchun siz bilan bog'lanamiz.",
 		"successButton": "Ajoyib"
+	},
+	"profile": {
+		"breadcrumbs": {
+			"home": "Bosh sahifa",
+			"account": "Akkaunt"
+		},
+		"title": "Mening akkauntim",
+		"form": {
+			"name": "Ism",
+			"email": "Email",
+			"phone": "Telefon raqami",
+			"password": "Parol",
+			"changePassword": "Parolni o'zgartirish",
+			"save": "Saqlash",
+			"logout": "Chiqish"
+		}
 	}
 }

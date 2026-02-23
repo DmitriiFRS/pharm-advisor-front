@@ -162,5 +162,21 @@
 		"successTitle": "Заявка успешно отправлена!",
 		"successDesc": "Мы свяжемся с вами в ближайшее время для обсуждения деталей.",
 		"successButton": "Отлично"
+	},
+	"profile": {
+		"breadcrumbs": {
+			"home": "Главная",
+			"account": "Аккаунт"
+		},
+		"title": "Мой аккаунт",
+		"form": {
+			"name": "Имя",
+			"email": "Email",
+			"phone": "Номер телефона",
+			"password": "Пароль",
+			"changePassword": "Изменить пароль",
+			"save": "Сохранить",
+			"logout": "Выйти"
+		}
 	}
 }

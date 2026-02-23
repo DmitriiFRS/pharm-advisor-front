@@ -2,16 +2,22 @@
 import { useEffect, useState } from "react";
 import { useData } from "@/shared/api/hooks/useData";
 import { Article, IArticleData } from "@/features/knowledge-base/types/articles.types";
+import { useLocale } from "next-intl";
 
 export const useArticles = ({ itemsPerPage = 6 }: { itemsPerPage?: number }) => {
 	const [page, setPage] = useState(1);
 	const [articles, setArticles] = useState<Article[]>([]);
 	const [hasMore, setHasMore] = useState(true);
+	const locale = useLocale();
 
-	const { data, loading } = useData<IArticleData>("articles", {
-		page,
-		limit: itemsPerPage,
-	});
+	const { data, loading } = useData<IArticleData>(
+		"articles",
+		{
+			page,
+			limit: itemsPerPage,
+		},
+		locale
+	);
 
 	useEffect(() => {
 		if (data) {

@@ -72,13 +72,6 @@ const FooterNav = () => {
 	];
 
 	const handleNavigation = (name: string, href: string) => {
-		// Use manual mapping or check against translated values if needed,
-		// but here we used realName for logic to correspond with original code logic
-		// simpler: just check href or indices.
-		// Original logic checked name === "Услуги" etc.
-		// Let's rely on the realName property I added or just check href/index?
-		// The original code checked specific names for special behavior.
-
 		if (name === t("menu.services")) {
 			if (pathname !== "/") {
 				router.push("/");
