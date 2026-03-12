@@ -16,6 +16,7 @@ const inter = Inter({ subsets: ["latin"] });
 import { ToastContainer } from "react-toastify";
 import { apiServerService } from "@/shared/api/base.server";
 import { IContacts, IContactsResponse } from "@/entities/company/model/types";
+import SaveReferrer from "@/shared/config/saveReferrer";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
 	const { locale } = await params;
@@ -71,6 +72,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
 	return (
 		<html lang={locale}>
 			<body className={inter.className}>
+				<SaveReferrer />
 				<ToastContainer position="top-right" autoClose={3000} hideProgressBar={true} newestOnTop={true} />
 				<NextTopLoader
 					color="#ffffff"
