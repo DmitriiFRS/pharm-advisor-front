@@ -19,6 +19,10 @@ const nextConfig: NextConfig = {
 				protocol: "https",
 				hostname: "pharmadvisor.uz",
 			},
+			{
+				protocol: "https",
+				hostname: "api.pharmadvisor.uz",
+			},
 		],
 	},
 };

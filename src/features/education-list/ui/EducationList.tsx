@@ -72,12 +72,12 @@ export const EducationList: React.FC<Props> = ({ className }) => {
 			{filteredServices.map((service) => (
 				<div key={service.id} className="min-h-[500px]">
 					<ServiceCard
-						title={service.title}
+						name={service.title}
 						price={service.price}
-						duration={service.duration}
+						label={service.duration}
 						description={service.description}
-						features={service.features}
-						backgroundImage={service.backgroundImage}
+						serviceFeatures={service.features}
+						media={{ url: service.backgroundImage }}
 					/>
 				</div>
 			))}

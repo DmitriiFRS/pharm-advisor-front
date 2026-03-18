@@ -1,10 +1,10 @@
 export interface ServiceCardProps {
-	title: string;
+	name: string;
 	price: string;
 	onOpenClick?: (title: string) => void;
-	duration: string;
+	label: string;
 	description: string;
-	features: string[];
-	backgroundImage: string;
+	serviceFeatures: string[];
+	media: { url: string };
 	className?: string;
 }

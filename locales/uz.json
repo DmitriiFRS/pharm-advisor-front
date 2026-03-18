@@ -28,44 +28,8 @@
 		},
 		"services": {
 			"title": "Xizmatlar",
-			"items": {
-				"strategy": {
-					"title": "Strategik marketing",
-					"price": "15 000 000 so'm",
-					"duration": "1 oy jamoaviy ish",
-					"description": "Kompaniyaning tahliliy ma'lumotlari, bozor ma'lumotlari va biznes maqsadlariga asoslangan holda farmatsevtika brendlari uchun keng qamrovli marketing strategiyalarini ishlab chiqamiz.",
-					"features": {
-						"0": "Bozor, raqobatchilar va maqsadli auditoriyani tahlil qilish",
-						"1": "Pozitsiyalash va qiymat taklifini shakllantirish",
-						"2": "Marketing va kommunikatsiya strategiyasini ishlab chiqish",
-						"3": "KPI va samaradorlik ko'rsatkichlarini aniqlash"
-					}
-				},
-				"analytics": {
-					"title": "Tahlil va tadqiqotlar",
-					"price": "10 000 000 so'm",
-					"duration": "1 oy jamoaviy ish",
-					"description": "Biz farmatsevtika bozorini chuqur tahlil qilamiz, bu asoslangan strategik va tijorat qarorlarini qabul qilishga yordam beradi.",
-					"features": {
-						"0": "Bozor kon'yunkturasi va raqobat muhitini tahlil qilish",
-						"1": "Shifokor va iste'molchi fikrlarini o'rganish",
-						"2": "Mahsulotlar va terapevtik yo'nalishlarning salohiyatini baholash",
-						"3": "Joriy marketing faoliyatining samaradorligini tahlil qilish"
-					}
-				},
-				"launch": {
-					"title": "Mahsulotlarni chiqarish va o'qitish",
-					"price": "8 000 000 so'm",
-					"duration": "2 oy jamoaviy ish",
-					"description": "Farmatsevtika mahsulotlarini bozorga muvaffaqiyatli olib chiqishga yordam beramiz va ichki jamoalarning tajribasini oshiramiz.",
-					"features": {
-						"0": "Yangi mahsulotni chiqarish strategiyasini ishlab chiqish (launch strategy)",
-						"1": "Asosiy xabarlar va kommunikatsiya platformasini shakllantirish",
-						"2": "Marketing va tijorat jamoalarini ishga tushirishga tayyorlash",
-						"3": "O'quv treninglari va strategik sessiyalarni o'tkazish"
-					}
-				}
-			}
+			"currency": "so'm",
+			"inTeam": "Jamoa uchun:"
 		},
 		"courses": {
 			"title": "Farmatsevtika jamoalari uchun o'quv kurslari",

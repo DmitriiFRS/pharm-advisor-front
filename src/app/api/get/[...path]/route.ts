@@ -3,12 +3,14 @@ import { KNOWLEDGE_BASE_ENDPOINTS } from "@/features/knowledge-base/api/knowledg
 import { FAQ_ENDPOINTS } from "@/features/faq/api/faq.endpoints";
 import { getServerAuthContext } from "@/shared/lib/next.server";
 import { NextRequest, NextResponse } from "next/server";
+import { SERVICES_ENDPOINTS } from "@/features/services";
 
 const ENDPOINT_MAP: Record<string, string> = {
 	user: "/user",
 	articles: KNOWLEDGE_BASE_ENDPOINTS.ARTICLES,
 	contacts: CONTACTS_ENDPOINTS.CONTACTS,
 	faqs: FAQ_ENDPOINTS.FAQS,
+	services: SERVICES_ENDPOINTS.SERVICES,
 } as const;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
