@@ -17,7 +17,14 @@ const HeroSection = () => {
 	return (
 		<section className="">
 			<div>
-				<Image src={banner} alt="banner" className="absolute left-0 top-0 object-cover w-screen h-screen max-h-screen" priority />
+				<Image
+					src={banner}
+					alt="banner"
+					width={1920}
+					height={1080}
+					className="absolute left-0 top-0 object-cover w-screen h-screen max-h-screen"
+					priority
+				/>
 			</div>
 			<Container className="h-full text-white">
 				<div className="relative z-10 h-screen max-h-full flex flex-col justify-end pb-[106px]">
@@ -28,7 +35,7 @@ const HeroSection = () => {
 						</div>
 						<PrimaryButton onClick={() => setIsApplicationModalOpen(true)} className="mt-5 flex items-center justify-center gap-2">
 							<span>{t("button")}</span>
-							<Image src={arrowRight} alt="arrow-right" width={15} height={15} className="relative top-[1px]" />
+							<Image src={arrowRight} alt="arrow-right" width={15} height={15} className="relative top-px" />
 						</PrimaryButton>
 					</div>
 				</div>
