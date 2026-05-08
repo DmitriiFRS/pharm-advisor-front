@@ -26,9 +26,11 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
 				<div className="relative z-10 h-full flex flex-col justify-between">
 					<h3 className="text-white text-20 font-semibold leading-118">{name}</h3>
 					<div className="flex flex-col-reverse justify-between gap-2.5 w-full xxs:flex-row xxs:items-end xxs:gap-0">
-						<span className="text-white text-16 font-bold leading-100 xs:text-20">
-							{price.toLocaleString()} {t("currency")}
-						</span>
+						{price && (
+							<span className="text-white text-16 font-bold leading-100 xs:text-20">
+								{price.toLocaleString()} {t("currency")}
+							</span>
+						)}
 						<div className="bg-white/90 backdrop-blur-sm px-[5px] py-1.5 rounded-[6px] max-w-[140px]">
 							<span className="text-[#858585] text-11 font-medium">{label}</span>
 						</div>
@@ -38,11 +40,9 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
 
 			{/* Body */}
 			<div className="p-3 pb-5 flex flex-col grow">
-				<p className="text-[#858585] text-[14px] leading-140 min-h-[80px]">{description}</p>
+				<p className="text-[#858585] text-[14px] leading-140 min-h-[80px] flex-1">{description}</p>
 				<GrayLine className="mt-2.5 mb-5" />
-
 				<div className="mb-6">
-					<h4 className="text-black-primary text-[14px] font-bold mb-3">{t("inTeam")}</h4>
 					<ul className="space-y-2.5">
 						{serviceFeatures.map((feature, index) => (
 							<li key={index} className="flex items-start gap-2.5">
