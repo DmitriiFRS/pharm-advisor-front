@@ -31,8 +31,12 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
 								{price.toLocaleString()} {t("currency")}
 							</span>
 						)}
-						<div className="bg-white/90 backdrop-blur-sm px-[5px] py-1.5 rounded-[6px] max-w-[140px]">
-							<span className="text-[#858585] text-11 font-medium">{label}</span>
+						<div className={`${!price ? "w-full flex justify-end" : ""}`}>
+							<div
+								className={`bg-white/90 backdrop-blur-sm px-[5px] py-1.5 rounded-[6px] max-w-[140px] ${!price ? "max-w-full" : ""}`}
+							>
+								<span className="text-[#858585] text-11 font-medium">{label}</span>
+							</div>
 						</div>
 					</div>
 				</div>
