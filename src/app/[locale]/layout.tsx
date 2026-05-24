@@ -23,16 +23,16 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 	const isUz = locale === "uz";
 
 	const title = isUz
-		? "O'zbekistonda farmatsevtika konsaltingi: Dori vositalarini ro'yxatdan o'tkazish, GxP auditi va Ta'lim"
-		: "Фарм консалтинг в Узбекистане: Регистрация ЛС, GxP аудит и Обучение";
+		? "Pharmadvisor — farmmarketing, o'qitish va o'sish strategiyasi | farm konsalting Uzbekistan"
+		: "Pharmadvisor — фарммаркетинг, обучение и стратегия роста | фарм консалтинг Узбекистан";
 
 	const description = isUz
 		? "Toshkent va O'zbekistonda farmatsevtika kompaniyalari uchun kompleks konsalting. Dori vositalari va BFQni ro'yxatdan o'tkazish, GMP/GDP standartlarini joriy etish, xodimlarni o'qitish va inspeksiyalarga tayyorgarlik."
 		: "Комплексный консалтинг для фармацевтических компаний в Ташкенте и РУз. Регистрация лекарств и БАД, внедрение стандартов GMP/GDP, обучение персонала и подготовка к инспекциям.";
 
 	const ogTitle = isUz
-		? "O'zbekistonda farmatsevtika konsaltingi va ta'limi – Sizning kompaniyangiz"
-		: "Фарм консалтинг и обучение в Узбекистане – Ваша компания";
+		? "Pharmadvisor — farmmarketing, o'qitish va o'sish strategiyasi | farm konsalting Uzbekistan"
+		: "Pharmadvisor — фарммаркетинг, обучение и стратегия роста | фарм консалтинг Узбекистан";
 
 	const ogDescription = isUz
 		? "Farmatsevtika biznesini rivojlantirishga yordam beramiz: preparatlarni ro'yxatdan o'tkazishdan tortib GxP joriy etish va xodimlarni o'qitishgacha. Toshkentda professional yordam."

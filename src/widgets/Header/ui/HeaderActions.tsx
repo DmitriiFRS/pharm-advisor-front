@@ -13,13 +13,14 @@ interface Props {
 
 export const HeaderActions = ({ phone, openAuthModal, openAppModal }: Props) => {
 	const t = useTranslations("common.header");
+	const displayPhone = phone && /\d/.test(phone) ? phone : undefined;
 
 	return (
 		<div className="hidden md:flex ml-8 md:gap-[7px] md:items-center">
-			{phone && (
+			{displayPhone && (
 				<a
 					target="_blank"
-					href={`tel:${phone}`}
+					href={`tel:${displayPhone}`}
 					className="h-10 min-h-10 w-10 min-w-10 flex items-center justify-center bg-[#F5F5F7] rounded-[8px]"
 				>
 					<Image src={call} alt="Call" width={30} height={30} className="size-[15px]" />

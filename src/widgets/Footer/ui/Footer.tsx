@@ -119,13 +119,15 @@ const FooterNav = () => {
 
 const FooterContacts = ({ contacts }: { contacts?: IContacts | undefined }) => {
 	const t = useTranslations("common.footer");
+	const displayPhone = contacts?.phone && /\d/.test(contacts.phone) ? contacts.phone : undefined;
+
 	return (
 		<>
 			<div className="hidden lg:block order-1"></div>
 			<div className="flex flex-col gap-2 text-16 leading-118 font-semibold lg:order-2">
-				{contacts?.phone && (
-					<a href={`tel:${contacts.phone}`} target="_blank" rel="noopener noreferrer">
-						{contacts.phone}
+				{displayPhone && (
+					<a href={`tel:${displayPhone}`} target="_blank" rel="noopener noreferrer">
+						{displayPhone}
 					</a>
 				)}
 				{contacts?.email && (
