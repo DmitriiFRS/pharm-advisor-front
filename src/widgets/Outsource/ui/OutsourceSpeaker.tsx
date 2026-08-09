@@ -49,14 +49,14 @@ const OutsourceSpeaker = ({
 							"radial-gradient(circle at 78% 82%, rgba(244, 52, 139, 0.88) 0 20%, transparent 20.2%), radial-gradient(circle at 69% 111%, rgba(177, 44, 102, 0.48) 0 37%, transparent 37.2%), linear-gradient(110deg, #ad2d62 0%, #ef378c 100%)",
 					}}
 				>
-					<figure className="relative aspect-[268/413] overflow-hidden rounded-[18px] bg-[#f2f2f2] lg:aspect-auto lg:min-h-full">
+					<figure className="relative aspect-[4/3] overflow-hidden rounded-[18px] bg-[#f2f2f2] md:aspect-[16/10] lg:aspect-auto lg:min-h-full">
 						{imageUrl && (
 							<Image
 								src={imageUrl}
 								alt={imageAlt}
 								fill
 								sizes="(min-width: 1024px) 31vw, 100vw"
-								className="object-cover lg:object-left"
+								className="object-cover object-left-top lg:object-left"
 							/>
 						)}
 						{imageUrl && imageAlt && <figcaption className="sr-only">{imageAlt}</figcaption>}
