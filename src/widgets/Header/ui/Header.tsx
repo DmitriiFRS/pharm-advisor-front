@@ -32,7 +32,7 @@ export const Header = ({ contacts }: { contacts: IContacts | undefined }) => {
 		<header className="fixed top-0 z-50 w-full pr-(--removed-body-scroll-bar-size)">
 			<div className="mx-auto flex items-center justify-between px-3.5 h-[55px] bg-white max-w-[760px] md:justify-start md:mt-2.5 md:rounded-[11px]">
 				<Link href="/">
-					<Image src={logo} alt="Pharm Advisor Logo" width={120} height={40} className="h-10 w-auto object-contain" priority />
+					<Image src={logo} alt="Pharm Advisor Logo" width={120} height={40} className="h-10 w-auto object-contain md:h-auto md:w-20" priority />
 				</Link>
 				<DesktopNav />
 				<HeaderActions phone={contacts?.phone} openAuthModal={openAuthModal} openAppModal={openApplicationModal} />

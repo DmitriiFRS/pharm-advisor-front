@@ -88,7 +88,8 @@
 			"education": "Обучение",
 			"knowledgeBase": "База знаний",
 			"contacts": "Контакты",
-			"discussProject": "Обсудить проект"
+			"discussProject": "Обсудить проект",
+			"outsource": "Аутсорс"
 		},
 		"footer": {
 			"menuTitle": "Меню",

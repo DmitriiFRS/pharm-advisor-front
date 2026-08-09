@@ -6,6 +6,7 @@ const NAV_LINKS = [
 	{ href: "/education", label: "education" },
 	{ href: "/knowledge-base", label: "knowledgeBase" },
 	{ href: "/contacts", label: "contacts" },
+	{ href: "/outsource", label: "outsource" },
 ];
 
 export const DesktopNav = () => {
@@ -13,12 +14,12 @@ export const DesktopNav = () => {
 	const { scrollToContacts } = useScroll();
 
 	return (
-		<nav className="hidden md:flex md:gap-5 ml-8">
+		<nav className="hidden min-w-0 md:ml-4 md:flex md:gap-3">
 			{NAV_LINKS.map((link) => (
 				<Link
 					key={link.href}
 					href={link.href}
-					className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
+					className="shrink-0 whitespace-nowrap text-13 font-medium text-foreground/80 transition-colors hover:text-foreground"
 					onClick={(e) => {
 						if (link.href === "/contacts") {
 							e.preventDefault();

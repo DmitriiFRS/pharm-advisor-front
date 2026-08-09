@@ -16,7 +16,7 @@ export const HeaderActions = ({ phone, openAuthModal, openAppModal }: Props) => 
 	const displayPhone = phone && /\d/.test(phone) ? phone : undefined;
 
 	return (
-		<div className="hidden md:flex ml-8 md:gap-[7px] md:items-center">
+		<div className="hidden md:ml-4 md:flex md:items-center md:gap-1.5">
 			{displayPhone && (
 				<a
 					target="_blank"
@@ -30,7 +30,7 @@ export const HeaderActions = ({ phone, openAuthModal, openAppModal }: Props) => 
 			<ProfileButton onAuthRequired={openAuthModal} />
 			<LangSwitcher />
 
-			<BlackButton onClick={openAppModal} className="w-full min-w-45 h-10!">
+			<BlackButton onClick={openAppModal} className="h-10! w-auto! min-w-40 whitespace-nowrap text-13">
 				{t("discussProject")}
 			</BlackButton>
 		</div>
