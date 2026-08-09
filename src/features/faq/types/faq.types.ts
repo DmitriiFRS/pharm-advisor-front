@@ -1,7 +1,11 @@
-export interface IFaq {
-	id: number;
+export interface FaqItem {
+	id: number | string;
 	question: string;
 	answer: string;
+}
+
+export interface IFaq extends FaqItem {
+	id: number;
 	createdAt: string;
 	updatedAt: string;
 	publishedAt: string | null;

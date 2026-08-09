@@ -55,7 +55,35 @@
 			"description": "Aloqa ma'lumotlaringizni qoldiring va biz sizni qiziqtirgan har qanday savollar bo'yicha siz bilan bog'lanamiz."
 		}
 	},
+	"outsource": {
+		"metadata": {
+			"title": "Farma va E-Commerce: bepul master-klass | Pharmadvisor",
+			"description": "O'zbekistonda farmatsevtika mahsulotlari savdosi va e-commerce rivoji bo'yicha Pharmadvisor master-klassi."
+		},
+		"hero": {
+			"register": "Ro'yxatdan o'tish",
+			"formSection": "Autsors: birinchi ekran"
+		},
+		"speaker": {
+			"sectionTitle": "Spiker"
+		},
+		"faq": {
+			"title": "Savollar va javoblar"
+		},
+		"states": {
+			"loading": "Sahifa yuklanmoqda",
+			"empty": "Master-klass haqida ma'lumot hali e'lon qilinmagan.",
+			"programEmpty": "Dastur hali e'lon qilinmagan.",
+			"errorTitle": "Sahifani yuklab bo'lmadi",
+			"errorDescription": "So'rovni takrorlang. Xatolik saqlanib qolsa, keyinroq qayting.",
+			"retry": "Qayta urinish",
+			"notFound": "Master-klass sahifasi topilmadi."
+		}
+	},
 	"common": {
+		"notFound": {
+			"description": "Sahifa topilmadi."
+		},
 		"header": {
 			"education": "Ta'lim",
 			"knowledgeBase": "Bilimlar bazasi",

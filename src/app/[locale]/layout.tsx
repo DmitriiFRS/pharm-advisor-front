@@ -12,7 +12,7 @@ import UserContextProvider from "@/entities/user/model/UserContext";
 import { cookies } from "next/headers";
 import { authServerApi } from "@/features/auth/api/auth.server";
 import { ScrollProvider } from "@/shared/lib/context/ScrollContext";
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin", "cyrillic"] });
 import { ToastContainer } from "react-toastify";
 import { apiServerService } from "@/shared/api/base.server";
 import { IContacts, IContactsResponse } from "@/entities/company/model/types";

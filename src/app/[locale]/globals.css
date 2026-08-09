@@ -11,19 +11,33 @@
 	--text-14: 0.875rem;
 	--text-15: 0.9375rem;
 	--text-16: 1rem;
+	--text-17: 1.0625rem;
 	--text-18: 1.125rem;
+	--text-19: 1.1875rem;
 	--text-20: 1.25rem;
 	--text-22: 1.375rem;
 	--text-24: 1.5rem;
+	--text-25: 1.5625rem;
 	--text-26: 1.625rem;
 	--text-28: 1.75rem;
 	--text-30: 1.875rem;
+	--text-32: 2rem;
 	--text-40: 2.5rem;
+	--text-42: 2.625rem;
 	--text-46: 2.875rem;
+	--text-56: 3.5rem;
+
+	--text-outsource-program-title: clamp(2.75rem, 3.7vw, 3.625rem);
+	--text-outsource-speaker-title: clamp(2.5rem, 3.4vw, 3.75rem);
+	--text-outsource-highlight-title: clamp(2rem, 2.6vw, 2.625rem);
+	--text-outsource-highlight-description: clamp(0.8125rem, 1vw, 0.9375rem);
+	--text-outsource-headline: clamp(1.25rem, 1.65vw, 1.6875rem);
+	--text-outsource-description: clamp(0.875rem, 1.15vw, 1.1875rem);
 
 	--leading-93: 93%;
 	--leading-100: 100%;
 	--leading-106: 106%;
+	--leading-110: 110%;
 	--leading-118: 118%;
 	--leading-130: 130%;
 	--leading-140: 140%;
