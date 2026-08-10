@@ -89,7 +89,8 @@
 			"knowledgeBase": "База знаний",
 			"contacts": "Контакты",
 			"discussProject": "Обсудить проект",
-			"outsource": "Аутсорс"
+			"outsource": "Аутсорс",
+			"webinars": "Вебинары"
 		},
 		"footer": {
 			"menuTitle": "Меню",
@@ -105,7 +106,8 @@
 			},
 			"services": {
 				"education": "Обучение",
-				"knowledgeBase": "База Знаний"
+				"knowledgeBase": "База Знаний",
+				"webinars": "Вебинары"
 			}
 		},
 		"buttons": {

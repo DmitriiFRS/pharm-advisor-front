@@ -89,7 +89,8 @@
 			"knowledgeBase": "Bilimlar bazasi",
 			"contacts": "Kontaktlar",
 			"discussProject": "Muhokama",
-			"outsource": "Autsors"
+			"outsource": "Autsors",
+			"webinars": "Vebinarlar"
 		},
 		"footer": {
 			"menuTitle": "Menyu",
@@ -105,7 +106,8 @@
 			},
 			"services": {
 				"education": "Ta'lim",
-				"knowledgeBase": "Bilimlar bazasi"
+				"knowledgeBase": "Bilimlar bazasi",
+				"webinars": "Vebinarlar"
 			}
 		},
 		"buttons": {

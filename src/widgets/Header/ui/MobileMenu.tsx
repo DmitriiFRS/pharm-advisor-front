@@ -23,7 +23,7 @@ const NAV_LINKS = [
 	{ href: "/education", label: "education" },
 	{ href: "/knowledge-base", label: "knowledgeBase" },
 	{ href: "/contacts", label: "contacts" },
-	{ href: "/outsource", label: "outsource" },
+	{ href: "/outsource", label: "webinars" },
 ];
 
 const menuVariants: Variants = {

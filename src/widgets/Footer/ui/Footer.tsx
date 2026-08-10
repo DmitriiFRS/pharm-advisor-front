@@ -67,6 +67,7 @@ const FooterNav = () => {
 	const FOOTER_SERVICES = [
 		{ name: t("services.education"), href: "/education" },
 		{ name: t("services.knowledgeBase"), href: "/knowledge-base" },
+		{ name: t("services.webinars"), href: "/outsource" },
 	];
 
 	const handleNavigation = (name: string, href: string) => {
