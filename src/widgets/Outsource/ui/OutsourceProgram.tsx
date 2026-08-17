@@ -45,7 +45,7 @@ const OutsourceProgram = ({ programTitle, programImage, programItems, emptyLabel
 						className={cn(
 							"flex flex-col",
 							imageUrl && "mt-8 lg:mt-0",
-							programItems.length > 0 && "gap-[30px] lg:justify-between lg:gap-0 lg:py-1"
+							programItems.length > 0 && "gap-[30px] lg:justify-between lg:gap-4 lg:py-1"
 						)}
 					>
 						{programItems.length > 0 ? (
