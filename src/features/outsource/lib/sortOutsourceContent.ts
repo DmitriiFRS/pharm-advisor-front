@@ -6,5 +6,8 @@ export const sortOutsourceContent = (data: OutsourcePageData): OutsourcePageData
 	...data,
 	heroCards: [...data.heroCards].sort(byOrderAndId),
 	programItems: [...data.programItems].sort(byOrderAndId),
-	speakerHighlights: [...data.speakerHighlights].sort(byOrderAndId),
+	speakers: [...(data.speakers ?? [])].sort(byOrderAndId).map((speaker) => ({
+		...speaker,
+		highlights: [...(speaker.highlights ?? [])].sort(byOrderAndId),
+	})),
 });

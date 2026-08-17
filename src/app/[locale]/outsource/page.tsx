@@ -60,7 +60,10 @@ export default async function OutsourcePage({ params }: OutsourcePageProps) {
 	}
 
 	const outsource = sortOutsourceContent(pageResult.value.data);
-	const hasPrimaryContent = [outsource.heroTitle, outsource.programTitle, outsource.speakerName].some((value) => value.trim().length > 0);
+	const hasSpeakerContent = outsource.speakers.some((speaker) =>
+		[speaker.name, speaker.role, speaker.headline, speaker.description].some((value) => value.trim().length > 0)
+	);
+	const hasPrimaryContent = [outsource.heroTitle, outsource.programTitle].some((value) => value.trim().length > 0) || hasSpeakerContent;
 
 	if (!hasPrimaryContent) {
 		return (
@@ -86,12 +89,9 @@ export default async function OutsourcePage({ params }: OutsourcePageProps) {
 			/>
 			<OutsourceSpeaker
 				sectionTitle={t("speaker.sectionTitle")}
-				speakerName={outsource.speakerName}
-				speakerRole={outsource.speakerRole}
-				speakerHeadline={outsource.speakerHeadline}
-				speakerDescription={outsource.speakerDescription}
-				speakerImage={outsource.speakerImage}
-				speakerHighlights={outsource.speakerHighlights}
+				previousLabel={t("speaker.previous")}
+				nextLabel={t("speaker.next")}
+				speakers={outsource.speakers}
 			/>
 			<OutsourceFaq title={t("faq.title")} items={faqResponse.data} />
 			<ContactSection siteSection="Блок с заявкой внизу сайта на странице outsource" />

@@ -28,20 +28,28 @@ export interface OutsourceSpeakerHighlight {
 	order: number;
 }
 
+export interface OutsourceSpeaker {
+	id: number;
+	outsourcePageId: number;
+	name: string;
+	role: string;
+	headline: string;
+	description: string;
+	order: number;
+	imageId: number | null;
+	image: Media | null;
+	highlights: OutsourceSpeakerHighlight[];
+}
+
 export interface OutsourcePageData {
 	id: number;
 	startsAt: string;
 	heroTitle: string;
 	programTitle: string;
-	speakerName: string;
-	speakerRole: string;
-	speakerHeadline: string;
-	speakerDescription: string;
 	programImage: Media | null;
-	speakerImage: Media | null;
 	heroCards: OutsourceHeroCard[];
 	programItems: OutsourceProgramItem[];
-	speakerHighlights: OutsourceSpeakerHighlight[];
+	speakers: OutsourceSpeaker[];
 }
 
 export interface OutsourceFaqItem {

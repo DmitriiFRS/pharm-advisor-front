@@ -64,7 +64,9 @@
 			"register": "Ro'yxatdan o'tish"
 		},
 		"speaker": {
-			"sectionTitle": "Spiker"
+			"sectionTitle": "Spikerlar",
+			"previous": "Oldingi spiker",
+			"next": "Keyingi spiker"
 		},
 		"faq": {
 			"title": "Savollar va javoblar"
