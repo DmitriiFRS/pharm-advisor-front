@@ -76,6 +76,7 @@ export default async function OutsourcePage({ params }: OutsourcePageProps) {
 				heroTitle={outsource.heroTitle}
 				startsAt={formatOutsourceStart(outsource.startsAt, locale)}
 				heroCards={outsource.heroCards}
+				siteSection="Первый блок на странице outsource"
 			/>
 			<OutsourceProgram
 				programTitle={outsource.programTitle}
@@ -93,7 +94,7 @@ export default async function OutsourcePage({ params }: OutsourcePageProps) {
 				speakerHighlights={outsource.speakerHighlights}
 			/>
 			<OutsourceFaq title={t("faq.title")} items={faqResponse.data} />
-			<ContactSection />
+			<ContactSection siteSection="Блок с заявкой внизу сайта на странице outsource" />
 		</div>
 	);
 }

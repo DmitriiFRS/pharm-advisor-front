@@ -3,7 +3,11 @@ import Container from "@/shared/ui/Container";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 
-export const ContactSection = async () => {
+interface ContactSectionProps {
+	siteSection: string;
+}
+
+export const ContactSection = async ({ siteSection }: ContactSectionProps) => {
 	const t = await getTranslations("homepage.contact");
 	return (
 		<section className="pb-15 md:pb-30">
@@ -12,7 +16,7 @@ export const ContactSection = async () => {
 					<div className="w-full lg:max-w-[486px] pt-0 lg:pt-10">
 						<h2 className="text-3xl md:text-4xl font-bold mb-4 text-black-primary">{t("title")}</h2>
 						<p className="text-grey-primary mb-8 text-base md:text-lg">{t("description")}</p>
-						<FeedbackForm siteSection="Блок с заявкой внизу сайта на главной странице" />
+						<FeedbackForm siteSection={siteSection} />
 					</div>
 					<div className="relative w-full aspect-343/260 lg:w-[592px] lg:h-[560px] rounded-[20px] overflow-hidden shrink-0">
 						<Image src="/assets/images/homepage/doctor.webp" alt="doctor" fill className="object-cover" />

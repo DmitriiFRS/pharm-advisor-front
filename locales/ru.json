@@ -61,11 +61,10 @@
 			"description": "Мастер-класс Pharmadvisor о продажах фармацевтических товаров и развитии e-commerce в Узбекистане."
 		},
 		"hero": {
-			"register": "Зарегистрироваться",
-			"formSection": "Аутсорс: первый экран"
+			"register": "Зарегистрироваться"
 		},
 		"speaker": {
-			"sectionTitle": "Спикер"
+			"sectionTitle": "Спикеры"
 		},
 		"faq": {
 			"title": "Вопросы и ответы"

@@ -21,7 +21,7 @@ export default function Home() {
 			<Courses />
 			<KnowledgeBase />
 			<FaqWithData />
-			<ContactSection />
+			<ContactSection siteSection="Блок с заявкой внизу сайта на главной странице" />
 		</>
 	);
 }

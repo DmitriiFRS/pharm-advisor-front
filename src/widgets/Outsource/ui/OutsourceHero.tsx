@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { CalendarDays, ChevronRight, Clock3 } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 
+import calendarIcon from "@/assets/icons/outsource/calendar.svg";
+import clockIcon from "@/assets/icons/outsource/clock.svg";
 import heroImage from "@/assets/images/outsource/pharm-hero.webp";
 import { ApplicationModal } from "@/features/feedback-form";
 import type { FormattedOutsourceStart, OutsourceHeroCard } from "@/features/outsource";
@@ -17,11 +19,12 @@ interface OutsourceHeroProps {
 	heroTitle: string;
 	startsAt: FormattedOutsourceStart | null;
 	heroCards: readonly OutsourceHeroCard[];
+	siteSection: string;
 }
 
 const HERO_ACCENT_TEXT = "Фарма и E-Commerce,";
 
-const OutsourceHero = ({ heroTitle, startsAt, heroCards }: OutsourceHeroProps) => {
+const OutsourceHero = ({ heroTitle, startsAt, heroCards, siteSection }: OutsourceHeroProps) => {
 	const t = useTranslations("outsource.hero");
 	const [isApplicationModalOpen, setIsApplicationModalOpen] = useState(false);
 	const accentStartIndex = heroTitle.indexOf(HERO_ACCENT_TEXT);
@@ -39,11 +42,11 @@ const OutsourceHero = ({ heroTitle, startsAt, heroCards }: OutsourceHeroProps) =
 						{startsAt && (
 							<div className="inline-flex h-[43px] w-full max-w-[377px] items-center justify-between rounded-[13px] bg-[linear-gradient(100deg,#ad2d62_0%,#ef378c_100%)] px-5 text-white shadow-[0_12px_32px_rgba(184,45,103,0.12)] md:h-[61px] md:w-auto md:max-w-none md:justify-start md:gap-10 md:px-7">
 								<div className="flex items-center gap-3 whitespace-nowrap text-17 font-semibold leading-160 tracking-neg-2 md:gap-4 md:text-25">
-									<CalendarDays aria-hidden="true" className="size-6 shrink-0 md:size-7" strokeWidth={2.4} />
+									<Image src={calendarIcon} alt="" aria-hidden="true" className="size-6 shrink-0 md:size-7" />
 									<time dateTime={startsAt.iso}>{startsAt.date}</time>
 								</div>
 								<div className="flex items-center gap-3 whitespace-nowrap text-17 font-semibold leading-160 tracking-neg-2 md:gap-4 md:text-25">
-									<Clock3 aria-hidden="true" className="size-6 shrink-0 fill-white md:size-7" strokeWidth={2.4} />
+									<Image src={clockIcon} alt="" aria-hidden="true" className="size-6 shrink-0 md:size-7" />
 									<time dateTime={startsAt.iso}>{startsAt.time}</time>
 								</div>
 							</div>
@@ -52,7 +55,7 @@ const OutsourceHero = ({ heroTitle, startsAt, heroCards }: OutsourceHeroProps) =
 						<h1
 							id="outsource-title"
 							className={cn(
-								"whitespace-pre-line text-24! font-semibold leading-110 tracking-neg-3 text-[#575656] md:text-40 md:leading-100 md:tracking-neg-2",
+								"max-w-[510px] whitespace-pre-line text-24! font-semibold leading-110 tracking-neg-3 text-[#575656] md:text-40 md:leading-100 md:tracking-neg-2",
 								startsAt ? "mt-5 md:mt-[30px]" : "mt-0"
 							)}
 						>
@@ -93,7 +96,7 @@ const OutsourceHero = ({ heroTitle, startsAt, heroCards }: OutsourceHeroProps) =
 				</div>
 			</Container>
 
-			<ApplicationModal isOpen={isApplicationModalOpen} onClose={setIsApplicationModalOpen} siteSection={t("formSection")} />
+			<ApplicationModal isOpen={isApplicationModalOpen} onClose={setIsApplicationModalOpen} siteSection={siteSection} />
 		</section>
 	);
 };

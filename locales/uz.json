@@ -61,8 +61,7 @@
 			"description": "O'zbekistonda farmatsevtika mahsulotlari savdosi va e-commerce rivoji bo'yicha Pharmadvisor master-klassi."
 		},
 		"hero": {
-			"register": "Ro'yxatdan o'tish",
-			"formSection": "Autsors: birinchi ekran"
+			"register": "Ro'yxatdan o'tish"
 		},
 		"speaker": {
 			"sectionTitle": "Spiker"
